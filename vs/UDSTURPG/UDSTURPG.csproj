@@ -35,6 +35,7 @@
     <ApplicationIcon>Icon.ico</ApplicationIcon>
   </PropertyGroup>
   <ItemGroup>
+    <Compile Include="Blocks\Block.cs" />
     <Compile Include="Controls\MyKey.cs" />
     <Compile Include="Controls\MyKeyboard.cs" />
     <Compile Include="Controls\MyMouse.cs" />
@@ -53,6 +54,7 @@
     <Compile Include="Rendering\Text.cs" />
     <Compile Include="Textures\Textures2D.cs" />
     <Compile Include="Utils\Primitives2D.cs" />
+    <Compile Include="Worlds\Chunk.cs" />
     <Compile Include="Worlds\World.cs" />
   </ItemGroup>
   <ItemGroup>

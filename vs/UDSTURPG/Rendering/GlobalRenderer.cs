@@ -14,4 +14,10 @@ namespace RPG.Rendering
         {
 
         }
+
+        internal static void DrawConsole()
+        {
+            throw new NotImplementedException();
+        }
+    }
 }

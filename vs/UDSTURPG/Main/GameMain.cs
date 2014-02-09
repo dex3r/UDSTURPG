@@ -2,6 +2,9 @@
 using System.Text;
 using RPG.Controls;
 using RPG.Rendering;
+using RPG.Worlds;
+using RPG.Textures;
+using RPG.Main;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
@@ -23,6 +26,7 @@ namespace RPG.Main
         private static StringBuilder sb = new StringBuilder();
 
         //!? Public:
+        private static World currentWorld;
         /// <summary>
         /// Świat który jest aktualnie wyświetlany (null jeżeli w menu etc)
         /// </summary>
@@ -102,7 +106,7 @@ namespace RPG.Main
             Options.KeyPressed(graphicsDeviceManager);
 
             Camera.Interaction(graphicsDeviceManager, GraphicsDevice);
-            MyMouse.Update(currentWorld);
+            MyMouse.Update();
             MyKeyboard.Update();
             Camera.Update(GraphicsDevice);
             base.Update(gameTime);
@@ -110,6 +114,7 @@ namespace RPG.Main
 
         protected override void Draw(GameTime gameTime)
         {
+            GraphicsDevice.Clear(Color.Firebrick);
             if (lastSec != (long)gameTime.TotalGameTime.TotalSeconds)
             {
                 lastFps = currentFps;
@@ -121,7 +126,7 @@ namespace RPG.Main
             //Wyświetlanie po transformacji
             BeginNormalDrawing();
             // Rysowanie świata i obiektów
-            GlobalRenderer.Draw(gameTime);
+            GlobalRenderer.Draw();
 
             SpriteBatch.End();
 

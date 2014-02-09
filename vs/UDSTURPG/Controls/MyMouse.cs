@@ -6,6 +6,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using RPG.Rendering;
 
 namespace RPG.Controls
 {
@@ -35,8 +36,8 @@ namespace RPG.Controls
         {
             ScrollWheelDelta = OverallScrollWheelValue - Mouse.GetState().ScrollWheelValue;
             OverallScrollWheelValue = Mouse.GetState().ScrollWheelValue;
-            positionRelative.X = Rendering.Camera.Transform.Translation.X * -1 * (float)Math.Pow(Rendering.Camera.Zoom, -1) + Mouse.GetState().X * (float)Math.Pow(Rendering.Camera.Zoom, -1);
-            positionRelative.Y = Rendering.Camera.Transform.Translation.Y * -1 * (float)Math.Pow(Rendering.Camera.Zoom, -1) + Mouse.GetState().Y * (float)Math.Pow(Rendering.Camera.Zoom, -1);
+            positionRelative.X = Camera.Transform.Translation.X * -1 * (float)Math.Pow(Camera.Zoom, -1) + Mouse.GetState().X * (float)Math.Pow(Camera.Zoom, -1);
+            positionRelative.Y = Camera.Transform.Translation.Y * -1 * (float)Math.Pow(Camera.Zoom, -1) + Mouse.GetState().Y * (float)Math.Pow(Camera.Zoom, -1);
 
             //if (Mouse.GetState().LeftButton == ButtonState.Pressed)
             //{

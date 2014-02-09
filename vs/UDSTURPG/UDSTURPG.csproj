@@ -49,7 +49,6 @@
     <Compile Include="Rendering\GlobalRenderer.cs" />
     <Compile Include="Rendering\Text.cs" />
     <Compile Include="Textures\Textures2D.cs" />
-    <Compile Include="Textures\TexturesRoads.cs" />
     <Compile Include="Utils\Primitives2D.cs" />
     <Compile Include="Worlds\World.cs" />
   </ItemGroup>

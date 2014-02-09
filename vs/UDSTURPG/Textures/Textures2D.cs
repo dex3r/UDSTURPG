@@ -13,10 +13,13 @@ namespace RPG.Textures
     {
         public static Texture2D TWall;
         public static Rectangle RWall = new Rectangle(0, 0, 31, 55);
+        public static Texture2D TFloor;
+        public static Rectangle RFloor = new Rectangle(0, 0, 31, 31);
 
         public static void Load(ContentManager cm)
         {
             TWall = cm.Load<Texture2D>(@"gfx\tiled\Tileset-Wall");
+            TFloor = cm.Load<Texture2D>(@"gfx\tiled\Tileset-Floor");
         }
     }
 }

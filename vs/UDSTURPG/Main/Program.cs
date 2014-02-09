@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 
-namespace Explicatio.Main
+namespace RPG.Main
 {
     public static class Program
     {

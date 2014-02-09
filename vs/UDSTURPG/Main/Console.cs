@@ -5,7 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using Explicatio.Controls;
 
-namespace Explicatio.Main
+namespace RPG.Main
 {
     public static class Console
     {

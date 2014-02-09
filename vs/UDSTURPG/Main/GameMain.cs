@@ -1,13 +1,12 @@
 ﻿using System;
 using System.Text;
-using Explicatio.Controls;
-using Explicatio.Rendering;
-using Explicatio.Worlds;
+using RPG.Controls;
+using RPG.Rendering;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
 
-namespace Explicatio.Main
+namespace RPG.Main
 {
     public class GameMain : Game
     {
@@ -24,7 +23,6 @@ namespace Explicatio.Main
         private static StringBuilder sb = new StringBuilder();
 
         //!? Public:
-        private static World currentWorld;
         /// <summary>
         /// Świat który jest aktualnie wyświetlany (null jeżeli w menu etc)
         /// </summary>
@@ -35,7 +33,6 @@ namespace Explicatio.Main
         }
 
         public static SpriteBatch SpriteBatch { get; private set; }
-        public static int LastDrawedChunksCount { get; set; }
 
         /// <summary>
         /// Wróć do pozycji kamery
@@ -67,7 +64,7 @@ namespace Explicatio.Main
             // Nie przenosić do Initialize!
             Options.Init(graphicsDeviceManager);
             // Vsync i fixedTimeStep:
-            this.IsFixedTimeStep = false;
+            this.IsFixedTimeStep = true;
         }
 
         protected override void Initialize()
@@ -77,8 +74,8 @@ namespace Explicatio.Main
             //Ustawienie pozycji okna
             Window.SetPosition(new Point(400, 100));
             //Początkowa pozycja kamery na środku rysowanego pola 
-            Camera.X = currentWorld.ChunksInRow * Chunk.CHUNK_SIZE * 32;
-            Camera.Y = currentWorld.ChunksInRow * Chunk.CHUNK_SIZE * 16;
+            Camera.X = 0;
+            Camera.Y = 0;
         }
 
         protected override void LoadContent()
@@ -150,7 +147,6 @@ namespace Explicatio.Main
                 }
             }
             SpriteBatch.End();
-            MouseWorldControl.Interaction(currentWorld);
             base.Draw(gameTime);
         }
 
@@ -173,8 +169,6 @@ namespace Explicatio.Main
             sb.Append(Camera.Y);
             sb.Append(" Zoom: ");
             sb.Append(Camera.Zoom);
-            sb.Append("\nDrawed chunks: ");
-            sb.Append(LastDrawedChunksCount);
             sb.Append("\n");
             sb.Append(Text.Log);
             Text.Log = sb.ToString();

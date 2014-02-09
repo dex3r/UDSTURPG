@@ -21,10 +21,10 @@ namespace RPG.Controls
             }
         }
         public bool WasPressed { get; set; }
-        public ButtonChangeState ButtonDownEvent { get; set; }
-        public ButtonChangeState ButtonUpEvent { get; set; }
-        public ButtonChangeState ButtonToggleOnEvent { get; set; }
-        public ButtonChangeState ButtonToggleOffEvent { get; set; }
+        public event ButtonChangeState ButtonDownEvent;
+        public event ButtonChangeState ButtonUpEvent;
+        public event ButtonChangeState ButtonToggleOffEvent;
+        public event ButtonChangeState ButtonToggleOnEvent;
 
         public List<Keys> registeredKeys { get; private set; }
 
@@ -88,7 +88,7 @@ namespace RPG.Controls
                }
            }
         }
-
+            
         public bool RegisterKey(Keys key)
         {
             if (!registeredKeys.Contains(key))

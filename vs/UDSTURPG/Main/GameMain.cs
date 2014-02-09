@@ -8,6 +8,7 @@ using RPG.Main;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
+using RPG.Entities;
 
 namespace RPG.Main
 {
@@ -34,6 +35,13 @@ namespace RPG.Main
         {
             get { return currentWorld; }
             set { currentWorld = value; }
+        }
+
+        private static Player currentPlayer;
+        public static Player CurrentPlayer
+        {
+            get { return GameMain.currentPlayer; }
+            set { GameMain.currentPlayer = value; }
         }
 
         public static SpriteBatch SpriteBatch { get; private set; }
@@ -69,12 +77,14 @@ namespace RPG.Main
             Options.Init(graphicsDeviceManager);
             // Vsync i fixedTimeStep:
             this.IsFixedTimeStep = true;
+            
         }
 
         protected override void Initialize()
         {
             base.Initialize();
             currentWorld = new World();
+            currentPlayer = new Player();
             //Ustawienie pozycji okna
             Window.SetPosition(new Point(400, 100));
             //Początkowa pozycja kamery na środku rysowanego pola 
@@ -172,6 +182,10 @@ namespace RPG.Main
             sb.Append(Camera.X);
             sb.Append(" ");
             sb.Append(Camera.Y);
+            sb.Append("\nPlayer: ");
+            sb.Append(currentPlayer.PosX);
+            sb.Append(" ");
+            sb.Append(currentPlayer.PosY);
             sb.Append(" Zoom: ");
             sb.Append(Camera.Zoom);
             sb.Append("\n");

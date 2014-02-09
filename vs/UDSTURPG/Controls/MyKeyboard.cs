@@ -22,6 +22,32 @@ namespace RPG.Controls
             get { return MyKeyboard.keyToggleConsole; }
         }
 
+        private static MyKey keyMoveUp = new MyKey("Move player up", Keys.W);
+
+        public static MyKey KeyMoveUp
+        {
+            get { return MyKeyboard.keyMoveUp; }
+        }
+        private static MyKey keyMoveDown = new MyKey("Move player down", Keys.S);
+
+        public static MyKey KeyMoveDown
+        {
+            get { return MyKeyboard.keyMoveDown; }
+        }
+        private static MyKey keyMoveLeft = new MyKey("Move player left", Keys.A);
+
+        public static MyKey KeyMoveLeft
+        {
+            get { return MyKeyboard.keyMoveLeft; }
+        }
+        private static MyKey keyMoveRight = new MyKey("Move player right", Keys.D);
+
+        public static MyKey KeyMoveRight
+        {
+            get { return MyKeyboard.keyMoveRight; }
+        }        
+        
+
         public static void Update()
         {
             KeyboardState kstate = Keyboard.GetState();

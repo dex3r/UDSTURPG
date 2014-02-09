@@ -8,7 +8,7 @@
     <ProjectGuid>{706FA691-1B85-43F2-B6A7-7C9C9533D6C1}</ProjectGuid>
     <OutputType>WinExe</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>UDSTURPG</RootNamespace>
+    <RootNamespace>RPG</RootNamespace>
     <AssemblyName>UDSTURPG</AssemblyName>
     <FileAlignment>512</FileAlignment>
   </PropertyGroup>
@@ -38,6 +38,9 @@
     <Compile Include="Controls\MyKey.cs" />
     <Compile Include="Controls\MyKeyboard.cs" />
     <Compile Include="Controls\MyMouse.cs" />
+    <Compile Include="Entities\Entity.cs" />
+    <Compile Include="Entities\Living.cs" />
+    <Compile Include="Entities\Player.cs" />
     <Compile Include="Main\Console.cs" />
     <Compile Include="Main\GameMain.cs" />
     <Compile Include="Main\GameWindowControl.cs" />
@@ -484,6 +487,7 @@
   </ItemGroup>
   <ItemGroup />
   <ItemGroup>
+    <None Include="ClassDiagram1.cd" />
     <None Include="Content\fonts\Courier New.xnb">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>

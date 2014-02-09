@@ -5,7 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using Microsoft.Xna.Framework.Input;
 
-namespace Explicatio.Controls
+namespace RPG.Controls
 {
     public delegate void ButtonChangeState(MyKey key);
 

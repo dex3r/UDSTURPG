@@ -8,8 +8,8 @@ using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
 using Microsoft.Xna.Framework;
 
-using Explicatio.Controls;
-using Explicatio.Main;
+using RPG.Controls;
+using RPG.Main;
 
 namespace Explicatio.Rendering
 {

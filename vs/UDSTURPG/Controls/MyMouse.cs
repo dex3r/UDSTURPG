@@ -1,5 +1,4 @@
-﻿using Explicatio.Worlds;
-using Microsoft.Xna.Framework;
+﻿using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
 using System;
@@ -8,7 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Explicatio.Controls
+namespace RPG.Controls
 {
     public static class MyMouse
     {
@@ -32,7 +31,7 @@ namespace Explicatio.Controls
         /// <summary>
         /// Update relatywnej pozycji myszy i kółka //!TEMP Tworzy śnieg po wciśnięciu LPM
         /// </summary>
-        public static void Update(World world)
+        public static void Update()
         {
             ScrollWheelDelta = OverallScrollWheelValue - Mouse.GetState().ScrollWheelValue;
             OverallScrollWheelValue = Mouse.GetState().ScrollWheelValue;

@@ -9,7 +9,6 @@ using RPG.Worlds;
 using RPG.Main;
 using RPG.Blocks;
 
-
 namespace RPG.Rendering
 {
     public static class GlobalRenderer
@@ -19,7 +18,7 @@ namespace RPG.Rendering
 
         public static void Draw(World world)
         {
-          
+            ChunkRenderer.RenderChunk(world.GetChunk(0,0));
         }
 
         internal static void DrawConsole()

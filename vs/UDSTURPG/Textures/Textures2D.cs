@@ -11,16 +11,12 @@ namespace RPG.Textures
 {
     public static class Textures2D
     {
-        public static Texture2D Wall;
+        public static Texture2D TWall;
+        public static Rectangle RWall = new Rectangle(0, 0, 31, 55);
 
         public static void Load(ContentManager cm)
         {
-            Wall = cm.Load<Texture2D>(@"gfx\tiled\Tileset-Wall");
+            TWall = cm.Load<Texture2D>(@"gfx\tiled\Tileset-Wall");
         }
-
-        public static readonly Vector2 TailsetWall = new Vector2(31,55);
-
-
-
     }
 }

@@ -18,7 +18,7 @@ namespace RPG.Blocks
             get { return Block.blocks; }
         }
 
-        public static Block Wall = new Block(1, "Wall", Textures.Textures2D.Wall);
+        public static Block Wall = new Block(1, "Wall", Textures.Textures2D.TWall);
 
         #endregion
         #region Non-static

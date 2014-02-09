@@ -23,17 +23,14 @@ namespace RPG.Rendering
         /// <param name="chunk"></param>
         public static void RenderChunk(Chunk chunk)
         {
+            Rectangle rect;
             for (ushort cx = 0; cx < Chunk.CHUNK_SIZE; cx++)
             {
                 for (ushort cy = 0; cy < Chunk.CHUNK_SIZE; cy++)
                 {
-                    GameMain.SpriteBatch.Draw(Block.Blocks[chunk[cx, cy]].GetTexture(chunk, cx, cy), new Vector2(cx * 31, cy * 31), Textures2D.RFloor, Color.White);
-
-                    GameMain.SpriteBatch.Draw(Block.Blocks[chunk[0, cy]].GetTexture(chunk, 0, cy), new Vector2(0, cy * 31), Textures2D.RWall, Color.White);
-                    
+                    rect = Block.Blocks[chunk[cx, cy]].GetRectangle(chunk, cx, cy);
+                    GameMain.SpriteBatch.Draw(Block.Blocks[chunk[cx, cy]].GetTexture(chunk, cx, cy), new Vector2(cx * 31, (cy * 31) - (rect.Height - 31)), rect, Color.White);
                 }
-                GameMain.SpriteBatch.Draw(Block.Blocks[chunk[cx, 0]].GetTexture(chunk, cx, 0), new Vector2(cx * 31, 0), Textures2D.RWall, Color.White);
-                GameMain.SpriteBatch.Draw(Block.Blocks[chunk[cx, (Chunk.CHUNK_SIZE - 1)]].GetTexture(chunk, cx, (Chunk.CHUNK_SIZE - 1)), new Vector2(cx * 31, (Chunk.CHUNK_SIZE - 1) * 31), Textures2D.RWall, Color.White);
             }
         }
     }

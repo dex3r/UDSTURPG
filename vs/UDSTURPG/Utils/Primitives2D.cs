@@ -128,11 +128,11 @@ namespace RPG.Utils
 		#region FillRectangle
 
 		/// <summary>
-		/// Draws a filled rectangle
+		/// Draws a filled textureRectangle
 		/// </summary>
 		/// <param name="spriteBatch">The destination drawing surface</param>
-		/// <param name="rect">The rectangle to draw</param>
-		/// <param name="color">The color to draw the rectangle in</param>
+		/// <param name="rect">The textureRectangle to draw</param>
+		/// <param name="color">The color to draw the textureRectangle in</param>
 		public static void FillRectangle(this SpriteBatch spriteBatch, Rectangle rect, Color color)
 		{
 			if (pixel == null)
@@ -146,12 +146,12 @@ namespace RPG.Utils
 
 
 		/// <summary>
-		/// Draws a filled rectangle
+		/// Draws a filled textureRectangle
 		/// </summary>
 		/// <param name="spriteBatch">The destination drawing surface</param>
-		/// <param name="rect">The rectangle to draw</param>
-		/// <param name="color">The color to draw the rectangle in</param>
-		/// <param name="angle">The angle in radians to draw the rectangle at</param>
+		/// <param name="rect">The textureRectangle to draw</param>
+		/// <param name="color">The color to draw the textureRectangle in</param>
+		/// <param name="angle">The angle in radians to draw the textureRectangle at</param>
 		public static void FillRectangle(this SpriteBatch spriteBatch, Rectangle rect, Color color, float angle)
 		{
 			if (pixel == null)
@@ -164,12 +164,12 @@ namespace RPG.Utils
 
 
 		/// <summary>
-		/// Draws a filled rectangle
+		/// Draws a filled textureRectangle
 		/// </summary>
 		/// <param name="spriteBatch">The destination drawing surface</param>
 		/// <param name="location">Where to draw</param>
-		/// <param name="size">The size of the rectangle</param>
-		/// <param name="color">The color to draw the rectangle in</param>
+		/// <param name="size">The size of the textureRectangle</param>
+		/// <param name="color">The color to draw the textureRectangle in</param>
 		public static void FillRectangle(this SpriteBatch spriteBatch, Vector2 location, Vector2 size, Color color)
 		{
 			FillRectangle(spriteBatch, location, size, color, 0.0f);
@@ -177,13 +177,13 @@ namespace RPG.Utils
 
 
 		/// <summary>
-		/// Draws a filled rectangle
+		/// Draws a filled textureRectangle
 		/// </summary>
 		/// <param name="spriteBatch">The destination drawing surface</param>
 		/// <param name="location">Where to draw</param>
-		/// <param name="size">The size of the rectangle</param>
-		/// <param name="angle">The angle in radians to draw the rectangle at</param>
-		/// <param name="color">The color to draw the rectangle in</param>
+		/// <param name="size">The size of the textureRectangle</param>
+		/// <param name="angle">The angle in radians to draw the textureRectangle at</param>
+		/// <param name="color">The color to draw the textureRectangle in</param>
 		public static void FillRectangle(this SpriteBatch spriteBatch, Vector2 location, Vector2 size, Color color, float angle)
 		{
 			if (pixel == null)
@@ -205,14 +205,14 @@ namespace RPG.Utils
 
 
 		/// <summary>
-		/// Draws a filled rectangle
+		/// Draws a filled textureRectangle
 		/// </summary>
 		/// <param name="spriteBatch">The destination drawing surface</param>
 		/// <param name="x">The X coord of the left side</param>
 		/// <param name="y">The Y coord of the upper side</param>
 		/// <param name="w">Width</param>
 		/// <param name="h">Height</param>
-		/// <param name="color">The color to draw the rectangle in</param>
+		/// <param name="color">The color to draw the textureRectangle in</param>
 		public static void FillRectangle(this SpriteBatch spriteBatch, float x, float y, float w, float h, Color color)
 		{
 			FillRectangle(spriteBatch, new Vector2(x, y), new Vector2(w, h), color, 0.0f);
@@ -220,15 +220,15 @@ namespace RPG.Utils
 
 
 		/// <summary>
-		/// Draws a filled rectangle
+		/// Draws a filled textureRectangle
 		/// </summary>
 		/// <param name="spriteBatch">The destination drawing surface</param>
 		/// <param name="x">The X coord of the left side</param>
 		/// <param name="y">The Y coord of the upper side</param>
 		/// <param name="w">Width</param>
 		/// <param name="h">Height</param>
-		/// <param name="color">The color to draw the rectangle in</param>
-		/// <param name="angle">The angle of the rectangle in radians</param>
+		/// <param name="color">The color to draw the textureRectangle in</param>
+		/// <param name="angle">The angle of the textureRectangle in radians</param>
 		public static void FillRectangle(this SpriteBatch spriteBatch, float x, float y, float w, float h, Color color, float angle)
 		{
 			FillRectangle(spriteBatch, new Vector2(x, y), new Vector2(w, h), color, angle);
@@ -240,11 +240,11 @@ namespace RPG.Utils
 		#region DrawRectangle
 
 		/// <summary>
-		/// Draws a rectangle with the thickness provided
+		/// Draws a textureRectangle with the thickness provided
 		/// </summary>
 		/// <param name="spriteBatch">The destination drawing surface</param>
-		/// <param name="rect">The rectangle to draw</param>
-		/// <param name="color">The color to draw the rectangle in</param>
+		/// <param name="rect">The textureRectangle to draw</param>
+		/// <param name="color">The color to draw the textureRectangle in</param>
 		public static void DrawRectangle(this SpriteBatch spriteBatch, Rectangle rect, Color color)
 		{
 			DrawRectangle(spriteBatch, rect, color, 1.0f);
@@ -252,11 +252,11 @@ namespace RPG.Utils
 
 
 		/// <summary>
-		/// Draws a rectangle with the thickness provided
+		/// Draws a textureRectangle with the thickness provided
 		/// </summary>
 		/// <param name="spriteBatch">The destination drawing surface</param>
-		/// <param name="rect">The rectangle to draw</param>
-		/// <param name="color">The color to draw the rectangle in</param>
+		/// <param name="rect">The textureRectangle to draw</param>
+		/// <param name="color">The color to draw the textureRectangle in</param>
 		/// <param name="thickness">The thickness of the lines</param>
 		public static void DrawRectangle(this SpriteBatch spriteBatch, Rectangle rect, Color color, float thickness)
 		{
@@ -271,12 +271,12 @@ namespace RPG.Utils
 
 
 		/// <summary>
-		/// Draws a rectangle with the thickness provided
+		/// Draws a textureRectangle with the thickness provided
 		/// </summary>
 		/// <param name="spriteBatch">The destination drawing surface</param>
 		/// <param name="location">Where to draw</param>
-		/// <param name="size">The size of the rectangle</param>
-		/// <param name="color">The color to draw the rectangle in</param>
+		/// <param name="size">The size of the textureRectangle</param>
+		/// <param name="color">The color to draw the textureRectangle in</param>
 		public static void DrawRectangle(this SpriteBatch spriteBatch, Vector2 location, Vector2 size, Color color)
 		{
 			DrawRectangle(spriteBatch, new Rectangle((int)location.X, (int)location.Y, (int)size.X, (int)size.Y), color, 1.0f);
@@ -284,12 +284,12 @@ namespace RPG.Utils
 
 
 		/// <summary>
-		/// Draws a rectangle with the thickness provided
+		/// Draws a textureRectangle with the thickness provided
 		/// </summary>
 		/// <param name="spriteBatch">The destination drawing surface</param>
 		/// <param name="location">Where to draw</param>
-		/// <param name="size">The size of the rectangle</param>
-		/// <param name="color">The color to draw the rectangle in</param>
+		/// <param name="size">The size of the textureRectangle</param>
+		/// <param name="color">The color to draw the textureRectangle in</param>
 		/// <param name="thickness">The thickness of the line</param>
 		public static void DrawRectangle(this SpriteBatch spriteBatch, Vector2 location, Vector2 size, Color color, float thickness)
 		{

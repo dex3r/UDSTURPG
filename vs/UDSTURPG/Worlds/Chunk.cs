@@ -81,7 +81,7 @@ namespace RPG.Worlds
 
             chunkGround = new byte[CHUNK_SIZE * CHUNK_SIZE];
             chunkGroundMeta = new UInt16[CHUNK_SIZE * CHUNK_SIZE];
-            ResetChunkData(1);
+            ResetChunkData(2);
         }
 
         /// <summary>
@@ -94,6 +94,12 @@ namespace RPG.Worlds
             {
                 chunkGround[i] = id;
                 chunkGroundMeta[i] = 0;
+            }
+
+            for (ushort i = 0; i < CHUNK_SIZE; i++)
+            {
+                this[i, CHUNK_SIZE - 1] = 1;
+                this[i, 0] = 1;
             }
         }
 

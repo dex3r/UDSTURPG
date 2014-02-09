@@ -5,6 +5,8 @@ using System.Text;
 using Microsoft.Xna.Framework.Graphics;
 using RPG.Main;
 using RPG.Worlds;
+using Microsoft.Xna.Framework;
+using RPG.Textures;
 
 namespace RPG.Blocks
 {
@@ -18,7 +20,8 @@ namespace RPG.Blocks
             get { return Block.blocks; }
         }
 
-        public static Block Wall = new Block(1, "Wall", Textures.Textures2D.TWall);
+        public static Block Wall = new Block(1, "Wall", Textures.Textures2D.TWall, Textures2D.RWall);
+        public static Block Floor = new Block(2, "Floor", Textures.Textures2D.TFloor, Textures2D.RFloor);
 
         #endregion
         #region Non-static
@@ -39,6 +42,7 @@ namespace RPG.Blocks
         /// Podstawowa tekstura dla tego bloku
         /// </summary>
         private Texture2D texture;
+        private Rectangle textureRectangle;
 
         public Block(byte id, String name)
         {
@@ -47,15 +51,21 @@ namespace RPG.Blocks
             Block.blocks[id] = this;
         }
 
-        public Block(byte id, String name, Texture2D texture) : this(id, name)
+        public Block(byte id, String name, Texture2D texture, Rectangle textureRectangle) : this(id, name)
         {
             this.texture = texture;
+            this.textureRectangle = textureRectangle;
         }
 
 
-        public virtual Texture2D GetTexture(Chunk chunk,ushort chunkX, ushort chunkY)
+        public virtual Texture2D GetTexture(Chunk chunk, ushort chunkX, ushort chunkY)
         {
             return texture;
+        }
+
+        public virtual Rectangle GetRectangle(Chunk chunk, ushort chunkX, ushort chunkY)
+        {
+            return textureRectangle;
         }
 
         public virtual void SetMeta(UInt16 value, int x, int y)

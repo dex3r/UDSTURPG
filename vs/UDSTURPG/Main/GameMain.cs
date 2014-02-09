@@ -126,7 +126,7 @@ namespace RPG.Main
             //Wyświetlanie po transformacji
             BeginNormalDrawing();
             // Rysowanie świata i obiektów
-            GlobalRenderer.Draw();
+            GlobalRenderer.Draw(currentWorld);
 
             SpriteBatch.End();
 

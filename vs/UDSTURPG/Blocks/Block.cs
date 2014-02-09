@@ -4,10 +4,11 @@ using System.Linq;
 using System.Text;
 using Microsoft.Xna.Framework.Graphics;
 using RPG.Main;
+using RPG.Worlds;
 
 namespace RPG.Blocks
 {
-    class Block
+    public class Block
     {
         #region Static
 
@@ -52,7 +53,7 @@ namespace RPG.Blocks
         }
 
 
-        public virtual Texture2D GetTexture(ushort chunkX, ushort chunkY)
+        public virtual Texture2D GetTexture(Chunk chunk,ushort chunkX, ushort chunkY)
         {
             return texture;
         }

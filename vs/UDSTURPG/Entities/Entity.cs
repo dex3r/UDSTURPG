@@ -3,7 +3,9 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using RPG.Textures2D;
+using RPG.Main;
 using Microsoft.Xna.Framework.Graphics;
+using Microsoft.Xna.Framework;
 
 namespace RPG.Entities
 {
@@ -22,8 +24,8 @@ namespace RPG.Entities
             set { posY = value; }
         }
 
-        private Texture2D currentTexture;
-        public Texture2D CurrentTexture
+        private MyTexture currentTexture;
+        public MyTexture CurrentTexture
         {
             get { return currentTexture; }
             set { currentTexture = value; }
@@ -36,14 +38,33 @@ namespace RPG.Entities
             set { animationFrame = value; }
         }
         
-        public Entity()
+        public Entity(float posX, float posY)
         {
-            animationFrame = 0;
+            this.posX = posX;
+            this.posY = posY;
+            this.animationFrame = 0;
         }
 
         public virtual void Update()
         {
+           
+        }
 
+        public virtual void Draw()
+        {
+            if(currentTexture == null)
+            {
+                return;
+            }
+            if(currentTexture.FramesCount > 0)
+            {
+                animationFrame++;
+                if(animationFrame >= currentTexture.FramesCount * currentTexture.AnimationSpeed)
+                {
+                    animationFrame = 0;
+                }
+            }
+            GameMain.SpriteBatch.Draw(currentTexture.Texture, new Vector2(posX * 64, posY * 64), currentTexture.GetCurrentSourceRectangle(animationFrame), Color.White, 0, new Vector2(), 2.0f, SpriteEffects.None, currentTexture.DepthOfDrawing);
         }
     }
 }

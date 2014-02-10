@@ -54,7 +54,6 @@
     <Compile Include="Rendering\GlobalRenderer.cs" />
     <Compile Include="Rendering\Text.cs" />
     <Compile Include="Textures2D\MyTexture.cs" />
-    <Compile Include="Textures2D\MyTextureAnimated.cs" />
     <Compile Include="Utils\Primitives2D.cs" />
     <Compile Include="Worlds\Chunk.cs" />
     <Compile Include="Worlds\Save.cs" />
@@ -492,7 +491,6 @@
   </ItemGroup>
   <ItemGroup />
   <ItemGroup>
-    <None Include="ClassDiagram1.cd" />
     <None Include="Content\fonts\Courier New.xnb">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>

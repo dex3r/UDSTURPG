@@ -4,13 +4,14 @@ using System.Linq;
 using System.Text;
 using Microsoft.Xna.Framework.Graphics;
 using RPG.Controls;
+using RPG.Textures2D;
 using Microsoft.Xna.Framework;
 
 namespace RPG.Entities
 {
     public class Player : Living
     {
-        private float maxSpeed = 0.5f;
+        private float maxSpeed;
 
         public float MaxSpeed
         {
@@ -24,7 +25,7 @@ namespace RPG.Entities
             get { return currentSpeed; }
             set { currentSpeed = value; }
         }
-        private float accelerate = 0.03f;
+        private float accelerate;
 
         public float Accelerate
         {
@@ -32,13 +33,16 @@ namespace RPG.Entities
             set { accelerate = value; }
         }
 
-        public Player() : base()
+        public Player(float posX, float posY) : base(posX, posY)
         {
             currentSpeed = new Vector2(0,0);
             MyKeyboard.KeyMoveUp.ButtonDownEvent += KeyMoveUp_ButtonUpEvent;
             MyKeyboard.KeyMoveDown.ButtonDownEvent += KeyMoveDown_ButtonDownEvent;
             MyKeyboard.KeyMoveLeft.ButtonDownEvent += KeyMoveLeft_ButtonDownEvent;
             MyKeyboard.KeyMoveRight.ButtonDownEvent += KeyMoveRight_ButtonDownEvent;
+            CurrentTexture = MyTexture.PlayerLordUpShooting;
+            maxSpeed = 0.045f;
+            accelerate = 0.03f;
         }
 
         void KeyMoveRight_ButtonDownEvent(MyKey key)
@@ -65,7 +69,7 @@ namespace RPG.Entities
             {
                 currentSpeed.Y += accelerate;
             }
-            PosY -= currentSpeed.Y;
+            PosY += currentSpeed.Y;
         }
 
         void KeyMoveUp_ButtonUpEvent(MyKey key)
@@ -74,7 +78,7 @@ namespace RPG.Entities
             {
                 currentSpeed.Y += accelerate;
             }
-            PosY += currentSpeed.Y;
+            PosY -= currentSpeed.Y;
         }
 
         public override void Update()

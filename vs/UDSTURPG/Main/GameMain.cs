@@ -84,7 +84,7 @@ namespace RPG.Main
         {
             base.Initialize();
             currentWorld = new World();
-            currentPlayer = new Player();
+            currentPlayer = new Player(7,7);
             //Ustawienie pozycji okna
             Window.SetPosition(new Point(400, 100));
             //Początkowa pozycja kamery na środku rysowanego pola 
@@ -136,7 +136,14 @@ namespace RPG.Main
             //Wyświetlanie po transformacji
             BeginNormalDrawing();
             // Rysowanie świata i obiektów
-            GlobalRenderer.Draw(currentWorld);
+            if (currentWorld != null)
+            {
+                GlobalRenderer.Draw(currentWorld);
+            }
+            if(currentPlayer != null)
+            {
+                currentPlayer.Draw();
+            }
 
             SpriteBatch.End();
 
@@ -186,8 +193,6 @@ namespace RPG.Main
             sb.Append(currentPlayer.PosX);
             sb.Append(" ");
             sb.Append(currentPlayer.PosY);
-            sb.Append(" Zoom: ");
-            sb.Append(Camera.Zoom);
             sb.Append("\n");
             sb.Append(Text.Log);
             Text.Log = sb.ToString();

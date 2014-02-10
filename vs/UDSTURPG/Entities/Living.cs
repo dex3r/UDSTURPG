@@ -7,7 +7,7 @@ namespace RPG.Entities
 {
     public class Living : Movable
     {
-        public Living()
+        public Living(float posX, float posY) : base(posX, posY)
         {
 
         }

@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using RPG.Rendering;
+using RPG.Entities;
 
 namespace RPG.Worlds
 {
@@ -26,12 +27,15 @@ namespace RPG.Worlds
 
         private Chunk[] chunks;
 
+        private List<Entity> entities;
+        public List<Entity> Entities
+        {
+            get { return entities; }
+        }
+
         public World()
         {
             size = 16;
-            //size = 512;
-            //size = 4096;
-            //size = 128;
             ChunkNumbers = (int)Math.Pow(size / Chunk.CHUNK_SIZE, 2);
             ChunksInRow = size / Chunk.CHUNK_SIZE;
             chunks = new Chunk[ChunkNumbers];
@@ -42,7 +46,7 @@ namespace RPG.Worlds
                     chunks[ChunksInRow * y + x] = new Chunk(this, x, y);
                 }
             }
-
+            entities = new List<Entity>();
         }
 
         public Chunk GetChunk(int x, int y)

@@ -36,8 +36,8 @@ namespace RPG.Controls
         {
             ScrollWheelDelta = OverallScrollWheelValue - Mouse.GetState().ScrollWheelValue;
             OverallScrollWheelValue = Mouse.GetState().ScrollWheelValue;
-            positionRelative.X = Camera.Transform.Translation.X * -1 * (float)Math.Pow(Camera.Zoom, -1) + Mouse.GetState().X * (float)Math.Pow(Camera.Zoom, -1);
-            positionRelative.Y = Camera.Transform.Translation.Y * -1 * (float)Math.Pow(Camera.Zoom, -1) + Mouse.GetState().Y * (float)Math.Pow(Camera.Zoom, -1);
+            positionRelative.X = Camera.Transform.Translation.X * -1 + Mouse.GetState().X;
+            positionRelative.Y = Camera.Transform.Translation.Y * -1 + Mouse.GetState().Y;
 
             //if (Mouse.GetState().LeftButton == ButtonState.Pressed)
             //{

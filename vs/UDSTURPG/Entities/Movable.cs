@@ -20,6 +20,12 @@ namespace RPG.Entities
             get { return prevY; }
             set { prevY = value; }
         }
+
+        public Movable(float posX, float posY) : base(posX, posY)
+        {
+
+        }
+
         public override void Update()
         {
             prevX = PosX;

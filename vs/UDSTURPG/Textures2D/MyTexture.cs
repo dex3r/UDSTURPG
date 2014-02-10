@@ -17,9 +17,9 @@ namespace RPG.Textures2D
             get { return MyTexture.textures; }
         }
 
-        public static MyTexture Wall = new MyTexture(@"tiled\Tileset-Wall", new Rectangle(0, 0, 31, 55), 0.7f);
-        public static MyTexture Floor = new MyTexture(@"tiled\Tileset-Floor", new Rectangle(0, 0, 31, 31));
-        public static MyTextureAnimated PlayerLordUpShooting = new MyTextureAnimated(@"art\player\lord_lard_sheet", new Rectangle(0, 0, 31, 31), 0.6f, 6);
+        public static MyTexture Wall = new MyTexture(@"tiled\Tileset-Wall", new Rectangle(0, 0, 32, 55), 0.7f);
+        public static MyTexture Floor = new MyTexture(@"tiled\Tileset-Floor", new Rectangle(0, 0, 32, 32));
+        public static MyTexture PlayerLordUpShooting = new MyTexture(@"art\player\lord_lard_sheet", new Rectangle(0, 0, 32, 32), 0.6f, 6);
 
         public static void LoadAll(ContentManager cm)
         {
@@ -46,23 +46,44 @@ namespace RPG.Textures2D
             get { return depthOfDrawing; }
         }
 
-        public MyTexture(string path, Rectangle sourceRectangle)
+        private int framesCount;
+        public int FramesCount
         {
-            Textures.Add(this);
-            this.texturePath = path;
-            this.sourceRectangle = sourceRectangle;
-            depthOfDrawing = 0.5f;
-        }
-        public MyTexture(string path, Rectangle sourceRectangle, float depthOfDrawing) : this(path, sourceRectangle)
-        {
-            this.depthOfDrawing = depthOfDrawing;
+            get { return framesCount; }
         }
 
-        public MyTexture(MyTexture sourceTexture, Rectangle sourceRectangle, float depthOfDrawing)
+        private int animationSpeed;
+        /// <summary>
+        /// Liczba ticków na klatkę
+        /// </summary>
+        public int AnimationSpeed
+        {
+            get { return animationSpeed; }
+        }
+
+        private MyTexture()
+        {
+            Textures.Add(this);
+        }
+
+        public MyTexture(string path, Rectangle sourceRectangle, float depthOfDrawing = 0, int framesCount = 0, int animationSpeed = 8) : this()
+        {
+            this.texturePath = path;
+            this.sourceRectangle = sourceRectangle;
+            this.depthOfDrawing = depthOfDrawing;
+            this.framesCount = framesCount;
+            this.animationSpeed = animationSpeed;
+        }
+
+        public MyTexture(MyTexture sourceTexture, Rectangle sourceRectangle, float depthOfDrawing = 0, int framesCount = 0) : this()
         {
             this.texturePath = sourceTexture.texturePath;
-            this.texture = sourceTexture.Texture;
+            this.texture = sourceTexture.texture;
+            this.sourceRectangle = sourceRectangle;
+            this.depthOfDrawing = depthOfDrawing;
+            this.framesCount = framesCount;
         }
+
 
         public void Load(ContentManager contentManager)
         {
@@ -72,9 +93,20 @@ namespace RPG.Textures2D
             }
         }
 
-        public virtual Rectangle GetCurrentSourceRectangle(int frame)
+        public virtual Rectangle GetCurrentSourceRectangle(int frame, int animationSpeed = -1)
         {
-            return sourceRectangle;
+            if(animationSpeed == -1)
+            {
+                animationSpeed = this.animationSpeed;
+            }
+            if (framesCount > 0)
+            {
+                return new Rectangle(((frame / animationSpeed) * sourceRectangle.Width) + sourceRectangle.X, sourceRectangle.Y, sourceRectangle.Width, sourceRectangle.Height);
+            }
+            else
+            {
+                return sourceRectangle;
+            }
         }
     }
 }

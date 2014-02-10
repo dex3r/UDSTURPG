@@ -41,6 +41,7 @@
     <Compile Include="Controls\MyMouse.cs" />
     <Compile Include="Entities\Entity.cs" />
     <Compile Include="Entities\Living.cs" />
+    <Compile Include="Entities\Movable.cs" />
     <Compile Include="Entities\Player.cs" />
     <Compile Include="Main\Console.cs" />
     <Compile Include="Main\GameMain.cs" />

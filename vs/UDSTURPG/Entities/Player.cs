@@ -10,14 +10,6 @@ namespace RPG.Entities
 {
     public class Player : Living
     {
-        public override Texture2D Texture
-        {
-            get
-            {
-                return null; 
-            }
-        }
-
         private float maxSpeed = 0.5f;
 
         public float MaxSpeed

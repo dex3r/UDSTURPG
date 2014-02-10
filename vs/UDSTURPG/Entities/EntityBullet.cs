@@ -68,6 +68,7 @@ namespace RPG.Entities
                 frameFromRotation = 6;
             }
             return currentTexture.GetCurrentSourceRectangle(frameFromRotation, 0, 1);
+
         }
     }
 }

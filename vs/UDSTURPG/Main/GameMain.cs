@@ -16,7 +16,7 @@ namespace RPG.Main
     {
         #region static
         //!? Private:
-        private static GraphicsDeviceManager graphicsDeviceManager;
+        public static GraphicsDeviceManager graphicsDeviceManager;
 
         // Zmienne do prostego pomiaru FPS
         private static int currentFps;

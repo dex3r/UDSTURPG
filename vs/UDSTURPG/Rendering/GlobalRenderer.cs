@@ -18,7 +18,13 @@ namespace RPG.Rendering
 
         public static void Draw(World world)
         {
-            ChunkRenderer.RenderChunk(world.GetChunk(0,0));
+            for (int x = 0; x < world.ChunksInRow; x++)
+            {
+                for (int y = 0; y < world.ChunksInRow; y++)
+                {
+                    ChunkRenderer.RenderChunk(world.GetChunk(x, y));
+                }
+            }
         }
 
         internal static void DrawConsole()

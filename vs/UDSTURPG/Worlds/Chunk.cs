@@ -82,7 +82,6 @@ namespace RPG.Worlds
             chunkGround = new byte[CHUNK_SIZE * CHUNK_SIZE];
             chunkGroundMeta = new UInt16[CHUNK_SIZE * CHUNK_SIZE];
             ResetChunkData(2);
-            LoadTempWorld();
         }
 
         /// <summary>
@@ -102,16 +101,6 @@ namespace RPG.Worlds
                 this[i, CHUNK_SIZE - 1] = 1;
                 this[i, 0] = 1;
             }*/
-        }
-        public void LoadTempWorld()
-        {
-            for(int x=0;x<15;x++)
-            {
-                for(int y=0;y<=15;y++)
-                {
-                    this[(ushort)x,(ushort)y] = TempWorld.world[x, y];
-                }
-            }
         }
 
         public void MarkToRedraw()

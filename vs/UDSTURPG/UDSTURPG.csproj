@@ -55,7 +55,7 @@
     <Compile Include="Textures\Textures2D.cs" />
     <Compile Include="Utils\Primitives2D.cs" />
     <Compile Include="Worlds\Chunk.cs" />
-    <Compile Include="Worlds\TempWorld.cs" />
+    <Compile Include="Worlds\Save.cs" />
     <Compile Include="Worlds\World.cs" />
   </ItemGroup>
   <ItemGroup>

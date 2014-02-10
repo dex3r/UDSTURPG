@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
-using RPG.Textures;
+using RPG.Textures2D;
 using Microsoft.Xna.Framework.Graphics;
 
 namespace RPG.Entities
@@ -35,17 +35,23 @@ namespace RPG.Entities
             set { prevY = value; }
         }
 
-        public virtual Texture2D Texture
+        private Texture2D currentTexture;
+        public Texture2D CurrentTexture
         {
-            get
-            {
-                return null;
-            }
+            get { return currentTexture; }
+            set { currentTexture = value; }
+        }
+
+        private int animationFrame;
+        public int AnimationFrame
+        {
+            get { return animationFrame; }
+            set { animationFrame = value; }
         }
         
         public Entity()
         {
-
+            animationFrame = 0;
         }
 
         public virtual void Update()

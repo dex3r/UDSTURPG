@@ -7,7 +7,7 @@ using Microsoft.Xna.Framework.Graphics;
 using RPG.Main;
 using RPG.Worlds;
 using RPG.Blocks;
-using RPG.Textures;
+using RPG.Textures2D;
 
 namespace RPG.Rendering
 {
@@ -29,7 +29,7 @@ namespace RPG.Rendering
                 for (ushort cy = 0; cy < Chunk.CHUNK_SIZE; cy++)
                 {
                     rect = Block.Blocks[chunk[cx, cy]].GetRectangle(chunk, cx, cy);
-                    GameMain.SpriteBatch.Draw(Block.Blocks[chunk[cx, cy]].GetTexture(chunk, cx, cy), new Vector2(cx * 31, (cy * 31) - (rect.Height - 31)), rect, Color.White);
+                    GameMain.SpriteBatch.Draw(Block.Blocks[chunk[cx, cy]].GetTexture(chunk, cx, cy), new Vector2(cx * 31, (cy * 31) - (rect.Height - 31)), rect, Color.White );
                 }
             }
         }

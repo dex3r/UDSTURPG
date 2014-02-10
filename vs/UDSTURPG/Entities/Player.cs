@@ -7,13 +7,13 @@ using RPG.Controls;
 
 namespace RPG.Entities
 {
-    public class Player : Living 
+    public class Player : Living
     {
         public override Texture2D Texture
         {
             get
             {
-                return null;
+                return null; 
             }
         }
 

@@ -20,7 +20,7 @@ namespace RPG.Entities
             get { return prevY; }
             set { prevY = value; }
         }
-        public virtual void Update()
+        public override void Update()
         {
             prevX = PosX;
             prevY = PosY;

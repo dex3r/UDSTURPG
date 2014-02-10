@@ -42,7 +42,7 @@ namespace RPG.Entities
 
         public Player() : base()
         {
-            currentSpeed = 0;
+            currentSpeed = new Vector2(0,0);
             MyKeyboard.KeyMoveUp.ButtonDownEvent += KeyMoveUp_ButtonUpEvent;
             MyKeyboard.KeyMoveDown.ButtonDownEvent += KeyMoveDown_ButtonDownEvent;
             MyKeyboard.KeyMoveLeft.ButtonDownEvent += KeyMoveLeft_ButtonDownEvent;

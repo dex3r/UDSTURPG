@@ -6,7 +6,7 @@ using Microsoft.Xna.Framework.Graphics;
 using RPG.Main;
 using RPG.Worlds;
 using Microsoft.Xna.Framework;
-using RPG.Textures;
+using RPG.Textures2D;
 
 namespace RPG.Blocks
 {
@@ -20,8 +20,8 @@ namespace RPG.Blocks
             get { return Block.blocks; }
         }
 
-        public static Block Wall = new Block(1, "Wall", Textures.Textures2D.TWall, Textures2D.RWall);
-        public static Block Floor = new Block(2, "Floor", Textures.Textures2D.TFloor, Textures2D.RFloor);
+        public static Block Wall = new Block(1, "Wall", Textures2D.MyTexture.TWall, Textures2D.RWall);
+        public static Block Floor = new Block(2, "Floor", Textures2D.MyTexture.TFloor, Textures2D.RFloor);
 
         #endregion
         #region Non-static

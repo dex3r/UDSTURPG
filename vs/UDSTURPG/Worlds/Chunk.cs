@@ -96,11 +96,13 @@ namespace RPG.Worlds
                 chunkGroundMeta[i] = 0;
             }
 
-            /*for (ushort i = 0; i < CHUNK_SIZE; i++)
-            {
-                this[i, CHUNK_SIZE - 1] = 1;
-                this[i, 0] = 1;
-            }*/
+            //for(ushort i = 0; i < CHUNK_SIZE; i++)
+            //{
+            //    for (ushort j = 0; j < CHUNK_SIZE; j++)
+            //    {
+            //        this[i, j] = World.world[i, j];
+            //    }
+            //}
         }
 
         public void MarkToRedraw()

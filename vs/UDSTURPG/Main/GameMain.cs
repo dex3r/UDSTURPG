@@ -3,7 +3,7 @@ using System.Text;
 using RPG.Controls;
 using RPG.Rendering;
 using RPG.Worlds;
-using RPG.Textures;
+using RPG.Textures2D;
 using RPG.Main;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
@@ -63,7 +63,7 @@ namespace RPG.Main
             SamplerState.PointWrap.MaxAnisotropy = 0;
             SamplerState.PointWrap.MaxMipLevel = 0;
             SamplerState.PointWrap.MipMapLevelOfDetailBias = 0;
-            SpriteBatch.Begin(SpriteSortMode.Deferred, BlendState.NonPremultiplied, SamplerState.PointWrap, null, null, null, transformation * Camera.Transform);
+            SpriteBatch.Begin(SpriteSortMode.FrontToBack, BlendState.NonPremultiplied, SamplerState.PointWrap, null, null, null, transformation * Camera.Transform);
         }
         #endregion
 
@@ -96,7 +96,7 @@ namespace RPG.Main
         {
             SpriteBatch = new SpriteBatch(GraphicsDevice);
 
-            Textures.Textures2D.Load(this.Content);
+            Textures2D.MyTexture.LoadAll(this.Content);
             Text.Load(this.Content);
             Text.LoadDefaultFont();
         }

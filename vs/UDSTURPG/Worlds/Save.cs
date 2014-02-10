@@ -82,6 +82,7 @@ namespace RPG.Worlds
         {
             Stream stream;
             sync(device);
+            
             string filename = save + ".sav";
             if (check(filename))
             {

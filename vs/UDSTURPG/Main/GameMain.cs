@@ -37,8 +37,8 @@ namespace RPG.Main
             set { currentWorld = value; }
         }
 
-        private static Player currentPlayer;
-        public static Player CurrentPlayer
+        private static EntityPlayer currentPlayer;
+        public static EntityPlayer CurrentPlayer
         {
             get { return GameMain.currentPlayer; }
             set { GameMain.currentPlayer = value; }
@@ -85,7 +85,8 @@ namespace RPG.Main
         {
             base.Initialize();
             currentWorld = new World();
-            currentPlayer = new Player(7, 7);
+            currentPlayer = new EntityPlayer(7, 7);
+            currentWorld.Entities.Add(currentPlayer);
             //Ustawienie pozycji okna
             Window.SetPosition(new Point(400, 100));
             //Początkowa pozycja kamery na środku rysowanego pola 
@@ -120,9 +121,9 @@ namespace RPG.Main
             MyMouse.Update();
             MyKeyboard.Update();
             Camera.Update(GraphicsDevice);
-            if (currentPlayer != null)
+            foreach(Entity entity in currentWorld.Entities)
             {
-                currentPlayer.Update();
+                entity.Update();
             }
 
             base.Update(gameTime);
@@ -145,10 +146,6 @@ namespace RPG.Main
             if (currentWorld != null)
             {
                 GlobalRenderer.Draw(currentWorld);
-            }
-            if (currentPlayer != null)
-            {
-                currentPlayer.Draw();
             }
 
             SpriteBatch.End();

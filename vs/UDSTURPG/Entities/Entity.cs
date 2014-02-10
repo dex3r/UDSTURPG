@@ -50,20 +50,44 @@ namespace RPG.Entities
            
         }
 
-        public virtual void Draw()
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <returns>Czy powinien kontynuowac rysowanie?</returns>
+        public virtual bool PreDraw()
         {
-            if(currentTexture == null)
+            if (currentTexture == null)
             {
-                return;
+                return false;
             }
-            if(currentTexture.FramesCount > 0)
+            if (currentTexture.FramesCount > 0)
             {
                 animationFrame++;
-                if(animationFrame >= currentTexture.FramesCount * currentTexture.AnimationSpeed)
+                if (animationFrame >= currentTexture.FramesCount * currentTexture.AnimationSpeed)
                 {
                     animationFrame = 0;
                 }
             }
+            return true;
+        }
+
+        public virtual void Draw()
+        {
+            if(!PreDraw())
+            {
+                return;
+            }
+            ActualDraw();  
+        }
+
+        public virtual void ActualDraw()
+        {
+            GameMain.SpriteBatch.Draw(currentTexture.Texture, new Vector2((int)(posX * 64), (int)(posY * 64)), GetCurrentSourceRectangle(), Color.White, 0, new Vector2(), 2.0f, SpriteEffects.None, currentTexture.DepthOfDrawing);
+        }
+
+        public virtual Rectangle GetCurrentSourceRectangle()
+        {
+            return currentTexture.GetCurrentSourceRectangle(animationFrame);
         }
     }
 }

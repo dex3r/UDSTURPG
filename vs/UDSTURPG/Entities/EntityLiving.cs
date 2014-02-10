@@ -5,9 +5,9 @@ using System.Text;
 
 namespace RPG.Entities
 {
-    public class Living : Movable
+    public class EntityLiving : EntityMovable
     {
-        public Living(float posX, float posY) : base(posX, posY)
+        public EntityLiving(float posX, float posY) : base(posX, posY)
         {
 
         }

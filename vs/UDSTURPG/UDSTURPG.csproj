@@ -39,11 +39,11 @@
     <Compile Include="Controls\MyKey.cs" />
     <Compile Include="Controls\MyKeyboard.cs" />
     <Compile Include="Controls\MyMouse.cs" />
-    <Compile Include="Entities\Bullet.cs" />
+    <Compile Include="Entities\EntityBullet.cs" />
     <Compile Include="Entities\Entity.cs" />
-    <Compile Include="Entities\Living.cs" />
-    <Compile Include="Entities\Movable.cs" />
-    <Compile Include="Entities\Player.cs" />
+    <Compile Include="Entities\EntityLiving.cs" />
+    <Compile Include="Entities\EntityMovable.cs" />
+    <Compile Include="Entities\EntityPlayer.cs" />
     <Compile Include="Main\Console.cs" />
     <Compile Include="Main\GameMain.cs" />
     <Compile Include="Main\GameWindowControl.cs" />

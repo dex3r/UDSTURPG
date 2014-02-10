@@ -7,6 +7,8 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using RPG.Rendering;
+using RPG.Entities;
+using RPG.Main;
 
 namespace RPG.Controls
 {
@@ -24,6 +26,18 @@ namespace RPG.Controls
 
         private static Vector2 positionRelative;
 
+        private static MouseState currentMouseState;
+        public static MouseState CurrentMouseState
+        {
+            get { return currentMouseState; }
+        }
+
+        private static bool wasLMBDown;
+        public static bool WasLMBDown
+        {
+            get { return wasLMBDown; }
+        }
+
         public static Vector2 PositionRelative
         {
             get { return MyMouse.positionRelative; }
@@ -34,15 +48,24 @@ namespace RPG.Controls
         /// </summary>
         public static void Update()
         {
+            currentMouseState = Mouse.GetState();
             ScrollWheelDelta = OverallScrollWheelValue - Mouse.GetState().ScrollWheelValue;
             OverallScrollWheelValue = Mouse.GetState().ScrollWheelValue;
-            positionRelative.X = Camera.Transform.Translation.X * -1 + Mouse.GetState().X;
-            positionRelative.Y = Camera.Transform.Translation.Y * -1 + Mouse.GetState().Y;
+            positionRelative.X = Camera.Transform.Translation.X * -1 + currentMouseState.X;
+            positionRelative.Y = Camera.Transform.Translation.Y * -1 + currentMouseState.Y;
 
-            //if (Mouse.GetState().LeftButton == ButtonState.Pressed)
-            //{
-            //    Interaction(world);
-            //}
+            if (currentMouseState.LeftButton == ButtonState.Pressed && !wasLMBDown)
+            {
+                EntityBullet bullet = new EntityBullet(GameMain.CurrentPlayer.PosX + 0.25f, GameMain.CurrentPlayer.PosY + 0.25f);
+                bullet.CurrentVelocity = 0.05f;
+                Vector2 interp = Vector2.Subtract(new Vector2((GameMain.CurrentPlayer.PosX + 0.25f) * 64, (GameMain.CurrentPlayer.PosY + 0.25f) * 64), new Vector2(currentMouseState.X, currentMouseState.Y));
+                interp.Normalize();
+                interp = Vector2.Multiply(interp, (float)Math.PI);
+                bullet.Rotation = Math.Atan2(interp.Y, interp.X);
+                GameMain.CurrentWorld.Entities.Add(bullet);
+            }
+
+            wasLMBDown = currentMouseState.LeftButton == ButtonState.Pressed;
         }
 
 

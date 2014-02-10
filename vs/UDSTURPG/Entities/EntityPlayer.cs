@@ -10,7 +10,7 @@ using Microsoft.Xna.Framework;
 
 namespace RPG.Entities
 {
-    public class Player : Living
+    public class EntityPlayer : EntityLiving
     {
         private float maxSpeed;
 
@@ -35,7 +35,7 @@ namespace RPG.Entities
             set { movementTextureState = value; }
         }
 
-        public Player(float posX, float posY)
+        public EntityPlayer(float posX, float posY)
             : base(posX, posY)
         {
             CurrentTexture = MyTexture.PlayerLordLard;
@@ -92,7 +92,10 @@ namespace RPG.Entities
 
         public override void Draw()
         {
-            base.Draw();
+            if(!PreDraw())
+            {
+                return;
+            }
             if (MyKeyboard.KeyMoveDown.IsPressed && !MyKeyboard.KeyMoveUp.IsPressed)
             {
                 if (MyKeyboard.KeyMoveRight.IsPressed && !MyKeyboard.KeyMoveLeft.IsPressed)
@@ -135,7 +138,12 @@ namespace RPG.Entities
             {
                 animationFrame = 0;
             }
-            GameMain.SpriteBatch.Draw(currentTexture.Texture, new Vector2((int)(posX * 64), (int)(posY * 64)), currentTexture.GetCurrentSourceRectangle(animationFrame, (int)MovementTextureState), Color.White, 0, new Vector2(), 2.0f, SpriteEffects.None, currentTexture.DepthOfDrawing);
+            ActualDraw();
+        }
+
+        public override Rectangle GetCurrentSourceRectangle()
+        {
+            return currentTexture.GetCurrentSourceRectangle(animationFrame, (int)MovementTextureState);
         }
     }
 }

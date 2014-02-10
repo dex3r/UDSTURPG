@@ -8,6 +8,7 @@ using Microsoft.Xna.Framework.Input;
 using RPG.Worlds;
 using RPG.Main;
 using RPG.Blocks;
+using RPG.Entities;
 
 namespace RPG.Rendering
 {
@@ -21,6 +22,10 @@ namespace RPG.Rendering
                 {
                     ChunkRenderer.RenderChunk(world.GetChunk(x, y));
                 }
+            }
+            foreach(Entity entity in world.Entities)
+            {
+                entity.Draw();
             }
         }
 

@@ -6,7 +6,7 @@ using RPG.Entities;
 
 namespace RPG.Entities
 {
-    public class Movable : Entity
+    public class EntityMovable : Entity
     {
         private float prevX;
         public float PrevX
@@ -52,7 +52,7 @@ namespace RPG.Entities
             set { rotation = value; }
         }
 
-        public Movable(float posX, float posY) : base(posX, posY)
+        public EntityMovable(float posX, float posY) : base(posX, posY)
         {
 
         }

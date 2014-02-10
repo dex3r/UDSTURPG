@@ -53,6 +53,7 @@
     <Compile Include="Rendering\ChunkRenderer.cs" />
     <Compile Include="Rendering\GlobalRenderer.cs" />
     <Compile Include="Rendering\Text.cs" />
+    <Compile Include="Textures2D\EnumSheetPlayer.cs" />
     <Compile Include="Textures2D\MyTexture.cs" />
     <Compile Include="Utils\Primitives2D.cs" />
     <Compile Include="Worlds\Chunk.cs" />

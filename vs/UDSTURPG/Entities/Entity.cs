@@ -11,27 +11,27 @@ namespace RPG.Entities
 {
     public class Entity
     {
-        float posX;
+        protected float posX;
         public float PosX
         {
             get { return posX; }
             set { posX = value; }
         }
-        float posY;
+        protected float posY;
         public float PosY
         {
             get { return posY; }
             set { posY = value; }
         }
 
-        private MyTexture currentTexture;
+        protected MyTexture currentTexture;
         public MyTexture CurrentTexture
         {
             get { return currentTexture; }
             set { currentTexture = value; }
         }
 
-        private int animationFrame;
+        protected int animationFrame;
         public int AnimationFrame
         {
             get { return animationFrame; }
@@ -64,7 +64,7 @@ namespace RPG.Entities
                     animationFrame = 0;
                 }
             }
-            GameMain.SpriteBatch.Draw(currentTexture.Texture, new Vector2(posX * 64, posY * 64), currentTexture.GetCurrentSourceRectangle(animationFrame), Color.White, 0, new Vector2(), 2.0f, SpriteEffects.None, currentTexture.DepthOfDrawing);
+            
         }
     }
 }

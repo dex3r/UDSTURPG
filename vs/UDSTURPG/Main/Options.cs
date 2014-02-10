@@ -115,8 +115,8 @@ namespace RPG.Main
         /// Ustawianie rozdzielczości
         /// UWAGA! Do zmiany rozdzielczości na fullscreenie nie działa
         /// </summary>
-        /// <param name="width">Szerokość ekranu</param>
-        /// <param name="height">Wysokość ekranu</param>
+        /// <param name="frameWidth">Szerokość ekranu</param>
+        /// <param name="frameHeight">Wysokość ekranu</param>
         private static void updateResolution(GraphicsDeviceManager graphicsDeviceManager, int width, int height)
         {
             graphicsDeviceManager.PreferredBackBufferHeight = height;

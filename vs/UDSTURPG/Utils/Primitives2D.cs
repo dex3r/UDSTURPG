@@ -210,8 +210,8 @@ namespace RPG.Utils
 		/// <param name="spriteBatch">The destination drawing surface</param>
 		/// <param name="x">The X coord of the left side</param>
 		/// <param name="y">The Y coord of the upper side</param>
-		/// <param name="w">Width</param>
-		/// <param name="h">Height</param>
+		/// <param name="w">FrameWidth</param>
+		/// <param name="h">FrameHeight</param>
 		/// <param name="color">The color to draw the textureRectangle in</param>
 		public static void FillRectangle(this SpriteBatch spriteBatch, float x, float y, float w, float h, Color color)
 		{
@@ -225,8 +225,8 @@ namespace RPG.Utils
 		/// <param name="spriteBatch">The destination drawing surface</param>
 		/// <param name="x">The X coord of the left side</param>
 		/// <param name="y">The Y coord of the upper side</param>
-		/// <param name="w">Width</param>
-		/// <param name="h">Height</param>
+		/// <param name="w">FrameWidth</param>
+		/// <param name="h">FrameHeight</param>
 		/// <param name="color">The color to draw the textureRectangle in</param>
 		/// <param name="angle">The angle of the textureRectangle in radians</param>
 		public static void FillRectangle(this SpriteBatch spriteBatch, float x, float y, float w, float h, Color color, float angle)

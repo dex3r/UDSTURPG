@@ -23,7 +23,7 @@ namespace RPG.Textures2D
 
         public static void LoadAll(ContentManager cm)
         {
-            foreach(MyTexture mt in textures)
+            foreach (MyTexture mt in textures)
             {
                 mt.Load(cm);
             }
@@ -66,7 +66,15 @@ namespace RPG.Textures2D
             Textures.Add(this);
         }
 
-        public MyTexture(string path, Rectangle sourceRectangle, float depthOfDrawing = 0, int framesCount = 0, int animationSpeed = 8) : this()
+        private MyTexture(Rectangle sourceRectangle, float depthOfDrawing, int framesCount, int animationSpeed) : this()
+        {
+            this.sourceRectangle = sourceRectangle;
+            this.depthOfDrawing = depthOfDrawing;
+            this.framesCount = framesCount;
+            this.animationSpeed = animationSpeed;
+        }
+
+        public MyTexture(string path, Rectangle sourceRectangle, float depthOfDrawing = 0, int framesCount = 1, int animationSpeed = 8) : this(sourceRectangle, depthOfDrawing, framesCount, animationSpeed)
         {
             this.texturePath = path;
             this.sourceRectangle = sourceRectangle;
@@ -75,7 +83,7 @@ namespace RPG.Textures2D
             this.animationSpeed = animationSpeed;
         }
 
-        public MyTexture(MyTexture sourceTexture, Rectangle sourceRectangle, float depthOfDrawing = 0, int framesCount = 0) : this()
+        public MyTexture(MyTexture sourceTexture, Rectangle sourceRectangle, float depthOfDrawing = 0, int framesCount = 1, int animationSpeed = 8) : this(sourceRectangle, depthOfDrawing, framesCount, animationSpeed)
         {
             this.texturePath = sourceTexture.texturePath;
             this.texture = sourceTexture.texture;
@@ -87,26 +95,26 @@ namespace RPG.Textures2D
 
         public void Load(ContentManager contentManager)
         {
-            if(this.texture == null)
+            if (this.texture == null)
             {
                 texture = contentManager.Load<Texture2D>(@"gfx\" + texturePath);
             }
         }
 
-        public virtual Rectangle GetCurrentSourceRectangle(int frame, int animationSpeed = -1)
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="frame"></param>
+        /// <param name="textureId">Dla wielu tekstur tego samego obiektu w jednym pliku, np. wiele animacji gracza.</param>
+        /// <param name="animationSpeed"></param>
+        /// <returns></returns>
+        public virtual Rectangle GetCurrentSourceRectangle(int frame, int textureId = 0, int animationSpeed = -1)
         {
             if(animationSpeed == -1)
             {
                 animationSpeed = this.animationSpeed;
             }
-            if (framesCount > 0)
-            {
-                return new Rectangle(((frame / animationSpeed) * sourceRectangle.Width) + sourceRectangle.X, sourceRectangle.Y, sourceRectangle.Width, sourceRectangle.Height);
-            }
-            else
-            {
-                return sourceRectangle;
-            }
+            return new Rectangle(((frame / animationSpeed) * sourceRectangle.Width) + sourceRectangle.X, sourceRectangle.Y + (textureId * sourceRectangle.Height), sourceRectangle.Width, sourceRectangle.Height);
         }
     }
 }

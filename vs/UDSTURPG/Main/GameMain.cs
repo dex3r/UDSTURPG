@@ -63,7 +63,7 @@ namespace RPG.Main
             SamplerState.PointWrap.MaxAnisotropy = 0;
             SamplerState.PointWrap.MaxMipLevel = 0;
             SamplerState.PointWrap.MipMapLevelOfDetailBias = 0;
-            SpriteBatch.Begin(SpriteSortMode.FrontToBack, BlendState.NonPremultiplied, SamplerState.PointWrap, null, null, null, transformation * Camera.Transform);
+            SpriteBatch.Begin(SpriteSortMode.FrontToBack, BlendState.AlphaBlend, SamplerState.PointWrap, null, null, null, transformation * Camera.Transform);
         }
         #endregion
 
@@ -77,14 +77,15 @@ namespace RPG.Main
             Options.Init(graphicsDeviceManager);
             // Vsync i fixedTimeStep:
             this.IsFixedTimeStep = true;
-            
+            GraphicsDevice.PresentationParameters.DepthStencilFormat = DepthFormat.None;
+
         }
 
         protected override void Initialize()
         {
             base.Initialize();
             currentWorld = new World();
-            currentPlayer = new Player(7,7);
+            currentPlayer = new Player(7, 7);
             //Ustawienie pozycji okna
             Window.SetPosition(new Point(400, 100));
             //Początkowa pozycja kamery na środku rysowanego pola 
@@ -119,6 +120,11 @@ namespace RPG.Main
             MyMouse.Update();
             MyKeyboard.Update();
             Camera.Update(GraphicsDevice);
+            if (currentPlayer != null)
+            {
+                currentPlayer.Update();
+            }
+
             base.Update(gameTime);
         }
 
@@ -140,7 +146,7 @@ namespace RPG.Main
             {
                 GlobalRenderer.Draw(currentWorld);
             }
-            if(currentPlayer != null)
+            if (currentPlayer != null)
             {
                 currentPlayer.Draw();
             }

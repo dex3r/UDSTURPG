@@ -13,9 +13,6 @@ namespace RPG.Rendering
 {
     public static class GlobalRenderer
     {
-        private static Chunk c;
-        private static Vector2 v;
-
         public static void Draw(World world)
         {
             for (int x = 0; x < world.ChunksInRow; x++)

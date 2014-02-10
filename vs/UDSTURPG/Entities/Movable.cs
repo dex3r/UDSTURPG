@@ -21,6 +21,37 @@ namespace RPG.Entities
             set { prevY = value; }
         }
 
+        //protected float currentVelocityY;
+        //public float CurrentVelocityY
+        //{
+        //    get { return currentVelocityY; }
+        //    set { currentVelocityY = value; }
+        //}
+
+        //protected float currentVelocityX;
+        //public float CurrentVelocityX
+        //{
+        //    get { return currentVelocityX; }
+        //    set { currentVelocityX = value; }
+        //}
+
+        protected float currentVelocity;
+        public float CurrentVelocity
+        {
+            get { return currentVelocity; }
+            set { currentVelocity = value; }
+        }
+
+        protected double rotation;
+        /// <summary>
+        /// Rotation in radians
+        /// </summary>
+        public double Rotation
+        {
+            get { return rotation; }
+            set { rotation = value; }
+        }
+
         public Movable(float posX, float posY) : base(posX, posY)
         {
 
@@ -30,6 +61,10 @@ namespace RPG.Entities
         {
             prevX = PosX;
             prevY = PosY;
+            float rotX = (float)Math.Cos(rotation);
+            float rotY = (float)Math.Sin(rotation);
+            posX += rotX * currentVelocity;
+            posY += rotY * currentVelocity;
         }
     }
 }

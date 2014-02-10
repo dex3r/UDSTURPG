@@ -19,72 +19,75 @@ namespace RPG.Entities
             get { return maxSpeed; }
             set { maxSpeed = value; }
         }
-        private Vector2 currentSpeed;
 
-        public Vector2 CurrentSpeed
-        {
-            get { return currentSpeed; }
-            set { currentSpeed = value; }
-        }
-        private float accelerate;
+        private float acceleration;
 
-        public float Accelerate
+        public float Acceleration
         {
-            get { return accelerate; }
-            set { accelerate = value; }
+            get { return acceleration; }
+            set { acceleration = value; }
         }
 
-        private EnumSheetPlayer movementState;
-        public EnumSheetPlayer MovementState
+        private EnumSheetPlayer movementTextureState;
+        public EnumSheetPlayer MovementTextureState
         {
-            get { return movementState; }
-            set { movementState = value; }
+            get { return movementTextureState; }
+            set { movementTextureState = value; }
         }
 
         public Player(float posX, float posY)
             : base(posX, posY)
         {
-            currentSpeed = new Vector2(0, 0);
-            CurrentTexture = MyTexture.PlayerLordUpShooting;
-            maxSpeed = 0.045f;
-            accelerate = 0.03f;
+            CurrentTexture = MyTexture.PlayerLordLard;
+            maxSpeed = 0.05f;
+            acceleration = 0.03f;
         }
 
         public override void Update()
         {
-            base.Update();
+            double y = 0;
+            double x = 0;
             if (MyKeyboard.KeyMoveDown.IsPressed)
             {
-                if (currentSpeed.Y < maxSpeed)
-                {
-                    currentSpeed.Y += accelerate;
-                }
-                PosY += currentSpeed.Y;
+                y += Math.PI;
             }
             if (MyKeyboard.KeyMoveUp.IsPressed)
             {
-                if (currentSpeed.Y < maxSpeed)
-                {
-                    currentSpeed.Y += accelerate;
-                }
-                PosY -= currentSpeed.Y;
+                y -= Math.PI;
             }
             if (MyKeyboard.KeyMoveLeft.IsPressed)
             {
-                if (currentSpeed.X < maxSpeed)
-                {
-                    currentSpeed.X += accelerate;
-                }
-                PosX -= currentSpeed.X;
+                x -= Math.PI;
             }
             if (MyKeyboard.KeyMoveRight.IsPressed)
             {
-                if (currentSpeed.X < maxSpeed)
-                {
-                    currentSpeed.X += accelerate;
-                }
-                PosX += currentSpeed.X;
+                x += Math.PI;
             }
+            rotation = Math.Atan2(y, x);
+            if(x != 0 || y != 0)
+            {
+                currentVelocity += acceleration;
+            }
+            else
+            {
+                if (currentVelocity > 0)
+                {
+                    currentVelocity -= acceleration;
+                    if (currentVelocity < 0)
+                    {
+                        currentVelocity = 0;
+                    }
+                }
+            }
+            if(currentVelocity > maxSpeed)
+            {
+                currentVelocity = maxSpeed;
+            }
+            else if(currentVelocity < 0)
+            {
+                currentVelocity = 0;
+            }
+            base.Update();
         }
 
         public override void Draw()
@@ -94,41 +97,45 @@ namespace RPG.Entities
             {
                 if (MyKeyboard.KeyMoveRight.IsPressed && !MyKeyboard.KeyMoveLeft.IsPressed)
                 {
-                    MovementState = EnumSheetPlayer.DownRight;
+                    MovementTextureState = EnumSheetPlayer.DownRight;
                 }
                 else if (MyKeyboard.KeyMoveLeft.IsPressed && !MyKeyboard.KeyMoveRight.IsPressed)
                 {
-                    MovementState = EnumSheetPlayer.DownLeft;
+                    MovementTextureState = EnumSheetPlayer.DownLeft;
                 }
                 else
                 {
-                    MovementState = EnumSheetPlayer.Down;
+                    MovementTextureState = EnumSheetPlayer.Down;
                 }
             }
-            else if(MyKeyboard.KeyMoveUp.IsPressed && !MyKeyboard.KeyMoveDown.IsPressed)
+            else if (MyKeyboard.KeyMoveUp.IsPressed && !MyKeyboard.KeyMoveDown.IsPressed)
             {
                 if (MyKeyboard.KeyMoveRight.IsPressed && !MyKeyboard.KeyMoveLeft.IsPressed)
                 {
-                    MovementState = EnumSheetPlayer.UpRight;
+                    MovementTextureState = EnumSheetPlayer.UpRight;
                 }
                 else if (MyKeyboard.KeyMoveLeft.IsPressed && !MyKeyboard.KeyMoveRight.IsPressed)
                 {
-                    MovementState = EnumSheetPlayer.UpLeft;
+                    MovementTextureState = EnumSheetPlayer.UpLeft;
                 }
                 else
                 {
-                    MovementState = EnumSheetPlayer.Up;
+                    MovementTextureState = EnumSheetPlayer.Up;
                 }
             }
-            else if(MyKeyboard.KeyMoveLeft.IsPressed)
+            else if (MyKeyboard.KeyMoveLeft.IsPressed)
             {
-                MovementState = EnumSheetPlayer.Left;
+                MovementTextureState = EnumSheetPlayer.Left;
             }
-            else if(MyKeyboard.KeyMoveRight.IsPressed)
+            else if (MyKeyboard.KeyMoveRight.IsPressed)
             {
-                MovementState = EnumSheetPlayer.Right;
+                MovementTextureState = EnumSheetPlayer.Right;
             }
-            GameMain.SpriteBatch.Draw(currentTexture.Texture, new Vector2((int)(posX * 64), (int)(posY * 64)), currentTexture.GetCurrentSourceRectangle(animationFrame, (int)MovementState), Color.White, 0, new Vector2(), 2.0f, SpriteEffects.None, currentTexture.DepthOfDrawing);
+            else
+            {
+                animationFrame = 0;
+            }
+            GameMain.SpriteBatch.Draw(currentTexture.Texture, new Vector2((int)(posX * 64), (int)(posY * 64)), currentTexture.GetCurrentSourceRectangle(animationFrame, (int)MovementTextureState), Color.White, 0, new Vector2(), 2.0f, SpriteEffects.None, currentTexture.DepthOfDrawing);
         }
     }
 }

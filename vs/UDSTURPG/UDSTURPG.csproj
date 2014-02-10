@@ -39,6 +39,7 @@
     <Compile Include="Controls\MyKey.cs" />
     <Compile Include="Controls\MyKeyboard.cs" />
     <Compile Include="Controls\MyMouse.cs" />
+    <Compile Include="Entities\Bullet.cs" />
     <Compile Include="Entities\Entity.cs" />
     <Compile Include="Entities\Living.cs" />
     <Compile Include="Entities\Movable.cs" />

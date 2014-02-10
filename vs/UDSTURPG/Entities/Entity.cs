@@ -64,7 +64,6 @@ namespace RPG.Entities
                     animationFrame = 0;
                 }
             }
-            
         }
     }
 }

@@ -22,19 +22,6 @@ namespace RPG.Entities
             set { posY = value; }
         }
 
-        private float prevX;
-        public float PrevX
-        {
-            get { return prevX; }
-            set { prevX = value; }
-        }
-        private float prevY;
-        public float PrevY
-        {
-            get { return prevY; }
-            set { prevY = value; }
-        }
-
         public virtual Texture2D Texture
         {
             get
@@ -50,8 +37,7 @@ namespace RPG.Entities
 
         public virtual void Update()
         {
-            prevX = posX;
-            prevY = posY;
+
         }
     }
 }

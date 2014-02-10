@@ -5,7 +5,7 @@ using System.Text;
 
 namespace RPG.Entities
 {
-    public class Living : Entity
+    public class Living : Movable
     {
         public Living()
         {

@@ -31,11 +31,19 @@ namespace RPG.Controls
             get { return currentMouseState; }
         }
 
-        public static Vector2 PositionRelative
+        private static float positionRelativeX;
+        public static float PositionRelativeX
         {
-            get { return MyMouse.positionRelative; }
-            set { MyMouse.positionRelative = value; }
+            get { return MyMouse.positionRelativeX; }
         }
+
+        private static float positionRelativeY;
+        public static float PositionRelativeY
+        {
+            get { return MyMouse.positionRelativeY; }
+        }
+
+
         /// <summary>
         /// Update relatywnej pozycji myszy i kółka //!TEMP Tworzy śnieg po wciśnięciu LPM
         /// </summary>
@@ -44,8 +52,8 @@ namespace RPG.Controls
             currentMouseState = Mouse.GetState();
             ScrollWheelDelta = OverallScrollWheelValue - Mouse.GetState().ScrollWheelValue;
             OverallScrollWheelValue = Mouse.GetState().ScrollWheelValue;
-            positionRelative.X = Camera.Transform.Translation.X * -1 + currentMouseState.X;
-            positionRelative.Y = Camera.Transform.Translation.Y * -1 + currentMouseState.Y;
+            positionRelativeX = Camera.Transform.Translation.X * -1 + currentMouseState.X;
+            positionRelativeY = Camera.Transform.Translation.Y * -1 + currentMouseState.Y;
         }
 
 

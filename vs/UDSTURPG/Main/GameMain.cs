@@ -86,7 +86,7 @@ namespace RPG.Main
         {
             base.Initialize();
             currentWorld = new World();
-            currentPlayer = new EntityPlayer(7, 7);
+            currentPlayer = new EntityPlayer(0, 0);
             currentWorld.Entities.Add(currentPlayer);
             //Ustawienie pozycji okna
             Window.SetPosition(new Point(400, 100));
@@ -190,6 +190,10 @@ namespace RPG.Main
             sb.Append(graphicsDeviceManager.PreferredBackBufferWidth);
             sb.Append("x");
             sb.Append(graphicsDeviceManager.PreferredBackBufferHeight);
+            sb.Append("\nViewport Res:");
+            sb.Append(graphicsDeviceManager.GraphicsDevice.Viewport.Width);
+            sb.Append("x");
+            sb.Append(graphicsDeviceManager.GraphicsDevice.Viewport.Width);
             sb.Append("\nCamera: ");
             sb.Append(Camera.X);
             sb.Append(" ");

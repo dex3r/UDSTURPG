@@ -1,4 +1,5 @@
-﻿using Microsoft.Xna.Framework;
+﻿using System;
+using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
 using RPG.Controls;
@@ -50,14 +51,9 @@ namespace RPG.Rendering
         /// </summary>
         static public void Update(GraphicsDevice graphicDevice)
         {
-            Transform = Matrix.CreateTranslation(-(graphicDevice.Viewport.Width / 2 + X), -(graphicDevice.Viewport.Height / 2 + Y), 0) *
+            Transform = Matrix.CreateScale(Options.Scale) *Matrix.CreateTranslation(-(graphicDevice.Viewport.Width / 2 + X), -(graphicDevice.Viewport.Height / 2 + Y), 0) *
                        Matrix.CreateTranslation(graphicDevice.Viewport.Width / 2, graphicDevice.Viewport.Height / 2, 0);
-        }
-
-        public static Matrix CreateVirtualTransofrmation(float virtualZoom)
-        {
-            return Matrix.CreateTranslation(-(GameMain.SpriteBatch.GraphicsDevice.Viewport.Width / 2 + X), -(GameMain.SpriteBatch.GraphicsDevice.Viewport.Height / 2 + Y), 0) *
-                       Matrix.CreateTranslation(GameMain.SpriteBatch.GraphicsDevice.Viewport.Width / 2, GameMain.SpriteBatch.GraphicsDevice.Viewport.Height / 2, 0);
+            
         }
 
         /// <summary>

@@ -92,7 +92,7 @@ namespace RPG.Entities
                 //TODO Komenty!!
                 EntityBullet bullet = new EntityBullet(GameMain.CurrentPlayer.PosX + 0.25f, GameMain.CurrentPlayer.PosY + 0.25f);
                 bullet.CurrentVelocity = 0.1f;
-                Vector2 interp = Vector2.Subtract(new Vector2((GameMain.CurrentPlayer.PosX + 0.45f) * 64, (GameMain.CurrentPlayer.PosY + 0.45f) * 64), new Vector2(MyMouse.CurrentMouseState.X, MyMouse.CurrentMouseState.Y));
+                Vector2 interp = Vector2.Subtract(new Vector2((GameMain.CurrentPlayer.PosX + 0.45f) * 64, (GameMain.CurrentPlayer.PosY + 0.45f) * 64), new Vector2(MyMouse.PositionRelativeX, MyMouse.PositionRelativeY));
                 interp.Normalize();
                 interp = Vector2.Multiply(interp, (float)Math.PI);
                 bullet.Rotation = Math.Atan2(-interp.Y, -interp.X);

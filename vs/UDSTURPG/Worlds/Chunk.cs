@@ -12,18 +12,19 @@ namespace RPG.Worlds
         /// <summary>
         /// Rozmiar chunku, "const" dla wydajności
         /// </summary>
-        public const int CHUNK_SIZE = 16;
+        public const int CHUNK_SIZE_X = 21;
+        public const int CHUNK_SIZE_Y = 11;
 
         /// <summary>
         ///  ID obiektów, tablice jednowymiarowe dla wydajności
         /// </summary>
-        private byte[] chunkGround;
+        private byte[][] chunkGround;
 
-        private UInt16[] chunkGroundMeta;
+        private UInt16[][] chunkGroundMeta;
         /// <summary>
         ///  Metadane obiektów
         /// </summary>
-        public UInt16[] ChunkGroundMeta
+        public UInt16[][] ChunkGroundMeta
         {
             get { return chunkGroundMeta; }
         }
@@ -54,23 +55,21 @@ namespace RPG.Worlds
 
         public byte this[ushort x, ushort y]
         {
-            get { return chunkGround[CHUNK_SIZE * y + x]; }
+            get { return chunkGround[x][y]; }
             set
             {
-                chunkGround[CHUNK_SIZE * y + x] = value;
-                MarkToRedraw();
+                chunkGround[x][y] = value;
             }
         }
 
         public UInt16 GetMeta(ushort x, ushort y)
         {
-            return chunkGroundMeta[CHUNK_SIZE * y + x];
+            return chunkGroundMeta[x][y];
         }
 
         public void SetMeta(UInt16 value, ushort x, ushort y)
         {
-            chunkGroundMeta[CHUNK_SIZE * y + x] = value;
-            MarkToRedraw();
+            chunkGroundMeta[x][y] = value;
         }
 
         public Chunk(World world, int x, int y)
@@ -79,8 +78,13 @@ namespace RPG.Worlds
             this.X = x;
             this.Y = y;
 
-            chunkGround = new byte[CHUNK_SIZE * CHUNK_SIZE];
-            chunkGroundMeta = new UInt16[CHUNK_SIZE * CHUNK_SIZE];
+            chunkGround = new byte[CHUNK_SIZE_X][];
+            chunkGroundMeta = new UInt16[CHUNK_SIZE_X][];
+            for(int i = 0; i < CHUNK_SIZE_X; i++)
+            {
+                chunkGround[i] = new byte[CHUNK_SIZE_Y];
+                chunkGroundMeta[i] = new UInt16[CHUNK_SIZE_Y];
+            }
             ResetChunkData(2);
         }
 
@@ -90,24 +94,14 @@ namespace RPG.Worlds
         /// <param name="id">Id pola</param>
         public void ResetChunkData(byte id)
         {
-            for (int i = 0; i < CHUNK_SIZE * CHUNK_SIZE; i++)
+            for (int i = 0; i < CHUNK_SIZE_X; i++)
             {
-                chunkGround[i] = id;
-                chunkGroundMeta[i] = 0;
+                for (int j = 0; j < CHUNK_SIZE_Y; j++)
+                {
+                    chunkGround[i][j] = id;
+                    chunkGroundMeta[i][j] = 0;
+                }
             }
-
-            //for(ushort i = 0; i < CHUNK_SIZE; i++)
-            //{
-            //    for (ushort j = 0; j < CHUNK_SIZE; j++)
-            //    {
-            //        this[i, j] = World.world[i, j];
-            //    }
-            //}
-        }
-
-        public void MarkToRedraw()
-        {
-            NeedsRedrawing = true;
         }
     }
 }

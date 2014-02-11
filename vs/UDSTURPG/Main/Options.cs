@@ -35,31 +35,27 @@ namespace RPG.Main
         /// <summary>
         /// Tablica dostępnych rozdzielczości
         /// </summary>
-        public static readonly int[,] resolution = new int[15, 2]
+        public static readonly int[,] resolution = new int[3, 2]
         {
-            {1920,1080},
-            {1680,1050},
-            {1600,900},
-            {1440,900},
-            {1400,1050},
             {1366,768},
-            {1360,768},
-            {1280,1024},
-            {1280,960},
-            {1280,800},
-            {1280,768},
-            {1280,720},
-            {1280,600},
-            {1152,864},
-            {1024,768}
+            {1600,900},
+            {1920,1080}
+
         };
+
+        private static float scale;
+        public static float Scale
+        {
+            get { return Options.scale; }
+        }
+
         /// <summary>
         /// Initializowanie opcji gry (narazie jest tylko rozdzielczość)
         /// </summary>
         public static void Init(GraphicsDeviceManager graphicsDeviceManager)
         {
 #if DEBUG
-            resolutionStatus = 14;
+            resolutionStatus = 0;
             updateResolution(graphicsDeviceManager, resolution[resolutionStatus, 0], resolution[resolutionStatus, 1]);
 #else
             //Rozdzielczość domyślna 1920x1080
@@ -76,13 +72,13 @@ namespace RPG.Main
         /// </summary>
         public static void KeyPressed(GraphicsDeviceManager graphicsDeviceManager)
         {
-            if (MyKeyboard.KeyF5.IsToggled)
+            if (MyKeyboard.KeyF4.IsToggled)
             {
                 toogleFullScreeen(graphicsDeviceManager);
             }
             if (MyKeyboard.KeyF5.IsToggled)
             {
-                if (resolutionStatus < 14)
+                if (resolutionStatus < 2)
                 {
                     resolutionStatus++;
                     updateResolution(graphicsDeviceManager, resolution[resolutionStatus, 0], resolution[resolutionStatus, 1]);
@@ -121,7 +117,17 @@ namespace RPG.Main
         {
             graphicsDeviceManager.PreferredBackBufferHeight = height;
             graphicsDeviceManager.PreferredBackBufferWidth = width;
+            scale = (float)width / 1366.0f;
             graphicsDeviceManager.ApplyChanges();
+            graphicsDeviceManager.GraphicsDevice.Clear(Color.Wheat);
+            graphicsDeviceManager.GraphicsDevice.Viewport = new Viewport(graphicsDeviceManager.GraphicsDevice.Viewport.X, graphicsDeviceManager.GraphicsDevice.Viewport.Y, width, height);
+            OpenTK.Graphics.OpenGL.GL.Viewport(0, 0, width, height);
+            graphicsDeviceManager.ApplyChanges();
+
+            //graphicsDeviceManager.ToggleFullScreen();
+            //graphicsDeviceManager.ApplyChanges();
+            //graphicsDeviceManager.ToggleFullScreen();
+            //graphicsDeviceManager.ApplyChanges();
         }
         /// <summary>
         /// Naprawa błędów wywołanych zmianą rozdzielczości podczas fullScreena

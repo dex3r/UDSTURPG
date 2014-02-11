@@ -38,8 +38,10 @@ namespace RPG.Worlds
         public World()
         {
             size = 16;
-            ChunkNumbers = (int)Math.Pow(size / Chunk.CHUNK_SIZE, 2);
-            ChunksInRow = size / Chunk.CHUNK_SIZE;
+            //ChunkNumbers = (int)Math.Pow(size / Chunk.CHUNK_SIZE, 2);
+            //ChunksInRow = size / Chunk.CHUNK_SIZE;
+            ChunkNumbers = 1;
+            ChunksInRow = 1;
             chunks = new Chunk[ChunkNumbers];
             for (int x = 0; x < ChunksInRow; x++)
             {
@@ -55,11 +57,6 @@ namespace RPG.Worlds
         public Chunk GetChunk(int x, int y)
         {
             return chunks[ChunksInRow * y + x];
-        }
-
-        public void SetMeta(UInt16 value, int x, int y)
-        {
-            GetChunk(x / Chunk.CHUNK_SIZE, y / Chunk.CHUNK_SIZE).SetMeta(value, (ushort)(x % 16), (ushort)(y % 16));
         }
 
         public void Update()

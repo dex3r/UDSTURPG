@@ -78,6 +78,7 @@ namespace RPG.Entities
                     if(Collision(en))
                     {
                         marketToDelete = true;
+                        en.MarketToDelete = true;
                     }
                 }
         }

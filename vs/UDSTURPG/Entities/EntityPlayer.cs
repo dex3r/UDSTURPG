@@ -102,7 +102,7 @@ namespace RPG.Entities
             }
             if(MyKeyboard.KeyDebug1.IsToggled)
             {
-                EntityMob mummy = new EntityMob(MyMouse.CurrentMouseState.X / 64, MyMouse.CurrentMouseState.Y / 64, MobType.MobMummy);
+            EntityMob mummy = new EntityMob(MyMouse.PositionRelativeX / 64, MyMouse.PositionRelative / 64, MobType.MobMummy);
                 GameMain.CurrentWorld.AddEntity(mummy);
             }
         }
@@ -196,6 +196,10 @@ namespace RPG.Entities
                 else if (degreesRotation <= 340.5)
                 {
                     MovementTextureState = EnumSheetPlayer.DownRight;
+                }
+                else
+                {
+                    MovementTextureState = EnumSheetPlayer.Right;
                 }
             }
             ActualDraw();

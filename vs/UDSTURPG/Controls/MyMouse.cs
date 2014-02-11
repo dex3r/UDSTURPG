@@ -32,13 +32,13 @@ namespace RPG.Controls
         private static float positionRelativeX;
         public static float PositionRelativeX
         {
-            get { return MyMouse.positionRelativeX; }
+            get { return positionRelativeX; }
         }
 
         private static float positionRelativeY;
         public static float PositionRelativeY
         {
-            get { return MyMouse.positionRelativeY; }
+            get { return positionRelativeY; }
         }
 
 
@@ -50,8 +50,8 @@ namespace RPG.Controls
             currentMouseState = Mouse.GetState();
             ScrollWheelDelta = OverallScrollWheelValue - Mouse.GetState().ScrollWheelValue;
             OverallScrollWheelValue = Mouse.GetState().ScrollWheelValue;
-            positionRelativeX = Camera.Transform.Translation.X * -1 + currentMouseState.X;
-            positionRelativeY = Camera.Transform.Translation.Y * -1 + currentMouseState.Y;
+            positionRelativeX = Rendering.Camera.Transform.Translation.X * -1 * (float)Math.Pow(Options.Scale, -1) + Mouse.GetState().X * (float)Math.Pow(Options.Scale, -1);
+            positionRelativeY = Rendering.Camera.Transform.Translation.Y * -1 * (float)Math.Pow(Options.Scale, -1) + Mouse.GetState().Y * (float)Math.Pow(Options.Scale, -1);
         }
 
 

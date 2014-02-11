@@ -51,9 +51,10 @@ namespace RPG.Rendering
         /// </summary>
         static public void Update(GraphicsDevice graphicDevice)
         {
-            Transform = Matrix.CreateScale(Options.Scale) *Matrix.CreateTranslation(-(graphicDevice.Viewport.Width / 2 + X), -(graphicDevice.Viewport.Height / 2 + Y), 0) *
-                       Matrix.CreateTranslation(graphicDevice.Viewport.Width / 2, graphicDevice.Viewport.Height / 2, 0);
-            
+            Transform = Matrix.CreateScale(Options.Scale) * 
+                        Matrix.CreateTranslation(-(graphicDevice.Viewport.Width / 2 + X), -(graphicDevice.Viewport.Height / 2 + Y), 0) *
+                        Matrix.CreateTranslation(graphicDevice.Viewport.Width / 2, graphicDevice.Viewport.Height / 2, 0);
+
         }
 
         /// <summary>

@@ -62,13 +62,14 @@ namespace RPG.Entities
             posY += rotY * currentVelocity;
         }
 
-        public override void Draw()
+        public override bool PreDraw()
         {
-            if(currentVelocity == 0)
+            bool flag = base.PreDraw();
+            if (currentVelocity == 0)
             {
                 animationFrame = 0;
             }
-            base.Draw();
+            return flag;
         }
     }
 }

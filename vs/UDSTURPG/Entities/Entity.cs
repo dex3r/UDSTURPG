@@ -174,8 +174,8 @@ namespace RPG.Entities
         {
             collisionBoxX = 0;
             collisionBoxY = 0;
-            collisionBoxWidth = GetCurrentSourceRectangle().Width;
-            collisionBoxHeight = GetCurrentSourceRectangle().Height;
+            collisionBoxWidth = GetCurrentSourceRectangle().Width / 31;
+            collisionBoxHeight = GetCurrentSourceRectangle().Height / 31;
         }
     }
 }

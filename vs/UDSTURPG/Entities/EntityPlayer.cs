@@ -13,6 +13,10 @@ namespace RPG.Entities
 {
     public class EntityPlayer : EntityLiving
     {
+
+        public double shootingRotation;
+
+
         private float acceleration;
 
         public float Acceleration
@@ -55,10 +59,10 @@ namespace RPG.Entities
             if (MyKeyboard.KeyMoveRight.IsPressed)
             {
                 x += Math.PI;
-            }
-            rotation = Math.Atan2(y, x);
+            }        
             if(x != 0 || y != 0)
             {
+                rotation = Math.Atan2(y, x);
                 currentVelocity += acceleration;
                 //Camera.X = posX * 64 - GameMain.graphicsDeviceManager.PreferredBackBufferWidth / 2+32;
                 //Camera.Y = posY * 64 - GameMain.graphicsDeviceManager.PreferredBackBufferHeight / 2+32;
@@ -85,12 +89,14 @@ namespace RPG.Entities
             base.Update();
             if (MyKeyboard.KeyShoot.IsToggled)
             {
+                //TODO Komenty!!
                 EntityBullet bullet = new EntityBullet(GameMain.CurrentPlayer.PosX + 0.25f, GameMain.CurrentPlayer.PosY + 0.25f);
                 bullet.CurrentVelocity = 0.1f;
                 Vector2 interp = Vector2.Subtract(new Vector2((GameMain.CurrentPlayer.PosX + 0.45f) * 64, (GameMain.CurrentPlayer.PosY + 0.45f) * 64), new Vector2(MyMouse.CurrentMouseState.X, MyMouse.CurrentMouseState.Y));
                 interp.Normalize();
                 interp = Vector2.Multiply(interp, (float)Math.PI);
                 bullet.Rotation = Math.Atan2(-interp.Y, -interp.X);
+                shootingRotation = bullet.Rotation;
                 GameMain.CurrentWorld.AddEntity(bullet);
             }
             if(MyKeyboard.KeyDebug1.IsToggled)
@@ -106,53 +112,97 @@ namespace RPG.Entities
             {
                 return;
             }
-            if (MyKeyboard.KeyMoveDown.IsPressed && !MyKeyboard.KeyMoveUp.IsPressed)
+            if (!MyKeyboard.KeyShoot.IsPressed)
             {
-                if (MyKeyboard.KeyMoveRight.IsPressed && !MyKeyboard.KeyMoveLeft.IsPressed)
+                if (MyKeyboard.KeyMoveDown.IsPressed && !MyKeyboard.KeyMoveUp.IsPressed)
                 {
-                    MovementTextureState = EnumSheetPlayer.DownRight;
+                    if (MyKeyboard.KeyMoveRight.IsPressed && !MyKeyboard.KeyMoveLeft.IsPressed)
+                    {
+                        MovementTextureState = EnumSheetPlayer.DownRight;
+                    }
+                    else if (MyKeyboard.KeyMoveLeft.IsPressed && !MyKeyboard.KeyMoveRight.IsPressed)
+                    {
+                        MovementTextureState = EnumSheetPlayer.DownLeft;
+                    }
+                    else
+                    {
+                        MovementTextureState = EnumSheetPlayer.Down;
+                    }
                 }
-                else if (MyKeyboard.KeyMoveLeft.IsPressed && !MyKeyboard.KeyMoveRight.IsPressed)
+                else if (MyKeyboard.KeyMoveUp.IsPressed && !MyKeyboard.KeyMoveDown.IsPressed)
                 {
-                    MovementTextureState = EnumSheetPlayer.DownLeft;
+                    if (MyKeyboard.KeyMoveRight.IsPressed && !MyKeyboard.KeyMoveLeft.IsPressed)
+                    {
+                        MovementTextureState = EnumSheetPlayer.UpRight;
+                    }
+                    else if (MyKeyboard.KeyMoveLeft.IsPressed && !MyKeyboard.KeyMoveRight.IsPressed)
+                    {
+                        MovementTextureState = EnumSheetPlayer.UpLeft;
+                    }
+                    else
+                    {
+                        MovementTextureState = EnumSheetPlayer.Up;
+                    }
+                }
+                else if (MyKeyboard.KeyMoveLeft.IsPressed)
+                {
+                    MovementTextureState = EnumSheetPlayer.Left;
+                }
+                else if (MyKeyboard.KeyMoveRight.IsPressed)
+                {
+                    MovementTextureState = EnumSheetPlayer.Right;
                 }
                 else
                 {
-                    MovementTextureState = EnumSheetPlayer.Down;
+                    animationFrame = 0;
                 }
-            }
-            else if (MyKeyboard.KeyMoveUp.IsPressed && !MyKeyboard.KeyMoveDown.IsPressed)
-            {
-                if (MyKeyboard.KeyMoveRight.IsPressed && !MyKeyboard.KeyMoveLeft.IsPressed)
-                {
-                    MovementTextureState = EnumSheetPlayer.UpRight;
-                }
-                else if (MyKeyboard.KeyMoveLeft.IsPressed && !MyKeyboard.KeyMoveRight.IsPressed)
-                {
-                    MovementTextureState = EnumSheetPlayer.UpLeft;
-                }
-                else
-                {
-                    MovementTextureState = EnumSheetPlayer.Up;
-                }
-            }
-            else if (MyKeyboard.KeyMoveLeft.IsPressed)
-            {
-                MovementTextureState = EnumSheetPlayer.Left;
-            }
-            else if (MyKeyboard.KeyMoveRight.IsPressed)
-            {
-                MovementTextureState = EnumSheetPlayer.Right;
             }
             else
             {
-                animationFrame = 0;
+                double degreesRotation = 180.0d / Math.PI * -shootingRotation;
+                if (shootingRotation > 0)
+                {
+                    degreesRotation = 360 + degreesRotation;
+                }
+                if (degreesRotation <= 22.5)
+                {
+                    MovementTextureState = EnumSheetPlayer.Right;
+                }
+                else if (degreesRotation <= 67.5)
+                {
+                    MovementTextureState = EnumSheetPlayer.UpRight;
+                }
+                else if (degreesRotation <= 112.5)
+                {
+                    MovementTextureState = EnumSheetPlayer.Up;
+                }
+                else if (degreesRotation <= 157.5)
+                {
+                    MovementTextureState = EnumSheetPlayer.UpLeft;
+                }
+                else if (degreesRotation <= 202.5)
+                {
+                    MovementTextureState = EnumSheetPlayer.Left;
+                }
+                else if (degreesRotation <= 247.5)
+                {
+                    MovementTextureState = EnumSheetPlayer.DownLeft;
+                }
+                else if (degreesRotation <= 292.5)
+                {
+                    MovementTextureState = EnumSheetPlayer.Down;
+                }
+                else if (degreesRotation <= 340.5)
+                {
+                    MovementTextureState = EnumSheetPlayer.DownRight;
+                }
             }
             ActualDraw();
         }
 
         public override Rectangle GetCurrentSourceRectangle()
         {
+            //TODO KOMENTY!!!
             return currentTexture.GetCurrentSourceRectangle(animationFrame, (int)MovementTextureState);
         }
     }

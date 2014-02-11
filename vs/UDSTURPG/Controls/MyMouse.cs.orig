@@ -56,9 +56,15 @@ namespace RPG.Controls
 
             if (currentMouseState.LeftButton == ButtonState.Pressed && !wasLMBDown)
             {
+<<<<<<< HEAD
                 EntityBullet bullet = new EntityBullet(GameMain.CurrentPlayer.PosX + 0.25f, GameMain.CurrentPlayer.PosY + 0.25f);
                 bullet.CurrentVelocity = 0.1f;
                 Vector2 interp = Vector2.Subtract(new Vector2((GameMain.CurrentPlayer.PosX + 0.45f) * 64, (GameMain.CurrentPlayer.PosY + 0.45f) * 64), new Vector2(currentMouseState.X, currentMouseState.Y));
+=======
+                EntityBullet bullet = new EntityBullet(GameMain.CurrentPlayer.PosX + 0.25f, GameMain.CurrentPlayer.PosY + 0.125f);
+                bullet.CurrentVelocity = 0.1f;
+                Vector2 interp = Vector2.Subtract(new Vector2((GameMain.CurrentPlayer.PosX + 0.45f) * 64, (GameMain.CurrentPlayer.PosY + 0.4f) * 64), new Vector2(currentMouseState.X, currentMouseState.Y));
+>>>>>>> 98f96262c4d27c65c6e1bf672e28893ee211fa24
                 interp.Normalize();
                 interp = Vector2.Multiply(interp, (float)Math.PI);
                 bullet.Rotation = Math.Atan2(-interp.Y, -interp.X);

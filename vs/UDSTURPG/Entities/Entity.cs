@@ -4,6 +4,8 @@ using System.Linq;
 using System.Text;
 using RPG.Textures2D;
 using RPG.Main;
+using RPG.Utils;
+using RPG.Controls;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework;
 
@@ -99,10 +101,10 @@ namespace RPG.Entities
 
         public virtual void Update()
         {
-           if(posX > BORDER || posY > BORDER || posY < MBORDER || PosX < MBORDER)
-           {
-               marketToDelete = true;
-           }
+            if (posX > BORDER || posY > BORDER || posY < MBORDER || PosX < MBORDER)
+            {
+                marketToDelete = true;
+            }
 
 
         }
@@ -130,17 +132,22 @@ namespace RPG.Entities
 
         public virtual void Draw()
         {
-            if(!PreDraw())
+            if (!PreDraw())
             {
                 return;
             }
-            ActualDraw();  
+            ActualDraw();
         }
 
         public virtual void ActualDraw()
         {
             //TODO Komenty!!
-            GameMain.SpriteBatch.Draw(currentTexture.Texture, new Vector2((int)(posX * 64), (int)(posY * 64)), GetCurrentSourceRectangle(), Color.White, 0, new Vector2(), 2.0f, SpriteEffects.None, currentTexture.DepthOfDrawing+PosY/1000);
+            GameMain.SpriteBatch.Draw(currentTexture.Texture, new Vector2((int)(posX * 64), (int)(posY * 64)), GetCurrentSourceRectangle(), Color.White, 0, new Vector2(), 2.0f, SpriteEffects.None, currentTexture.DepthOfDrawing + PosY / 1000);
+            if (MyKeyboard.KeyF10.IsPressed)
+            {
+                GameMain.SpriteBatch.DrawRectangle(new Vector2(PosX * 64 + CollisionBoxX * 64, PosY * 64 + CollisionBoxY * 64), new Vector2(CollisionBoxX * 64 + CollisionBoxWidth * 64, CollisionBoxY * 64 + CollisionBoxHeight * 64), Color.Black);
+            }
+
         }
 
         public virtual Rectangle GetCurrentSourceRectangle()
@@ -154,12 +161,12 @@ namespace RPG.Entities
         /// <returns>Zwraca tylko odległość od x y do x y</returns>
         public virtual double Distance(Entity a)
         {
-                return Math.Sqrt(Math.Pow(a.PosX - PosX, 2) + Math.Pow(a.PosY - PosY, 2));
+            return Math.Sqrt(Math.Pow(a.PosX - PosX, 2) + Math.Pow(a.PosY - PosY, 2));
         }
 
         public virtual bool Collision(Entity a)
         {
-            if(Distance(a) < 2)
+            if (Distance(a) < 2)
             {
                 if (PosX + CollisionBoxX + CollisionBoxWidth < a.PosX + a.CollisionBoxX) return false;
                 if (a.PosX + a.CollisionBoxX + a.CollisionBoxWidth < PosX + CollisionBoxX) return false;

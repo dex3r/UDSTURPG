@@ -75,6 +75,13 @@ namespace RPG.Controls
         {
             get { return MyKeyboard.keyF6; }
         }
+
+
+        private static MyKey keyF10 = new MyKey("Collision box", Keys.F10);
+        public static MyKey KeyF10
+        {
+            get { return MyKeyboard.keyF10; }
+        }
         
 
         public static void Update()

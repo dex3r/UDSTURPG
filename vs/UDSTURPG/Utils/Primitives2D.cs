@@ -404,7 +404,7 @@ namespace RPG.Utils
 			                 Vector2.Zero,
 			                 new Vector2(length, thickness),
 			                 SpriteEffects.None,
-			                 0);
+			                 1.0f);
 		}
 
 		#endregion

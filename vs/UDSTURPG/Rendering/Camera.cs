@@ -65,26 +65,26 @@ namespace RPG.Rendering
         /// </summary>
         static public void Interaction(GraphicsDeviceManager graphicsDeviceManager, GraphicsDevice graphicDevice)
         {
-            if (MyMouse.ToogleMiddleButton() == false)
-            {
+            //if (MyMouse.ToogleMiddleButton() == false)
+            //{
 
-                if (graphicsDeviceManager.IsFullScreen == true)
-                {
-                    if (MyMouse.ChceckMouseRectangle(0, 0, graphicDevice.Viewport.Width, graphicDevice.Viewport.Height / graphicDevice.Viewport.Height * BORDERSIZE)) Camera.Y -= STEP;
-                    if (MyMouse.ChceckMouseRectangle(0, graphicDevice.Viewport.Height - graphicDevice.Viewport.Height / graphicDevice.Viewport.Height * BORDERSIZE, graphicDevice.Viewport.Width, graphicDevice.Viewport.Height)) Camera.Y += STEP;
-                    if (MyMouse.ChceckMouseRectangle(0, 0, graphicDevice.Viewport.Width / graphicDevice.Viewport.Width * BORDERSIZE, graphicDevice.Viewport.Height)) Camera.X -= STEP;
-                    if (MyMouse.ChceckMouseRectangle(graphicDevice.Viewport.Width - graphicDevice.Viewport.Width / graphicDevice.Viewport.Width * BORDERSIZE, 0, graphicDevice.Viewport.Width, graphicDevice.Viewport.Height)) Camera.X += STEP;
-                }
-                if (Keyboard.GetState().IsKeyDown(Keys.Left)) Camera.X -= STEP;
-                if (Keyboard.GetState().IsKeyDown(Keys.Right)) Camera.X += STEP;
-                if (Keyboard.GetState().IsKeyDown(Keys.Up)) Camera.Y -= STEP;
-                if (Keyboard.GetState().IsKeyDown(Keys.Down)) Camera.Y += STEP;
-            }
-            else
-            {
-                Camera.X -= (MyMouse.MouseHoldPositionX - Mouse.GetState().X) / 40;
-                Camera.Y -= (MyMouse.MouseHoldPositionY - Mouse.GetState().Y) / 40;
-            }
+            //    if (graphicsDeviceManager.IsFullScreen == true)
+            //    {
+            //        if (MyMouse.ChceckMouseRectangle(0, 0, graphicDevice.Viewport.Width, graphicDevice.Viewport.Height / graphicDevice.Viewport.Height * BORDERSIZE)) Camera.Y -= STEP;
+            //        if (MyMouse.ChceckMouseRectangle(0, graphicDevice.Viewport.Height - graphicDevice.Viewport.Height / graphicDevice.Viewport.Height * BORDERSIZE, graphicDevice.Viewport.Width, graphicDevice.Viewport.Height)) Camera.Y += STEP;
+            //        if (MyMouse.ChceckMouseRectangle(0, 0, graphicDevice.Viewport.Width / graphicDevice.Viewport.Width * BORDERSIZE, graphicDevice.Viewport.Height)) Camera.X -= STEP;
+            //        if (MyMouse.ChceckMouseRectangle(graphicDevice.Viewport.Width - graphicDevice.Viewport.Width / graphicDevice.Viewport.Width * BORDERSIZE, 0, graphicDevice.Viewport.Width, graphicDevice.Viewport.Height)) Camera.X += STEP;
+            //    }
+            //    if (Keyboard.GetState().IsKeyDown(Keys.Left)) Camera.X -= STEP;
+            //    if (Keyboard.GetState().IsKeyDown(Keys.Right)) Camera.X += STEP;
+            //    if (Keyboard.GetState().IsKeyDown(Keys.Up)) Camera.Y -= STEP;
+            //    if (Keyboard.GetState().IsKeyDown(Keys.Down)) Camera.Y += STEP;
+            //}
+            //else
+            //{
+            //    Camera.X -= (MyMouse.MouseHoldPositionX - Mouse.GetState().X) / 40;
+            //    Camera.Y -= (MyMouse.MouseHoldPositionY - Mouse.GetState().Y) / 40;
+            //}
         }
     }
 }

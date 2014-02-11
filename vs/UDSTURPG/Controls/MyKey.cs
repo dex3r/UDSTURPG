@@ -7,8 +7,6 @@ using Microsoft.Xna.Framework.Input;
 
 namespace RPG.Controls
 {
-    public delegate void ButtonChangeState(MyKey key);
-
     public class MyKey
     {
         public string Name { get; private set; }
@@ -20,19 +18,40 @@ namespace RPG.Controls
                 return isPressed;
             }
         }
-        public bool WasPressed { get; set; }
-        public event ButtonChangeState ButtonDownEvent;
-        public event ButtonChangeState ButtonUpEvent;
-        public event ButtonChangeState ButtonToggleOffEvent;
-        public event ButtonChangeState ButtonToggleOnEvent;
+        private bool wasPressed;
+        public bool WasPressed
+        {
+            get { return wasPressed; }
+        }
+
+        private bool isToggled;
+        public bool IsToggled
+        {
+            get { return isToggled; }
+        }
+
+        private int toggleRepeatRate;
+        /// <summary>
+        /// Z jaką częstotliwością (ticks) ma zmieniaś się stan IsToggled dla danego przycisku
+        /// -1 (domyślne) dla przełączenia jednorazowego
+        /// </summary>
+        public int ToggleRepeatRate
+        {
+            get { return toggleRepeatRate; }
+        }
+
+        private int currentToggleTicks;
 
         public List<Keys> registeredKeys { get; private set; }
+        public List<EnumMouseButtons> registeredMouseButtons { get; private set; }
 
         public MyKey(string keyName)
         {
             MyKeyboard.AllKeys.Add(this);
             this.Name = keyName;
             registeredKeys = new List<Keys>(1);
+            registeredMouseButtons = new List<EnumMouseButtons>(0);
+            toggleRepeatRate = -1;
         }
 
         public MyKey(string keyName, Keys key)
@@ -41,15 +60,27 @@ namespace RPG.Controls
             registeredKeys.Add(key);
         }
 
+        public MyKey(string keyName, EnumMouseButtons mouseButton)
+            : this(keyName)
+        {
+            registeredMouseButtons.Add(mouseButton);
+        }
+
         public MyKey(string keyName, List<Keys> keys)
             : this(keyName)
         {
             registeredKeys = keys;
         }
 
+        public MyKey SetRepeatRate(int repeatRate)
+        {
+            this.toggleRepeatRate = repeatRate;
+            return this;
+        }
+
         public void Update(KeyboardState kstate)
         {
-            WasPressed = IsPressed;
+            wasPressed = IsPressed;
             isPressed = false;
             for (int i = 0; i < registeredKeys.Count; i++)
             {
@@ -59,49 +90,66 @@ namespace RPG.Controls
                     break;
                 }
             }
-            if (isPressed)
+            if (!isPressed)
             {
-                if (ButtonDownEvent != null)
+                foreach (EnumMouseButtons mouseButton in registeredMouseButtons)
                 {
-                    ButtonDownEvent.Invoke(this);
+                    if (MyMouse.IsButtonPressed(mouseButton))
+                    {
+                        isPressed = true;
+                        break;
+                    }
                 }
             }
-            else if (!isPressed)
+            if (toggleRepeatRate == -1)
             {
-                if (ButtonUpEvent != null)
+                isToggled = IsPressed && !wasPressed;
+            }
+            else
+            {
+                isToggled = false;
+                if (currentToggleTicks > 0)
                 {
-                    ButtonUpEvent.Invoke(this);
+                    currentToggleTicks++;
+                }
+                if (currentToggleTicks >= toggleRepeatRate)
+                {
+                    currentToggleTicks = 0;
+                }
+                if (IsPressed && currentToggleTicks == 0)
+                {
+                    isToggled = true;
+                    currentToggleTicks++;
                 }
             }
-           if(!isPressed && WasPressed)
-           {
-               if(ButtonToggleOffEvent != null)
-               {
-                   ButtonToggleOffEvent.Invoke(this);
-               }
-           }
-           if(isPressed && !WasPressed)
-           {
-               if(ButtonToggleOnEvent != null)
-               {
-                   ButtonToggleOnEvent.Invoke(this);
-               }
-           }
         }
-            
-        public bool RegisterKey(Keys key)
+
+        public MyKey RegisterKey(Keys key)
         {
             if (!registeredKeys.Contains(key))
             {
-                return false;
+                registeredKeys.Add(key);
             }
-            registeredKeys.Add(key);
-            return true;
+            return this;
+        }
+
+        public MyKey RegisterMouseButton(EnumMouseButtons mouseButton)
+        {
+            if (!registeredMouseButtons.Contains(mouseButton))
+            {
+                registeredMouseButtons.Add(mouseButton);
+            }
+            return this;
         }
 
         public bool UnregisterKey(Keys key)
         {
             return registeredKeys.Remove(key);
+        }
+
+        public bool UnregisterMouseButton(EnumMouseButtons mouseButton)
+        {
+            return registeredMouseButtons.Remove(mouseButton);
         }
     }
 }

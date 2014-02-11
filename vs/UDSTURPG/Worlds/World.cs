@@ -33,6 +33,8 @@ namespace RPG.Worlds
             get { return entities; }
         }
 
+        private List<Entity> entitiesToAdd;
+
         public World()
         {
             size = 16;
@@ -47,6 +49,7 @@ namespace RPG.Worlds
                 }
             }
             entities = new List<Entity>();
+            entitiesToAdd = new List<Entity>();
         }
 
         public Chunk GetChunk(int x, int y)
@@ -74,6 +77,13 @@ namespace RPG.Worlds
             {
                 entities.Remove(entity);
             }
+            entities.AddRange(entitiesToAdd);
+            entitiesToAdd.Clear();
+        }
+
+        public void AddEntity(Entity entity)
+        {
+            entitiesToAdd.Add(entity);
         }
 
         public void LoadWorld()

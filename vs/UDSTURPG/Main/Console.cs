@@ -13,19 +13,8 @@ namespace RPG.Main
 
         static Console()
         {
-            MyKeyboard.KeyToggleConsole.ButtonToggleOnEvent += new ButtonChangeState(ShowConsoleKeyDown);
+            
         }
-         
-        public static void ShowConsoleKeyDown(MyKey key)
-        {
-            if(isVisible)
-            {
-                isVisible = false;
-            }
-            else
-            {
-                isVisible = true;
-            }
-        }
+        
     }
 }

@@ -14,7 +14,6 @@ namespace RPG.Controls
 {
     public static class MyMouse
     {
-        private static bool middleButtonStatus = false;
         public static int MouseHoldPositionX { get; private set; }
         public static int MouseHoldPositionY { get; private set; }
         public static int OverallScrollWheelValue { get; private set; }
@@ -32,12 +31,6 @@ namespace RPG.Controls
             get { return currentMouseState; }
         }
 
-        private static bool wasLMBDown;
-        public static bool WasLMBDown
-        {
-            get { return wasLMBDown; }
-        }
-
         public static Vector2 PositionRelative
         {
             get { return MyMouse.positionRelative; }
@@ -53,19 +46,6 @@ namespace RPG.Controls
             OverallScrollWheelValue = Mouse.GetState().ScrollWheelValue;
             positionRelative.X = Camera.Transform.Translation.X * -1 + currentMouseState.X;
             positionRelative.Y = Camera.Transform.Translation.Y * -1 + currentMouseState.Y;
-
-            if (currentMouseState.LeftButton == ButtonState.Pressed && !wasLMBDown)
-            {
-                EntityBullet bullet = new EntityBullet(GameMain.CurrentPlayer.PosX + 0.25f, GameMain.CurrentPlayer.PosY + 0.25f);
-                bullet.CurrentVelocity = 0.1f;
-                Vector2 interp = Vector2.Subtract(new Vector2((GameMain.CurrentPlayer.PosX + 0.45f) * 64, (GameMain.CurrentPlayer.PosY + 0.45f) * 64), new Vector2(currentMouseState.X, currentMouseState.Y));
-                interp.Normalize();
-                interp = Vector2.Multiply(interp, (float)Math.PI);
-                bullet.Rotation = Math.Atan2(-interp.Y, -interp.X);
-                GameMain.CurrentWorld.Entities.Add(bullet);
-            }
-
-            wasLMBDown = currentMouseState.LeftButton == ButtonState.Pressed;
         }
 
 
@@ -81,23 +61,23 @@ namespace RPG.Controls
             }
         }
 
-        /// <summary>
-        /// Fukncja pomocnicza służy do przesuwania obrazu po przytrzymaniu środkowego przycisku myszy
-        /// </summary>
-        /// <returns>True - ON, False - OFF</returns>
-        public static bool ToogleMiddleButton()
+        public static bool IsButtonPressed(EnumMouseButtons mouseButton)
         {
-            if (middleButtonStatus == false && Mouse.GetState().MiddleButton == ButtonState.Pressed)
+            switch (mouseButton)
             {
-                MouseHoldPositionX = Mouse.GetState().X;
-                MouseHoldPositionY = Mouse.GetState().Y;
-                middleButtonStatus = true;
+                case EnumMouseButtons.Left:
+                    return currentMouseState.LeftButton == ButtonState.Pressed;
+                case EnumMouseButtons.Right:
+                    return currentMouseState.RightButton == ButtonState.Pressed;
+                case EnumMouseButtons.Middle:
+                    return currentMouseState.MiddleButton == ButtonState.Pressed;
+                case EnumMouseButtons.One:
+                    return currentMouseState.XButton1 == ButtonState.Pressed;
+                case EnumMouseButtons.Two:
+                    return currentMouseState.XButton2 == ButtonState.Pressed;
+                default:
+                    return false;
             }
-            else if (middleButtonStatus == true && Mouse.GetState().MiddleButton == ButtonState.Released)
-            {
-                middleButtonStatus = false;
-            }
-            return middleButtonStatus;
         }
     }
 }

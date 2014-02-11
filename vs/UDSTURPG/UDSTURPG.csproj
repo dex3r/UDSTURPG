@@ -36,6 +36,7 @@
   </PropertyGroup>
   <ItemGroup>
     <Compile Include="Blocks\Block.cs" />
+    <Compile Include="Controls\EnumMouseButtons.cs" />
     <Compile Include="Controls\MyKey.cs" />
     <Compile Include="Controls\MyKeyboard.cs" />
     <Compile Include="Controls\MyMouse.cs" />

@@ -12,7 +12,7 @@ namespace RPG.Entities
     public class Entity
     {
         // Granica, za którą obiekt znika
-        public const int BORDER = 1000;
+        public const int BORDER = 100;
         public const int MBORDER = -BORDER;
 
         protected float posX;
@@ -95,7 +95,7 @@ namespace RPG.Entities
 
         public virtual void ActualDraw()
         {
-            GameMain.SpriteBatch.Draw(currentTexture.Texture, new Vector2((int)(posX * 64), (int)(posY * 64)), GetCurrentSourceRectangle(), Color.White, 0, new Vector2(), 2.0f, SpriteEffects.None, currentTexture.DepthOfDrawing);
+            GameMain.SpriteBatch.Draw(currentTexture.Texture, new Vector2((int)(posX * 64), (int)(posY * 64)), GetCurrentSourceRectangle(), Color.White, 0, new Vector2(), 2.0f, SpriteEffects.None, currentTexture.DepthOfDrawing+PosY/1000);
         }
 
         public virtual Rectangle GetCurrentSourceRectangle()

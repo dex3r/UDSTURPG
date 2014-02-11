@@ -7,6 +7,7 @@ using RPG.Controls;
 using RPG.Textures2D;
 using RPG.Main;
 using Microsoft.Xna.Framework;
+using RPG.Rendering;
 
 namespace RPG.Entities
 {
@@ -67,6 +68,8 @@ namespace RPG.Entities
             if(x != 0 || y != 0)
             {
                 currentVelocity += acceleration;
+                Camera.X = posX * 64 - GameMain.graphicsDeviceManager.PreferredBackBufferWidth / 2+32;
+                Camera.Y = posY * 64 - GameMain.graphicsDeviceManager.PreferredBackBufferHeight / 2+32;
             }
             else
             {

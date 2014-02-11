@@ -57,6 +57,24 @@ namespace RPG.Controls
         {
             get { return MyKeyboard.keyDebug1; }
         }
+
+        private static MyKey keyF4 = new MyKey("Fullscreen", Keys.F4);
+        public static MyKey KeyF4
+        {
+            get { return MyKeyboard.keyF4; }
+        }
+
+        private static MyKey keyF5 = new MyKey("Resolution up", Keys.F5);
+        public static MyKey KeyF5
+        {
+            get { return MyKeyboard.keyF5; }
+        }
+
+        private static MyKey keyF6 = new MyKey("Resolution down", Keys.F6);
+        public static MyKey KeyF6
+        {
+            get { return MyKeyboard.keyF6; }
+        }
         
 
         public static void Update()

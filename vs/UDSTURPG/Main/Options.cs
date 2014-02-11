@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Microsoft.Xna.Framework;
-using Microsoft.Xna.Framework.Input;
+using RPG.Controls;
 using Microsoft.Xna.Framework.Graphics;
 
 namespace RPG.Main
@@ -76,11 +76,11 @@ namespace RPG.Main
         /// </summary>
         public static void KeyPressed(GraphicsDeviceManager graphicsDeviceManager)
         {
-            if (Keyboard.GetState().IsKeyDown(Keys.F4))
+            if (MyKeyboard.KeyF5.IsToggled)
             {
                 toogleFullScreeen(graphicsDeviceManager);
             }
-            if (Keyboard.GetState().IsKeyDown(Keys.F5))
+            if (MyKeyboard.KeyF5.IsToggled)
             {
                 if (resolutionStatus < 14)
                 {
@@ -89,7 +89,7 @@ namespace RPG.Main
                     ResolutionChange = 1;
                 }
             }
-            if (Keyboard.GetState().IsKeyDown(Keys.F6))
+            if (MyKeyboard.KeyF6.IsToggled)
             {
                 if (resolutionStatus > 0)
                 {

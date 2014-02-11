@@ -21,25 +21,19 @@ namespace RPG.Entities
             set { prevY = value; }
         }
 
-        //protected float currentVelocityY;
-        //public float CurrentVelocityY
-        //{
-        //    get { return currentVelocityY; }
-        //    set { currentVelocityY = value; }
-        //}
-
-        //protected float currentVelocityX;
-        //public float CurrentVelocityX
-        //{
-        //    get { return currentVelocityX; }
-        //    set { currentVelocityX = value; }
-        //}
-
         protected float currentVelocity;
         public float CurrentVelocity
         {
             get { return currentVelocity; }
             set { currentVelocity = value; }
+        }
+
+        protected float maxSpeed;
+
+        public float MaxSpeed
+        {
+            get { return maxSpeed; }
+            set { maxSpeed = value; }
         }
 
         protected double rotation;
@@ -66,6 +60,15 @@ namespace RPG.Entities
             float rotY = (float)Math.Sin(rotation);
             posX += rotX * currentVelocity;
             posY += rotY * currentVelocity;
+        }
+
+        public override void Draw()
+        {
+            if(currentVelocity == 0)
+            {
+                animationFrame = 0;
+            }
+            base.Draw();
         }
     }
 }

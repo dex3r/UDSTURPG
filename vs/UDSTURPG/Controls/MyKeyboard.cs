@@ -46,10 +46,16 @@ namespace RPG.Controls
             get { return MyKeyboard.keyMoveRight; }
         }
 
-        private static MyKey keyShoot = new MyKey("Shoot", EnumMouseButtons.Left).RegisterKey(Keys.Space).SetRepeatRate(30);
+        private static MyKey keyShoot = new MyKey("Shoot", EnumMouseButtons.Left).RegisterKey(Keys.Space).SetRepeatRate(10);
         public static MyKey KeyShoot
         {
             get { return MyKeyboard.keyShoot; }
+        }
+
+        private static MyKey keyDebug1 = new MyKey("Debug key 1", EnumMouseButtons.Right);
+        public static MyKey KeyDebug1
+        {
+            get { return MyKeyboard.keyDebug1; }
         }
         
 

@@ -43,8 +43,11 @@
     <Compile Include="Entities\EntityBullet.cs" />
     <Compile Include="Entities\Entity.cs" />
     <Compile Include="Entities\EntityLiving.cs" />
+    <Compile Include="Entities\EntityMob.cs" />
     <Compile Include="Entities\EntityMovable.cs" />
     <Compile Include="Entities\EntityPlayer.cs" />
+    <Compile Include="Entities\EnumMobWalkingStyle.cs" />
+    <Compile Include="Entities\MobType.cs" />
     <Compile Include="Main\Console.cs" />
     <Compile Include="Main\GameMain.cs" />
     <Compile Include="Main\GameWindowControl.cs" />
@@ -55,6 +58,7 @@
     <Compile Include="Rendering\ChunkRenderer.cs" />
     <Compile Include="Rendering\GlobalRenderer.cs" />
     <Compile Include="Rendering\Text.cs" />
+    <Compile Include="Textures2D\EnumSheetNormalMob.cs" />
     <Compile Include="Textures2D\EnumSheetPlayer.cs" />
     <Compile Include="Textures2D\MyTexture.cs" />
     <Compile Include="Utils\Primitives2D.cs" />

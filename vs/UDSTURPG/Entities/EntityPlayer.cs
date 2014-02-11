@@ -13,14 +13,6 @@ namespace RPG.Entities
 {
     public class EntityPlayer : EntityLiving
     {
-        private float maxSpeed;
-
-        public float MaxSpeed
-        {
-            get { return maxSpeed; }
-            set { maxSpeed = value; }
-        }
-
         private float acceleration;
 
         public float Acceleration
@@ -100,6 +92,11 @@ namespace RPG.Entities
                 interp = Vector2.Multiply(interp, (float)Math.PI);
                 bullet.Rotation = Math.Atan2(-interp.Y, -interp.X);
                 GameMain.CurrentWorld.AddEntity(bullet);
+            }
+            if(MyKeyboard.KeyDebug1.IsToggled)
+            {
+                EntityMob mummy = new EntityMob(MyMouse.CurrentMouseState.X / 64, MyMouse.CurrentMouseState.Y / 64, MobType.MobMummy);
+                GameMain.CurrentWorld.AddEntity(mummy);
             }
         }
 

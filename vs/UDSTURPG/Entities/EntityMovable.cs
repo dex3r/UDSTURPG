@@ -46,7 +46,8 @@ namespace RPG.Entities
             set { rotation = value; }
         }
 
-        public EntityMovable(float posX, float posY) : base(posX, posY)
+        public EntityMovable(float posX, float posY, ulong id)
+            : base(posX, posY, id)
         {
 
         }

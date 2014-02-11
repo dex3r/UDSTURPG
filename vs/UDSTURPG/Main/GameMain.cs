@@ -44,6 +44,14 @@ namespace RPG.Main
             set { GameMain.currentPlayer = value; }
         }
 
+        private static ulong entitiesId = 0;
+
+        public static ulong EntitiesId
+        {
+            get { return GameMain.entitiesId; }
+            set { GameMain.entitiesId = value; }
+        }
+
         public static SpriteBatch SpriteBatch { get; private set; }
 
         /// <summary>
@@ -86,7 +94,7 @@ namespace RPG.Main
         {
             base.Initialize();
             currentWorld = new World();
-            currentPlayer = new EntityPlayer(7, 7);
+            currentPlayer = new EntityPlayer(7, 7, EntitiesId++);
             currentWorld.Entities.Add(currentPlayer);
             //Ustawienie pozycji okna
             Window.SetPosition(new Point(400, 100));
@@ -198,6 +206,8 @@ namespace RPG.Main
             sb.Append(currentPlayer.PosX);
             sb.Append(" ");
             sb.Append(currentPlayer.PosY);
+            sb.Append(" ");
+            sb.Append(currentPlayer.Rotation);
             sb.Append("\nEntities: ");
             sb.Append((currentWorld == null ? 0 : currentWorld.Entities.Count));
             sb.Append(Text.Log);

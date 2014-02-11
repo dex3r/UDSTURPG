@@ -49,7 +49,7 @@ namespace RPG.Entities
             this.currentTexture = mobType.Texture;
             movementTextureState = EnumSheetNormalMob.Down;
             currentVelocity = maxSpeed;
-            rotation = -(3.0d * Math.PI) / 2.0d;
+            rotation = Math.PI;
             this.IsColidable = true;
             AutoColisionBox(); //TEMP
         }
@@ -80,7 +80,39 @@ namespace RPG.Entities
                         marketToDelete = true;
                     }
                 }
-            
+        }
+
+        public override bool PreDraw()
+        {
+            bool flag = base.PreDraw();
+
+            double degreesRotation = 180.0d / Math.PI * -rotation;
+            if (rotation > 0)
+            {
+                degreesRotation += 360;
+            }
+
+            if (degreesRotation <= 45)
+            {
+                MovementTextureState = EnumSheetNormalMob.Right;
+            }
+            else if (degreesRotation <= 135)
+            {
+                MovementTextureState = EnumSheetNormalMob.Up;
+            }
+            else if (degreesRotation <= 215)
+            {
+                MovementTextureState = EnumSheetNormalMob.Left;
+            }
+            else if (degreesRotation <= 315)
+            {
+                MovementTextureState = EnumSheetNormalMob.Down;
+            }
+            else
+            {
+                MovementTextureState = EnumSheetNormalMob.Right;
+            }
+            return flag;
         }
 
         public override Rectangle GetCurrentSourceRectangle()

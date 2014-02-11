@@ -197,6 +197,10 @@ namespace RPG.Entities
                 {
                     MovementTextureState = EnumSheetPlayer.DownRight;
                 }
+                else
+                {
+                    MovementTextureState = EnumSheetPlayer.Right;
+                }
             }
             ActualDraw();
         }

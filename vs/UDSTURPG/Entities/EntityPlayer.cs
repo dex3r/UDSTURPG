@@ -102,7 +102,7 @@ namespace RPG.Entities
             }
             if(MyKeyboard.KeyDebug1.IsToggled)
             {
-                EntityMob mummy = new EntityMob(MyMouse.CurrentMouseState.X / 64, MyMouse.CurrentMouseState.Y / 64, MobType.MobMummy, GameMain.EntitiesId++);
+                EntityMob mummy = new EntityMob(MyMouse.PositionRelativeX / 64, MyMouse.PositionRelativeY / 64, MobType.MobMummy, GameMain.EntitiesId++);
                 GameMain.CurrentWorld.AddEntity(mummy);
             }
         }

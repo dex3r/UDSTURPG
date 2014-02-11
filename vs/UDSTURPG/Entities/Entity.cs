@@ -48,6 +48,7 @@ namespace RPG.Entities
         public bool MarketToDelete
         {
             get { return marketToDelete; }
+            set { marketToDelete = value; }
         }
 
         private ulong id;

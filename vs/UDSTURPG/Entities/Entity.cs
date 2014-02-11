@@ -11,6 +11,10 @@ namespace RPG.Entities
 {
     public class Entity
     {
+        // Granica, za którą obiekt znika
+        public const int BORDER = 1000;
+        public const int MBORDER = -BORDER;
+
         protected float posX;
         public float PosX
         {
@@ -45,9 +49,18 @@ namespace RPG.Entities
             this.animationFrame = 0;
         }
 
+        private bool marketToDelete;
+        public bool MarketToDelete
+        {
+            get { return marketToDelete; }
+        }
+
         public virtual void Update()
         {
-           
+           if(posX > BORDER || posY > BORDER || posY < MBORDER || PosX < MBORDER)
+           {
+               marketToDelete = true;
+           }
         }
 
         /// <summary>

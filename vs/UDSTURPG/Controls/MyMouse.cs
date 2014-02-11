@@ -54,10 +54,10 @@ namespace RPG.Controls
             positionRelative.X = Camera.Transform.Translation.X * -1 + currentMouseState.X;
             positionRelative.Y = Camera.Transform.Translation.Y * -1 + currentMouseState.Y;
 
-            if (currentMouseState.LeftButton == ButtonState.Pressed)
+            if (currentMouseState.LeftButton == ButtonState.Pressed && !wasLMBDown)
             {
                 EntityBullet bullet = new EntityBullet(GameMain.CurrentPlayer.PosX + 0.25f, GameMain.CurrentPlayer.PosY + 0.25f);
-                bullet.CurrentVelocity = 0.05f;
+                bullet.CurrentVelocity = 0.1f;
                 Vector2 interp = Vector2.Subtract(new Vector2((GameMain.CurrentPlayer.PosX + 0.45f) * 64, (GameMain.CurrentPlayer.PosY + 0.45f) * 64), new Vector2(currentMouseState.X, currentMouseState.Y));
                 interp.Normalize();
                 interp = Vector2.Multiply(interp, (float)Math.PI);

@@ -77,6 +77,7 @@ namespace RPG.Main
             Options.Init(graphicsDeviceManager);
             // Vsync i fixedTimeStep:
             this.IsFixedTimeStep = true;
+            this.Window.AllowUserResizing = true;
             GraphicsDevice.PresentationParameters.DepthStencilFormat = DepthFormat.None;
 
         }
@@ -121,9 +122,10 @@ namespace RPG.Main
             MyMouse.Update();
             MyKeyboard.Update();
             Camera.Update(GraphicsDevice);
-            foreach(Entity entity in currentWorld.Entities)
+            
+            if(currentWorld != null)
             {
-                entity.Update();
+                currentWorld.Update();
             }
 
             base.Update(gameTime);
@@ -196,7 +198,8 @@ namespace RPG.Main
             sb.Append(currentPlayer.PosX);
             sb.Append(" ");
             sb.Append(currentPlayer.PosY);
-            sb.Append("\n");
+            sb.Append("\nEntities: ");
+            sb.Append((currentWorld == null ? 0 : currentWorld.Entities.Count));
             sb.Append(Text.Log);
             Text.Log = sb.ToString();
         }

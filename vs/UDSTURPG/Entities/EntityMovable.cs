@@ -59,6 +59,7 @@ namespace RPG.Entities
 
         public override void Update()
         {
+            base.Update();
             prevX = PosX;
             prevY = PosY;
             float rotX = (float)Math.Cos(rotation);

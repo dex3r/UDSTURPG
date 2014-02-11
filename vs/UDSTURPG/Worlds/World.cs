@@ -59,6 +59,23 @@ namespace RPG.Worlds
             GetChunk(x / Chunk.CHUNK_SIZE, y / Chunk.CHUNK_SIZE).SetMeta(value, (ushort)(x % 16), (ushort)(y % 16));
         }
 
+        public void Update()
+        {
+            List<Entity> entitiesToDelete = new List<Entity>();
+            foreach (Entity entity in entities)
+            {
+                entity.Update();
+                if(entity.MarketToDelete)
+                {
+                    entitiesToDelete.Add(entity);
+                }
+            }
+            foreach(Entity entity in entitiesToDelete)
+            {
+                entities.Remove(entity);
+            }
+        }
+
         public void LoadWorld()
         { 
         

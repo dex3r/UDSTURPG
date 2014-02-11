@@ -23,8 +23,6 @@ namespace RPG.Controls
         /// </summary>
         public static int ScrollWheelDelta { get; private set; }
 
-        private static Vector2 positionRelative;
-
         private static MouseState currentMouseState;
         public static MouseState CurrentMouseState
         {

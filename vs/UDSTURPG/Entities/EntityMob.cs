@@ -39,19 +39,19 @@ namespace RPG.Entities
             get { return stepLength; }
         }
 
-        public EntityMob(float posX, float posY, MobType mobType, ulong id)
-            : base(posX, posY, id)
+        public EntityMob(float posX, float posY, MobType mobType)
+            : base(posX, posY)
         {
             this.mobType = mobType;
             this.CurrentHp = this.MaxHp = mobType.Hp;
             this.maxSpeed = mobType.Speed;
             this.damage = mobType.BaseDmg;
             this.currentTexture = mobType.Texture;
+            SetCollisionBox(mobType.CollisionBoxX, mobType.CollisionBoxY, mobType.CollisionBoxWidth, mobType.CollisionBoxHeight);
             movementTextureState = EnumSheetNormalMob.Down;
             currentVelocity = maxSpeed;
             rotation = Math.PI;
             this.IsColidable = true;
-            AutoColisionBox(); //TEMP
         }
 
         public override void Update()

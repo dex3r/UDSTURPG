@@ -32,13 +32,13 @@ namespace RPG.Entities
             set { movementTextureState = value; }
         }
 
-        public EntityPlayer(float posX, float posY, ulong id)
-            : base(posX, posY, id)
+        public EntityPlayer(float posX, float posY)
+            : base(posX, posY)
         {
             CurrentTexture = MyTexture.PlayerLordLard;
             maxSpeed = 0.05f;
             acceleration = 0.03f;
-            AutoColisionBox(); //TEMP
+            SetCollisionBox(0, 0, 1.0f, 1.0f);
         }
 
         public override void Update()
@@ -91,7 +91,7 @@ namespace RPG.Entities
             if (MyKeyboard.KeyShoot.IsToggled)
             {
                 //TODO Komenty!!
-                EntityBullet bullet = new EntityBullet(GameMain.CurrentPlayer.PosX + 0.25f, GameMain.CurrentPlayer.PosY + 0.25f, GameMain.EntitiesId++);
+                EntityBullet bullet = new EntityBullet(GameMain.CurrentPlayer.PosX + 0.25f, GameMain.CurrentPlayer.PosY + 0.25f);
                 bullet.CurrentVelocity = 0.1f;
                 Vector2 interp = Vector2.Subtract(new Vector2((GameMain.CurrentPlayer.PosX + 0.45f) * 64, (GameMain.CurrentPlayer.PosY + 0.45f) * 64), new Vector2(MyMouse.PositionRelativeX, MyMouse.PositionRelativeY));
                 interp.Normalize();
@@ -102,7 +102,7 @@ namespace RPG.Entities
             }
             if(MyKeyboard.KeyDebug1.IsToggled)
             {
-                EntityMob mummy = new EntityMob(MyMouse.CurrentMouseState.X / 64, MyMouse.CurrentMouseState.Y / 64, MobType.MobMummy, GameMain.EntitiesId++);
+                EntityMob mummy = new EntityMob(MyMouse.CurrentMouseState.X / 64, MyMouse.CurrentMouseState.Y / 64, MobType.MobMummy);
                 GameMain.CurrentWorld.AddEntity(mummy);
             }
         }

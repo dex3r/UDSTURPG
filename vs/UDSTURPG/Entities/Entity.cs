@@ -50,13 +50,11 @@ namespace RPG.Entities
             get { return marketToDelete; }
         }
 
-        private ulong id;
-        public ulong Id
+        private uint id;
+        public uint Id
         {
             get { return id; }
         }
-
-        #region Collision
 
         private bool isColidable;
         public bool IsColidable
@@ -67,36 +65,48 @@ namespace RPG.Entities
 
         private float collisionBoxX;
 
-        protected float CollisionBoxX
+        public float CollisionBoxX
         {
             get { return collisionBoxX; }
+            set { collisionBoxX = value;  }
         }
         private float collisionBoxY;
 
-        protected float CollisionBoxY
+        public float CollisionBoxY
         {
             get { return collisionBoxY; }
+            set { collisionBoxY = value;  }
         }
         private float collisionBoxWidth;
 
-        protected float CollisionBoxWidth
+        public float CollisionBoxWidth
         {
             get { return collisionBoxWidth; }
+            set { collisionBoxWidth = value; }
         }
         private float collisionBoxHeight;
 
-        protected float CollisionBoxHeight
+        public float CollisionBoxHeight
         {
             get { return collisionBoxHeight; }
+            set { collisionBoxHeight = value; }
         }
-        #endregion
 
-        public Entity(float posX, float posY, ulong id)
+        public Entity(float posX, float posY)
         {
             this.posX = posX;
             this.posY = posY;
             this.animationFrame = 0;
-            this.id = id;
+            this.id = GameMain.EntitiesId++;
+        }
+
+        public Entity SetCollisionBox(float x, float y, float width, float height)
+        {
+            this.collisionBoxX = x;
+            this.collisionBoxY = y;
+            this.collisionBoxWidth = width;
+            this.collisionBoxHeight = height;
+            return this;
         }
 
         public virtual void Update()
@@ -145,7 +155,7 @@ namespace RPG.Entities
             GameMain.SpriteBatch.Draw(currentTexture.Texture, new Vector2((int)(posX * 64), (int)(posY * 64)), GetCurrentSourceRectangle(), Color.White, 0, new Vector2(), 2.0f, SpriteEffects.None, currentTexture.DepthOfDrawing + PosY / 1000);
             if (MyKeyboard.KeyF10.IsPressed)
             {
-                GameMain.SpriteBatch.DrawRectangle(new Vector2(PosX * 64 + CollisionBoxX * 64, PosY * 64 + CollisionBoxY * 64), new Vector2(CollisionBoxX * 64 + CollisionBoxWidth * 64, CollisionBoxY * 64 + CollisionBoxHeight * 64), Color.Black);
+                GameMain.SpriteBatch.DrawRectangle(new Vector2((PosX * 64) + (CollisionBoxX * 64), (PosY * 64) + (CollisionBoxY * 64)), new Vector2((CollisionBoxX * 64) + (CollisionBoxWidth * 64), (CollisionBoxY * 64) + (CollisionBoxHeight * 64)), Color.Red, 3.0f);
             }
 
         }
@@ -175,14 +185,6 @@ namespace RPG.Entities
                 return true;
             }
             return false;
-        }
-
-        public virtual void AutoColisionBox()
-        {
-            collisionBoxX = 0;
-            collisionBoxY = 0;
-            collisionBoxWidth = GetCurrentSourceRectangle().Width / 31;
-            collisionBoxHeight = GetCurrentSourceRectangle().Height / 31;
         }
     }
 }

@@ -11,11 +11,11 @@ namespace RPG.Entities
 {
     public class EntityBullet : EntityMovable
     {
-        public EntityBullet(float posX, float posY, ulong id)
-            : base(posX, posY, id)
+        public EntityBullet(float posX, float posY)
+            : base(posX, posY)
         {
             currentTexture = MyTexture.Bullet;
-            AutoColisionBox(); //TEMP
+            SetCollisionBox(0, 0, 0.5f, 0.5f);
         }
 
         public override void Update()
@@ -69,7 +69,8 @@ namespace RPG.Entities
             {
                 frameFromRotation = 6;
             }
-            return currentTexture.GetCurrentSourceRectangle(frameFromRotation, 0, 1);
+            Rectangle rect = currentTexture.GetCurrentSourceRectangle(frameFromRotation, 0, 1);
+            return rect;
 
         }
     }

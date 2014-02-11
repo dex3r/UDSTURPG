@@ -44,9 +44,9 @@ namespace RPG.Main
             set { GameMain.currentPlayer = value; }
         }
 
-        private static ulong entitiesId = 0;
+        private static uint entitiesId = 0;
 
-        public static ulong EntitiesId
+        public static uint EntitiesId
         {
             get { return GameMain.entitiesId; }
             set { GameMain.entitiesId = value; }
@@ -94,7 +94,7 @@ namespace RPG.Main
         {
             base.Initialize();
             currentWorld = new World();
-            currentPlayer = new EntityPlayer(0, 0, EntitiesId++);
+            currentPlayer = new EntityPlayer(0, 0);
             currentWorld.Entities.Add(currentPlayer);
             //Ustawienie pozycji okna
             Window.SetPosition(new Point(400, 100));

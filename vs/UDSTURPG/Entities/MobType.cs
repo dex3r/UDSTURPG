@@ -8,7 +8,7 @@ namespace RPG.Entities
 {
     public class MobType
     {
-        public static readonly MobType MobMummy = new MobType(50, 10, 0.008f, MyTexture.MobMummy, EnumMobWalkingStyle.Stuttery, stepInterval: 25);
+        public static readonly MobType MobMummy = new MobType(50, 10, 0.008f, MyTexture.MobMummy, EnumMobWalkingStyle.Stuttery, 0.15f, 0.2f, 1f, 0.9f, stepInterval: 25);
 
         private int hp;
         public int Hp
@@ -57,7 +57,31 @@ namespace RPG.Entities
             get { return walkingStyle; }
         }
 
-        private MobType(int hp, int baseDmg, float speed, MyTexture texture, EnumMobWalkingStyle walkingStyle, int stepInterval = 0, int stepLength = 20)
+        private float collisionBoxWidth;
+
+        public float CollisionBoxWidth
+        {
+            get { return collisionBoxWidth; }
+        }
+        private float collisionBoxHeight;
+
+        public float CollisionBoxHeight
+        {
+            get { return collisionBoxHeight; }
+        }
+
+        private float collisionBoxX;
+        public float CollisionBoxX
+        {
+            get { return collisionBoxX; }
+        }
+        private float collisionBoxY;
+        public float CollisionBoxY
+        {
+            get { return collisionBoxY; }
+        }
+
+        private MobType(int hp, int baseDmg, float speed, MyTexture texture, EnumMobWalkingStyle walkingStyle, float collisionBoxX, float collisionBoxY, float collisionBoxWidth, float collisionBoxHeight, int stepInterval = 0, int stepLength = 20)
         {
             this.hp = hp;
             this.baseDmg = baseDmg;
@@ -66,6 +90,10 @@ namespace RPG.Entities
             this.walkingStyle = walkingStyle;
             this.stepInterval = stepInterval;
             this.stepLength = stepLength;
+            this.collisionBoxHeight = collisionBoxHeight;
+            this.collisionBoxWidth = collisionBoxWidth;
+            this.collisionBoxX = collisionBoxX;
+            this.collisionBoxY = collisionBoxY;
         }
     }
 }

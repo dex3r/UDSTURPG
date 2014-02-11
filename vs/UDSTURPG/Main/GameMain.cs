@@ -192,6 +192,10 @@ namespace RPG.Main
             sb.Append(Mouse.GetState().X);
             sb.Append(" ");
             sb.Append(Mouse.GetState().Y);
+            sb.Append("\nMouse Relative");
+            sb.Append(MyMouse.PositionRelativeX);
+            sb.Append(" ");
+            sb.Append(MyMouse.PositionRelativeY);
             sb.Append("\nFps: ");
             sb.Append(lastFps);
             sb.Append("\nRes:");

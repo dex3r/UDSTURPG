@@ -76,7 +76,7 @@ namespace RPG.Main
         /// </summary>
         public static void KeyPressed(GraphicsDeviceManager graphicsDeviceManager)
         {
-            if (MyKeyboard.KeyF5.IsToggled)
+            if (MyKeyboard.KeyF4.IsToggled)
             {
                 toogleFullScreeen(graphicsDeviceManager);
             }

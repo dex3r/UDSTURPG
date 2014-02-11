@@ -41,18 +41,60 @@ namespace RPG.Entities
             get { return animationFrame; }
             set { animationFrame = value; }
         }
-        
-        public Entity(float posX, float posY)
+
+        protected bool marketToDelete;
+        public bool MarketToDelete
+        {
+            get { return marketToDelete; }
+        }
+
+        private ulong id;
+        public ulong Id
+        {
+            get { return id; }
+        }
+
+        #region Collision
+
+        private bool isColidable;
+        public bool IsColidable
+        {
+            get { return isColidable; }
+            set { isColidable = value; }
+        }
+
+        private float collisionBoxX;
+
+        protected float CollisionBoxX
+        {
+            get { return collisionBoxX; }
+        }
+        private float collisionBoxY;
+
+        protected float CollisionBoxY
+        {
+            get { return collisionBoxY; }
+        }
+        private float collisionBoxWidth;
+
+        protected float CollisionBoxWidth
+        {
+            get { return collisionBoxWidth; }
+        }
+        private float collisionBoxHeight;
+
+        protected float CollisionBoxHeight
+        {
+            get { return collisionBoxHeight; }
+        }
+        #endregion
+
+        public Entity(float posX, float posY, ulong id)
         {
             this.posX = posX;
             this.posY = posY;
             this.animationFrame = 0;
-        }
-
-        private bool marketToDelete;
-        public bool MarketToDelete
-        {
-            get { return marketToDelete; }
+            this.id = id;
         }
 
         public virtual void Update()
@@ -61,6 +103,8 @@ namespace RPG.Entities
            {
                marketToDelete = true;
            }
+
+
         }
 
         /// <summary>
@@ -102,6 +146,36 @@ namespace RPG.Entities
         public virtual Rectangle GetCurrentSourceRectangle()
         {
             return currentTexture.GetCurrentSourceRectangle(animationFrame);
+        }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <returns>Zwraca tylko odległość od x y do x y</returns>
+        public virtual double Distance(Entity a)
+        {
+                return Math.Sqrt(Math.Pow(a.PosX - PosX, 2) + Math.Pow(a.PosY - PosY, 2));
+        }
+
+        public virtual bool Collision(Entity a)
+        {
+            if(Distance(a) < 2)
+            {
+                if (PosX + CollisionBoxX + CollisionBoxWidth < a.PosX + a.CollisionBoxX) return false;
+                if (a.PosX + a.CollisionBoxX + a.CollisionBoxWidth < PosX + CollisionBoxX) return false;
+                if (PosY + CollisionBoxY + CollisionBoxHeight < a.PosY + a.CollisionBoxY) return false;
+                if (a.PosY + a.CollisionBoxY + a.CollisionBoxHeight < PosY + CollisionBoxY) return false;
+                return true;
+            }
+            return false;
+        }
+
+        public virtual void AutoColisionBox()
+        {
+            collisionBoxX = 0;
+            collisionBoxY = 0;
+            collisionBoxWidth = GetCurrentSourceRectangle().Width;
+            collisionBoxHeight = GetCurrentSourceRectangle().Height;
         }
     }
 }

@@ -98,7 +98,7 @@ namespace RPG.Main
             //Zmiana rozdzielczości w przypadku uruchomionego fullscreena
             updateResolutionOnFullScreenFix(graphicsDeviceManager);
         }
-
+        
         /// <summary>
         /// Toogle full screen z aplikowaniem zmian
         /// </summary>

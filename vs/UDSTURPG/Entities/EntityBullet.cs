@@ -11,9 +11,11 @@ namespace RPG.Entities
 {
     public class EntityBullet : EntityMovable
     {
-        public EntityBullet(float posX, float posY) : base(posX, posY)
+        public EntityBullet(float posX, float posY, ulong id)
+            : base(posX, posY, id)
         {
             currentTexture = MyTexture.Bullet;
+            AutoColisionBox(); //TEMP
         }
 
         public override void Update()
@@ -24,18 +26,18 @@ namespace RPG.Entities
         public override Rectangle GetCurrentSourceRectangle()
         {
             int frameFromRotation;
-            double degreesRotation = 180.0d /  Math.PI * -rotation;
+            double degreesRotation = 180.0d / Math.PI * -rotation;
             //? ZMIENIĆ NA JAKŚ FUNCKJĘ MATEMATYCZNĄ
             if (rotation > 0)
             {
                 degreesRotation = 360 + degreesRotation;
             }
 
-            if(degreesRotation <= 22.5)
+            if (degreesRotation <= 22.5)
             {
                 frameFromRotation = 6;
             }
-            else if(degreesRotation <= 67.5)
+            else if (degreesRotation <= 67.5)
             {
                 frameFromRotation = 5;
             }

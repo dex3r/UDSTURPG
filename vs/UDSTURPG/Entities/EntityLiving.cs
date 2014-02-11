@@ -21,7 +21,8 @@ namespace RPG.Entities
             set { currentHp = value; }
         }
 
-        public EntityLiving(float posX, float posY) : base(posX, posY)
+        public EntityLiving(float posX, float posY, ulong id)
+            : base(posX, posY, id)
         {
 
         }

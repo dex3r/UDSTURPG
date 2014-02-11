@@ -95,6 +95,7 @@ namespace RPG.Entities
 
         public virtual void ActualDraw()
         {
+            //TODO Komenty!!
             GameMain.SpriteBatch.Draw(currentTexture.Texture, new Vector2((int)(posX * 64), (int)(posY * 64)), GetCurrentSourceRectangle(), Color.White, 0, new Vector2(), 2.0f, SpriteEffects.None, currentTexture.DepthOfDrawing+PosY/1000);
         }
 

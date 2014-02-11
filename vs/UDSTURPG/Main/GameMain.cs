@@ -200,7 +200,9 @@ namespace RPG.Main
             sb.Append(currentPlayer.PosY);
             sb.Append("\nEntities: ");
             sb.Append((currentWorld == null ? 0 : currentWorld.Entities.Count));
+            sb.Append("\n");
             sb.Append(Text.Log);
+            sb.Append(currentPlayer.shootingRotation);
             Text.Log = sb.ToString();
         }
     }

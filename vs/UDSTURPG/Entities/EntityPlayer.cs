@@ -60,8 +60,8 @@ namespace RPG.Entities
             if (MyKeyboard.KeyMoveRight.IsPressed)
             {
                 x += Math.PI;
-            }        
-            if(x != 0 || y != 0)
+            }
+            if (x != 0 || y != 0)
             {
                 rotation = Math.Atan2(y, x);
                 currentVelocity += acceleration;
@@ -79,11 +79,11 @@ namespace RPG.Entities
                     }
                 }
             }
-            if(currentVelocity > maxSpeed)
+            if (currentVelocity > maxSpeed)
             {
                 currentVelocity = maxSpeed;
             }
-            else if(currentVelocity < 0)
+            else if (currentVelocity < 0)
             {
                 currentVelocity = 0;
             }
@@ -100,16 +100,16 @@ namespace RPG.Entities
                 shootingRotation = bullet.Rotation;
                 GameMain.CurrentWorld.AddEntity(bullet);
             }
-            if(MyKeyboard.KeyDebug1.IsToggled)
+            if (MyKeyboard.KeyDebug1.IsToggled)
             {
-            EntityMob mummy = new EntityMob(MyMouse.PositionRelativeX / 64, MyMouse.PositionRelativeY / 64, MobType.MobMummy);
+                EntityMob mummy = new EntityMob(MyMouse.PositionRelativeX / 64, MyMouse.PositionRelativeY / 64, MobType.MobMummy);
                 GameMain.CurrentWorld.AddEntity(mummy);
             }
         }
 
         public override void Draw()
         {
-            if(!PreDraw())
+            if (!PreDraw())
             {
                 return;
             }

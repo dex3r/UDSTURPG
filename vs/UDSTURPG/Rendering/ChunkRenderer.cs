@@ -23,7 +23,8 @@ namespace RPG.Rendering
                 {
                     texture = Block.Blocks[chunk[cx, cy]].GetTexture(chunk, cx, cy);
                     sourceRect = texture.GetCurrentSourceRectangle(0);
-                    GameMain.SpriteBatch.Draw(Block.Blocks[chunk[cx, cy]].GetTexture(chunk, cx, cy).Texture, new Vector2(cx * 64 + 16, (cy * 64) - (sourceRect).Height + 45), texture.GetCurrentSourceRectangle(0), Color.White, 0, new Vector2(), 2.0f, SpriteEffects.None, texture.DepthOfDrawing);
+                    GlobalRenderer.DrawBlock(Block.Blocks[chunk[cx, cy]].GetTexture(chunk, cx, cy).Texture, cx , cy, texture.GetCurrentSourceRectangle(0), texture.DepthOfDrawing);
+                    //GameMain.SpriteBatch.Draw(Block.Blocks[chunk[cx, cy]].GetTexture(chunk, cx, cy).Texture, new Vector2(cx * 64 + 16, (cy * 64) - (sourceRect).Height + 45), texture.GetCurrentSourceRectangle(0), Color.White, 0, new Vector2(), 2.0f, SpriteEffects.None, texture.DepthOfDrawing);
                 }
             }
         }

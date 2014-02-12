@@ -23,7 +23,7 @@ namespace RPG.Main
         private static int lastFps;
         private static long lastSec;
         private static int updateTime;
-        //! Wyodrębnienie poza Draw dla wydajności
+        //! Wyodrębnienie poza DrawWorld dla wydajności
         private static StringBuilder sb = new StringBuilder();
 
         //!? Public:
@@ -155,7 +155,7 @@ namespace RPG.Main
             // Rysowanie świata i obiektów
             if (currentWorld != null)
             {
-                GlobalRenderer.Draw(currentWorld);
+                GlobalRenderer.DrawWorld(currentWorld);
             }
 
             SpriteBatch.End();

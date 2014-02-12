@@ -19,9 +19,9 @@ namespace RPG.Textures2D
 
         public static MyTexture Wall = new MyTexture(@"tiled\Tileset-Wall", new Rectangle(0, 0, 32, 55), 0.7f);
         public static MyTexture Floor = new MyTexture(@"tiled\Tileset-Floor", new Rectangle(0, 0, 32, 32));
-        public static MyTexture PlayerLordLard = new MyTexture(@"art\player\lord_lard_sheet", new Rectangle(0, 0, 32, 32), 0.6f, 6);
+        public static MyTexture PlayerLordLard = new MyTexture(@"art\player\lord_lard_sheet", new Rectangle(0, 0, 32, 32), 0.5f, 6);
         public static MyTexture Bullet = new MyTexture(@"art\effects\bullet", new Rectangle(0, 0, 16, 16), 0.55f);
-public static MyTexture MobMummy = new MyTexture(@"art\mob\enemy_mummy_anim_48", new Rectangle(0, 0, 48, 48), 0.60025f, 4, 5); //! 0025 to wielkość obrazka w przybliżeniu
+        public static MyTexture MobMummy = new MyTexture(@"art\mob\enemy_mummy_anim_48", new Rectangle(0, 0, 48, 48), 0.60025f, 4, 5); //! 0025 to wielkość obrazka w przybliżeniu
 
 
         public static void LoadAll(ContentManager cm)

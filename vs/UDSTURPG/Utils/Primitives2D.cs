@@ -434,7 +434,7 @@ namespace RPG.Utils
 		#region DrawCircle
 
 		/// <summary>
-		/// Draw a circle
+		/// DrawWorld a circle
 		/// </summary>
 		/// <param name="spriteBatch">The destination drawing surface</param>
 		/// <param name="center">The center of the circle</param>
@@ -448,7 +448,7 @@ namespace RPG.Utils
 
 
 		/// <summary>
-		/// Draw a circle
+		/// DrawWorld a circle
 		/// </summary>
 		/// <param name="spriteBatch">The destination drawing surface</param>
 		/// <param name="center">The center of the circle</param>
@@ -463,7 +463,7 @@ namespace RPG.Utils
 
 
 		/// <summary>
-		/// Draw a circle
+		/// DrawWorld a circle
 		/// </summary>
 		/// <param name="spriteBatch">The destination drawing surface</param>
 		/// <param name="x">The center X of the circle</param>
@@ -478,7 +478,7 @@ namespace RPG.Utils
 
 
 		/// <summary>
-		/// Draw a circle
+		/// DrawWorld a circle
 		/// </summary>
 		/// <param name="spriteBatch">The destination drawing surface</param>
 		/// <param name="x">The center X of the circle</param>
@@ -498,7 +498,7 @@ namespace RPG.Utils
 		#region DrawArc
 
 		/// <summary>
-		/// Draw a arc
+		/// DrawWorld a arc
 		/// </summary>
 		/// <param name="spriteBatch">The destination drawing surface</param>
 		/// <param name="center">The center of the arc</param>
@@ -514,7 +514,7 @@ namespace RPG.Utils
 
 
 		/// <summary>
-		/// Draw a arc
+		/// DrawWorld a arc
 		/// </summary>
 		/// <param name="spriteBatch">The destination drawing surface</param>
 		/// <param name="center">The center of the arc</param>

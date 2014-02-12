@@ -6,6 +6,7 @@ using RPG.Textures2D;
 using RPG.Main;
 using RPG.Utils;
 using RPG.Controls;
+using RPG.Rendering;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework;
 
@@ -153,10 +154,11 @@ namespace RPG.Entities
         public virtual void ActualDraw()
         {
             //TODO Komenty!!
-            GameMain.SpriteBatch.Draw(currentTexture.Texture, new Vector2((int)(posX * 64), (int)(posY * 64)), GetCurrentSourceRectangle(), Color.White, 0, new Vector2(), 2.0f, SpriteEffects.None, currentTexture.DepthOfDrawing + PosY / 1000);
+            //GameMain.SpriteBatch.Draw(currentTexture.Texture, new Vector2((int)(posX * 64), (int)(posY * 64)), GetCurrentSourceRectangle(), Color.White, 0, new Vector2(), 1.0f, SpriteEffects.None, currentTexture.DepthOfDrawing + PosY / 1000);
+            GlobalRenderer.DrawEntity(currentTexture.Texture, posX, posY, GetCurrentSourceRectangle(), currentTexture.DepthOfDrawing + PosY / 1000);
             if (MyKeyboard.KeyF10.IsPressed)
             {
-                GameMain.SpriteBatch.DrawRectangle(new Vector2((PosX * 64) + (CollisionBoxX * 64), (PosY * 64) + (CollisionBoxY * 64)), new Vector2((CollisionBoxX * 64) + (CollisionBoxWidth * 64), (CollisionBoxY * 64) + (CollisionBoxHeight * 64)), Color.Red, 3.0f);
+                GameMain.SpriteBatch.DrawRectangle(new Vector2((PosX + CollisionBoxX) * 64, (PosY + CollisionBoxY) * 64), new Vector2((CollisionBoxX + collisionBoxWidth) * 32, (CollisionBoxY + CollisionBoxHeight) * 32), Color.Red, 3.0f);
             }
 
         }

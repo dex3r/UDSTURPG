@@ -5,6 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using Microsoft.Xna.Framework;
 using RPG.Controls;
+using RPG.Rendering;
 using Microsoft.Xna.Framework.Graphics;
 
 namespace RPG.Main
@@ -42,12 +43,6 @@ namespace RPG.Main
             {1920,1080}
 
         };
-
-        private static float scale;
-        public static float Scale
-        {
-            get { return Options.scale; }
-        }
 
         /// <summary>
         /// Initializowanie opcji gry (narazie jest tylko rozdzielczość)
@@ -117,7 +112,7 @@ namespace RPG.Main
         {
             graphicsDeviceManager.PreferredBackBufferHeight = height;
             graphicsDeviceManager.PreferredBackBufferWidth = width;
-            scale = (float)width / 1366.0f;
+            Camera.Scale = ((float)width / 1366.0f) * 2.0f;
             graphicsDeviceManager.ApplyChanges();
             graphicsDeviceManager.GraphicsDevice.Clear(Color.Wheat);
             graphicsDeviceManager.GraphicsDevice.Viewport = new Viewport(graphicsDeviceManager.GraphicsDevice.Viewport.X, graphicsDeviceManager.GraphicsDevice.Viewport.Y, width, height);

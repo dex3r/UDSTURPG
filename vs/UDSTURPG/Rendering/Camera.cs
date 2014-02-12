@@ -37,6 +37,13 @@ namespace RPG.Rendering
             set { Camera.y = value; }
         }
 
+        private static float scale;
+        public static float Scale
+        {
+            get { return Camera.scale; }
+            set { Camera.scale = value; }
+        }
+
         /// <summary>
         /// Szybkość przesuwania kamery
         /// </summary>
@@ -51,10 +58,9 @@ namespace RPG.Rendering
         /// </summary>
         static public void Update(GraphicsDevice graphicDevice)
         {
-            Transform = Matrix.CreateScale(Options.Scale) * 
+            Transform = Matrix.CreateScale(scale, scale, 1.0f) * 
                         Matrix.CreateTranslation(-(graphicDevice.Viewport.Width / 2 + X), -(graphicDevice.Viewport.Height / 2 + Y), 0) *
                         Matrix.CreateTranslation(graphicDevice.Viewport.Width / 2, graphicDevice.Viewport.Height / 2, 0);
-
         }
 
         /// <summary>

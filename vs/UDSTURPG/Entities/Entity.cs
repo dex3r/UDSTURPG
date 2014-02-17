@@ -117,8 +117,6 @@ namespace RPG.Entities
             {
                 marketToDelete = true;
             }
-
-
         }
 
         /// <summary>
@@ -158,7 +156,8 @@ namespace RPG.Entities
             GlobalRenderer.DrawEntity(currentTexture.Texture, posX, posY, GetCurrentSourceRectangle(), currentTexture.DepthOfDrawing + PosY / 1000);
             if (MyKeyboard.KeyF10Pressed)
             {
-                GameMain.SpriteBatch.DrawRectangle(new Vector2((PosX + CollisionBoxX) * 64, (PosY + CollisionBoxY) * 64), new Vector2((collisionBoxWidth) * 64.0f, ( CollisionBoxHeight) * 64.0f), Color.Red, 3.0f);
+                //GameMain.SpriteBatch.DrawRectangle(new Vector2((PosX + CollisionBoxX) * 64, (PosY + CollisionBoxY) * 64), new Vector2((CollisionBoxX + collisionBoxWidth) * 64.0f, (CollisionBoxY + CollisionBoxHeight) * 64.0f), Color.Red, 3.0f);
+                GameMain.SpriteBatch.DrawRectangle(new Vector2((PosX + CollisionBoxX) * 64, (PosY + CollisionBoxY) * 64), new Vector2((collisionBoxWidth) * 64.0f, (CollisionBoxHeight) * 64.0f), Color.Red, 3.0f);
             }
 
         }

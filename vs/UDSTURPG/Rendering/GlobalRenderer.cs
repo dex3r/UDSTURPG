@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Diagnostics;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Input;
@@ -24,10 +25,14 @@ namespace RPG.Rendering
                     ChunkRenderer.RenderChunk(world.GetChunk(x, y));
                 }
             }
+            Stopwatch sw = new Stopwatch();
+            sw.Start();
             foreach(Entity entity in world.Entities)
             {
                 entity.Draw();
             }
+            sw.Stop();
+            GameMain.time = sw.ElapsedTicks;
         }
 
         public static void DrawEntity(Texture2D texture, float posX, float posY, Rectangle sourceRectangle, float depth)

@@ -191,6 +191,7 @@ namespace RPG.Main
             base.Draw(gameTime);
         }
 
+        public static long time = 0;
         private void createDebugInfo()
         {
             sb.Clear();
@@ -204,11 +205,11 @@ namespace RPG.Main
             sb.Append(MyMouse.PositionRelativeY);
             sb.Append("\nFps: ");
             sb.Append(lastFps);
-            sb.Append("\nRes:");
+            sb.Append("\nRes: ");
             sb.Append(graphicsDeviceManager.PreferredBackBufferWidth);
             sb.Append("x");
             sb.Append(graphicsDeviceManager.PreferredBackBufferHeight);
-            sb.Append("\nViewport Res:");
+            sb.Append("\nViewport Res: ");
             sb.Append(graphicsDeviceManager.GraphicsDevice.Viewport.Width);
             sb.Append("x");
             sb.Append(graphicsDeviceManager.GraphicsDevice.Viewport.Width);
@@ -224,6 +225,8 @@ namespace RPG.Main
             sb.Append(currentPlayer.Rotation);
             sb.Append("\nEntities: ");
             sb.Append((currentWorld == null ? 0 : currentWorld.Entities.Count));
+            sb.Append("\nEntities draw time: ");
+            sb.Append(time);
             sb.Append(Text.Log);
             Text.Log = sb.ToString();
         }

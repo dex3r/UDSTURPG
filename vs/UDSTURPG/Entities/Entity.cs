@@ -158,7 +158,7 @@ namespace RPG.Entities
             GlobalRenderer.DrawEntity(currentTexture.Texture, posX, posY, GetCurrentSourceRectangle(), currentTexture.DepthOfDrawing + PosY / 1000);
             if (MyKeyboard.KeyF10Pressed)
             {
-                GameMain.SpriteBatch.DrawRectangle(new Vector2((PosX + CollisionBoxX) * 64, (PosY + CollisionBoxY) * 64), new Vector2((CollisionBoxX + collisionBoxWidth) * 64.0f, (CollisionBoxY + CollisionBoxHeight) * 64.0f), Color.Red, 3.0f);
+                GameMain.SpriteBatch.DrawRectangle(new Vector2((PosX + CollisionBoxX) * 64, (PosY + CollisionBoxY) * 64), new Vector2((collisionBoxWidth) * 64.0f, ( CollisionBoxHeight) * 64.0f), Color.Red, 3.0f);
             }
 
         }
@@ -174,7 +174,7 @@ namespace RPG.Entities
         /// <returns>Zwraca tylko odległość od x y do x y</returns>
         public virtual double Distance(Entity entity)
         {
-            return Math.Sqrt(Math.Pow((entity.PosX + (entity.CollisionBoxWidth / 2)) - (PosX + (CollisionBoxWidth / 2)), 2) + Math.Pow((entity.PosY + (entity.CollisionBoxHeight / 2)) - (PosY + (CollisionBoxHeight / 2)), 2));
+            return Math.Sqrt(Math.Pow(entity.posX - posX + ((entity.collisionBoxWidth - collisionBoxWidth) / 2), 2) + Math.Pow(entity.posY - posY + ((entity.collisionBoxWidth - collisionBoxWidth) / 2), 2));
         }
 
         public virtual bool Collision(Entity entity, double distance = 2)
@@ -187,6 +187,11 @@ namespace RPG.Entities
                 if (entity.PosY + entity.CollisionBoxY + entity.CollisionBoxHeight < PosY + CollisionBoxY) return false;
                 return true;
             }
+            return false;
+        }
+
+        public virtual bool IsMob()
+        {
             return false;
         }
     }

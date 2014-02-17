@@ -25,16 +25,28 @@ namespace RPG.Entities
             {
                 Random random = new Random();
                 float y = (float)random.NextDouble() * (Chunk.CHUNK_SIZE_Y) - 1;
-                addmob(Chunk.CHUNK_SIZE_X,y);
+                addmob(Chunk.CHUNK_SIZE_X,y,random.Next(0,3));
                 time = 0;
             }
         }
 
-        private static void addmob(float x, float y)
+        private static void addmob(float x, float y, int type)
         {
-            //? Wybieranie mobów z enuma
-            EntityMob mummy = new EntityMob(x,y, MobType.MobMummy);
-            GameMain.CurrentWorld.AddEntity(mummy);
+            if (type == 0)
+            {
+                EntityMob mummy = new EntityMob(x, y, MobType.MobMummy);
+                GameMain.CurrentWorld.AddEntity(mummy);
+            }
+            else if(type == 1)
+            {
+                EntityMob snake = new EntityMob(x, y, MobType.MobSnake);
+                GameMain.CurrentWorld.AddEntity(snake);
+            }
+            else if (type == 2)
+            {
+                EntityMob scarab = new EntityMob(x, y, MobType.MobScarab);
+                GameMain.CurrentWorld.AddEntity(scarab);
+            }
         }
     }
 }

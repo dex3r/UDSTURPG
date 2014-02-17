@@ -79,6 +79,7 @@ namespace RPG.Entities
                     {
                         marketToDelete = true;
                         en.MarketToDelete = true;
+                        GameMain.CurrentPlayer.Score++;
                     }
                 }
         }

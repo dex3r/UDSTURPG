@@ -20,6 +20,7 @@ namespace RPG.Rendering
         private static SpriteFont loadedFont;
         /// <summary>Zmiana string do loga. Możliwość implementacji w każdej metodzie i klasie </summary>
         public static string Log;
+        public static string Score;
         public static void Load(ContentManager cm)
         {
             contentManager = cm;

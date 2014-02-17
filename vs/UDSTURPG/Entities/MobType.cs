@@ -8,7 +8,7 @@ namespace RPG.Entities
 {
     public class MobType
     {
-        public static readonly MobType MobMummy = new MobType(50, 10, 0.008f, MyTexture.MobMummy, EnumMobWalkingStyle.Stuttery, 0.15f, 0.2f, 1f, 0.9f, stepInterval: 25);
+        public static readonly MobType MobMummy = new MobType(50, 10, 0.02f, MyTexture.MobMummy, EnumMobWalkingStyle.Stuttery, 0.15f, 0.2f, 1f, 0.9f, stepInterval: 25);
 
         private int hp;
         public int Hp

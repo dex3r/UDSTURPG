@@ -47,6 +47,7 @@
     <Compile Include="Entities\EntityMovable.cs" />
     <Compile Include="Entities\EntityPlayer.cs" />
     <Compile Include="Entities\EnumMobWalkingStyle.cs" />
+    <Compile Include="Entities\MobsGenerator.cs" />
     <Compile Include="Entities\MobType.cs" />
     <Compile Include="Main\Console.cs" />
     <Compile Include="Main\GameMain.cs" />

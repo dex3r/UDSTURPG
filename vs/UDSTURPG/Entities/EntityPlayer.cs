@@ -13,7 +13,6 @@ namespace RPG.Entities
 {
     public class EntityPlayer : EntityLiving
     {
-
         public double shootingRotation;
 
 
@@ -32,6 +31,13 @@ namespace RPG.Entities
             set { movementTextureState = value; }
         }
 
+        private int score;
+        public int Score
+        {
+            get { return score; }
+            set { score = value; }
+        }
+
         public EntityPlayer(float posX, float posY)
             : base(posX, posY)
         {
@@ -39,6 +45,8 @@ namespace RPG.Entities
             maxSpeed = 0.05f;
             acceleration = 0.03f;
             SetCollisionBox(0, 0, 1.0f, 1.0f);
+            MaxHp = 100;
+            CurrentHp = MaxHp;
         }
 
         public override void Update()
@@ -88,6 +96,15 @@ namespace RPG.Entities
             {
                 currentVelocity = 0;
             }
+            foreach (Entity en in GameMain.CurrentWorld.Entities)
+                if (en is EntityMob)
+                {
+                    if (Collision(en))
+                    {
+                        en.MarketToDelete = true;
+                        GameMain.CurrentPlayer.CurrentHp -= 10;
+                    }
+                }
             base.Update();
             if (MyKeyboard.KeyShoot.IsToggled)
             {
@@ -100,11 +117,6 @@ namespace RPG.Entities
                 bullet.Rotation = Math.Atan2(-interp.Y, -interp.X);
                 shootingRotation = bullet.Rotation;
                 GameMain.CurrentWorld.AddEntity(bullet);
-            }
-            if (MyKeyboard.KeyDebug1.IsToggled)
-            {
-                EntityMob mummy = new EntityMob(MyMouse.PositionRelativeX / 64, MyMouse.PositionRelativeY / 64, MobType.MobMummy);
-                GameMain.CurrentWorld.AddEntity(mummy);
             }
         }
 

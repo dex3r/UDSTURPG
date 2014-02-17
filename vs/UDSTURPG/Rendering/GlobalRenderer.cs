@@ -32,12 +32,12 @@ namespace RPG.Rendering
 
         public static void DrawEntity(Texture2D texture, float posX, float posY, Rectangle sourceRectangle, float depth)
         {
-            GameMain.SpriteBatch.Draw(texture, new Vector2(posX * 64.0f, posY * 64.0f), sourceRectangle, Color.White, 0, Vector2.Zero, 1.0f, SpriteEffects.None, depth);
+            GameMain.SpriteBatch.Draw(texture, new Vector2(posX * 64.0f, posY * 64.0f), sourceRectangle, Color.White, 0, Vector2.Zero, 2.0f, SpriteEffects.None, depth);
         }
 
         public static void DrawBlock(Texture2D texture, float posX, float posY, Rectangle sourceRectangle, float depth)
         {
-            GameMain.SpriteBatch.Draw(texture, new Vector2(posX * 32.0f, posY * 32.0f), sourceRectangle, Color.White, 0, Vector2.Zero, 1.0f, SpriteEffects.None, depth);
+            GameMain.SpriteBatch.Draw(texture, new Vector2(posX * 64.0f, posY * 64.0f), sourceRectangle, Color.White, 0, Vector2.Zero, 2.0f, SpriteEffects.None, depth);
         }
 
         public static void DrawConsole()

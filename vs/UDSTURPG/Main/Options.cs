@@ -112,7 +112,7 @@ namespace RPG.Main
         {
             graphicsDeviceManager.PreferredBackBufferHeight = height;
             graphicsDeviceManager.PreferredBackBufferWidth = width;
-            Camera.Scale = ((float)width / 1366.0f) * 2.0f;
+            Camera.Scale = (float)width / 1366.0f;
             graphicsDeviceManager.ApplyChanges();
             graphicsDeviceManager.GraphicsDevice.Clear(Color.Wheat);
             graphicsDeviceManager.GraphicsDevice.Viewport = new Viewport(graphicsDeviceManager.GraphicsDevice.Viewport.X, graphicsDeviceManager.GraphicsDevice.Viewport.Y, width, height);

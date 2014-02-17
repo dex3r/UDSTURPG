@@ -74,13 +74,12 @@ namespace RPG.Entities
             return flag;
         }
 
-        public bool BoundryCollision(bool top = true, bool left = true, bool bottom = true, bool right = true)
+        public void BoundryCollision(bool top = true, bool left = true, bool bottom = true, bool right = true)
         {
-            if (left && posX <= 0) { posX = 0; return true; }
-            if (right && posX >= Chunk.CHUNK_SIZE_X) { posX = Chunk.CHUNK_SIZE_X; return true; }
-            if (top && posY <= 0) { posY = 0; return true; }
-            if (bottom && posY >= Chunk.CHUNK_SIZE_Y) { posY = Chunk.CHUNK_SIZE_Y; return true; }
-            return false;
+            if (left && posX <= 0) { posX = 0;}
+            if (right && posX >= Chunk.CHUNK_SIZE_X - CollisionBoxWidth) { posX = Chunk.CHUNK_SIZE_X - CollisionBoxWidth; }
+            if (top && posY <= 0) { posY = 0; }
+            if (bottom && posY >= Chunk.CHUNK_SIZE_Y - CollisionBoxHeight) { posY = Chunk.CHUNK_SIZE_Y - CollisionBoxHeight; }
         }
     }
 }

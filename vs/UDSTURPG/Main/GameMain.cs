@@ -127,9 +127,10 @@ namespace RPG.Main
 
             Options.KeyPressed(graphicsDeviceManager);
 
-            Camera.Interaction(graphicsDeviceManager, GraphicsDevice);
             MyMouse.Update();
             MyKeyboard.Update();
+
+            Camera.Interaction();
             Camera.Update(GraphicsDevice);
             
             if(currentWorld != null)

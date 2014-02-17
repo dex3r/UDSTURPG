@@ -58,15 +58,17 @@ namespace RPG.Rendering
         /// </summary>
         static public void Update(GraphicsDevice graphicDevice)
         {
-            Transform = Matrix.CreateScale(scale, scale, 1.0f) * 
-                        Matrix.CreateTranslation(-(graphicDevice.Viewport.Width / 2 + X), -(graphicDevice.Viewport.Height / 2 + Y), 0) *
-                        Matrix.CreateTranslation(graphicDevice.Viewport.Width / 2, graphicDevice.Viewport.Height / 2, 0);
+            //X = 300;
+            //Y = 300;
+            Transform = Matrix.CreateTranslation(X, Y, 0) *
+                        //Matrix.CreateTranslation(graphicDevice.Viewport.Width / 2, graphicDevice.Viewport.Height / 2, 0) *
+                        Matrix.CreateScale(scale, scale, 1.0f);
         }
 
         /// <summary>
         /// Przesuwanie kamery na wszystkei sposoby
         /// </summary>
-        static public void Interaction(GraphicsDeviceManager graphicsDeviceManager, GraphicsDevice graphicDevice)
+        static public void Interaction()
         {
             //if (MyMouse.ToogleMiddleButton() == false)
             //{
@@ -78,10 +80,22 @@ namespace RPG.Rendering
             //        if (MyMouse.ChceckMouseRectangle(0, 0, graphicDevice.Viewport.Width / graphicDevice.Viewport.Width * BORDERSIZE, graphicDevice.Viewport.Height)) Camera.X -= STEP;
             //        if (MyMouse.ChceckMouseRectangle(graphicDevice.Viewport.Width - graphicDevice.Viewport.Width / graphicDevice.Viewport.Width * BORDERSIZE, 0, graphicDevice.Viewport.Width, graphicDevice.Viewport.Height)) Camera.X += STEP;
             //    }
-            //    if (Keyboard.GetState().IsKeyDown(Keys.Left)) Camera.X -= STEP;
-            //    if (Keyboard.GetState().IsKeyDown(Keys.Right)) Camera.X += STEP;
-            //    if (Keyboard.GetState().IsKeyDown(Keys.Up)) Camera.Y -= STEP;
-            //    if (Keyboard.GetState().IsKeyDown(Keys.Down)) Camera.Y += STEP;
+            if (MyKeyboard.KeysState.IsKeyDown(Keys.Left))
+            {
+                Camera.X += STEP;
+            }
+            if (MyKeyboard.KeysState.IsKeyDown(Keys.Right))
+            {
+                Camera.X -= STEP;
+            }
+            if (MyKeyboard.KeysState.IsKeyDown(Keys.Up))
+            { 
+                Camera.Y += STEP;
+            }
+            if (MyKeyboard.KeysState.IsKeyDown(Keys.Down))
+            { 
+                Camera.Y -= STEP;
+            }
             //}
             //else
             //{

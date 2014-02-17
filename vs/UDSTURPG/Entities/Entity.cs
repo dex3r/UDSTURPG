@@ -174,12 +174,12 @@ namespace RPG.Entities
         /// <returns>Zwraca tylko odległość od x y do x y</returns>
         public virtual double Distance(Entity a)
         {
-            return Math.Sqrt(Math.Pow(a.PosX - PosX, 2) + Math.Pow(a.PosY - PosY, 2));
+            return Math.Sqrt(Math.Pow((a.PosX + a.CollisionBoxWidth / 2) - (PosX + CollisionBoxWidth / 2), 2) + Math.Pow((a.PosY + a.CollisionBoxHeight / 2) - (PosY + CollisionBoxHeight / 2), 2));
         }
 
-        public virtual bool Collision(Entity a)
+        public virtual bool Collision(Entity a, double distance = 2)
         {
-            if (Distance(a) < 2)
+            if (Distance(a) < distance)
             {
                 if (PosX + CollisionBoxX + CollisionBoxWidth < a.PosX + a.CollisionBoxX) return false;
                 if (a.PosX + a.CollisionBoxX + a.CollisionBoxWidth < PosX + CollisionBoxX) return false;

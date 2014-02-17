@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using RPG.Entities;
+using RPG.Worlds;
 
 namespace RPG.Entities
 {
@@ -71,6 +72,14 @@ namespace RPG.Entities
                 animationFrame = 0;
             }
             return flag;
+        }
+
+        public void BoundryCollision(bool top = true, bool left = true, bool bottom = true, bool right = true)
+        {
+            if (left && posX <= 0) { posX = 0;}
+            if (right && posX >= Chunk.CHUNK_SIZE_X - CollisionBoxWidth) { posX = Chunk.CHUNK_SIZE_X - CollisionBoxWidth; }
+            if (top && posY <= 0) { posY = 0; }
+            if (bottom && posY >= Chunk.CHUNK_SIZE_Y - CollisionBoxHeight) { posY = Chunk.CHUNK_SIZE_Y - CollisionBoxHeight; }
         }
     }
 }

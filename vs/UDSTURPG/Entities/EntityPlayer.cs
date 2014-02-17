@@ -43,6 +43,7 @@ namespace RPG.Entities
 
         public override void Update()
         {
+            BoundryCollision();
             double y = 0;
             double x = 0;
             if (MyKeyboard.KeyMoveDown.IsPressed)

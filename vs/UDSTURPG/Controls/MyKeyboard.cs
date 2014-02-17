@@ -88,7 +88,12 @@ namespace RPG.Controls
         {
             get { return MyKeyboard.keyF10; }
         }
-        
+        private static bool keyF10Pressed;
+        public static bool KeyF10Pressed
+        {
+            get { return MyKeyboard.keyF10Pressed; }
+            set { MyKeyboard.keyF10Pressed = value; }
+        }
 
         public static void Update()
         {
@@ -97,6 +102,12 @@ namespace RPG.Controls
             {
                 allKeys[i].Update(keysState);
             }
+
+            if (KeyF10.IsToggled)
+                if (KeyF10Pressed)
+                    KeyF10Pressed = false;
+                else
+                    KeyF10Pressed = true;
         }
     }
 }

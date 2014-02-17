@@ -24,7 +24,7 @@ namespace RPG.Entities
             if (time >= TIME/temp)
             {
                 Random random = new Random();
-                float y = (float)random.Next(0, (Chunk.CHUNK_SIZE_Y-1)*64)/64;
+                float y = (float)random.NextDouble() * (Chunk.CHUNK_SIZE_Y) - 1;
                 addmob(Chunk.CHUNK_SIZE_X,y);
                 time = 0;
             }

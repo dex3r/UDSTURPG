@@ -156,7 +156,7 @@ namespace RPG.Entities
             //TODO Komenty!!
             //GameMain.SpriteBatch.Draw(currentTexture.Texture, new Vector2((int)(posX * 64), (int)(posY * 64)), GetCurrentSourceRectangle(), Color.White, 0, new Vector2(), 1.0f, SpriteEffects.None, currentTexture.DepthOfDrawing + PosY / 1000);
             GlobalRenderer.DrawEntity(currentTexture.Texture, posX, posY, GetCurrentSourceRectangle(), currentTexture.DepthOfDrawing + PosY / 1000);
-            if (MyKeyboard.KeyF10.IsPressed)
+            if (MyKeyboard.KeyF10Pressed)
             {
                 GameMain.SpriteBatch.DrawRectangle(new Vector2((PosX + CollisionBoxX) * 64, (PosY + CollisionBoxY) * 64), new Vector2((CollisionBoxX + collisionBoxWidth) * 64.0f, (CollisionBoxY + CollisionBoxHeight) * 64.0f), Color.Red, 3.0f);
             }
@@ -172,19 +172,19 @@ namespace RPG.Entities
         /// 
         /// </summary>
         /// <returns>Zwraca tylko odległość od x y do x y</returns>
-        public virtual double Distance(Entity a)
+        public virtual double Distance(Entity entity)
         {
-            return Math.Sqrt(Math.Pow((a.PosX + a.CollisionBoxWidth / 2) - (PosX + CollisionBoxWidth / 2), 2) + Math.Pow((a.PosY + a.CollisionBoxHeight / 2) - (PosY + CollisionBoxHeight / 2), 2));
+            return Math.Sqrt(Math.Pow((entity.PosX + (entity.CollisionBoxWidth / 2)) - (PosX + (CollisionBoxWidth / 2)), 2) + Math.Pow((entity.PosY + (entity.CollisionBoxHeight / 2)) - (PosY + (CollisionBoxHeight / 2)), 2));
         }
 
-        public virtual bool Collision(Entity a, double distance = 2)
+        public virtual bool Collision(Entity entity, double distance = 2)
         {
-            if (Distance(a) < distance)
+            if (Distance(entity) < distance)
             {
-                if (PosX + CollisionBoxX + CollisionBoxWidth < a.PosX + a.CollisionBoxX) return false;
-                if (a.PosX + a.CollisionBoxX + a.CollisionBoxWidth < PosX + CollisionBoxX) return false;
-                if (PosY + CollisionBoxY + CollisionBoxHeight < a.PosY + a.CollisionBoxY) return false;
-                if (a.PosY + a.CollisionBoxY + a.CollisionBoxHeight < PosY + CollisionBoxY) return false;
+                if (PosX + CollisionBoxX + CollisionBoxWidth < entity.PosX + entity.CollisionBoxX) return false;
+                if (entity.PosX + entity.CollisionBoxX + entity.CollisionBoxWidth < PosX + CollisionBoxX) return false;
+                if (PosY + CollisionBoxY + CollisionBoxHeight < entity.PosY + entity.CollisionBoxY) return false;
+                if (entity.PosY + entity.CollisionBoxY + entity.CollisionBoxHeight < PosY + CollisionBoxY) return false;
                 return true;
             }
             return false;

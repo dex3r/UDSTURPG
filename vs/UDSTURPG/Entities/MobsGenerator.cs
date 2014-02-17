@@ -20,7 +20,8 @@ namespace RPG.Entities
         public static void Update()
         {
             time++;
-            if (time >= TIME)
+            var temp = (GameMain.CurrentPlayer.Score / 10)+1;
+            if (time >= TIME/temp)
             {
                 Random random = new Random();
                 float y = (float)random.Next(0, (Chunk.CHUNK_SIZE_Y-1)*64)/64;

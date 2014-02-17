@@ -16,6 +16,12 @@ namespace RPG.Controls
             set { MyKeyboard.allKeys = value; }
         }
 
+        private static KeyboardState keysState;
+        public static KeyboardState KeysState
+        {
+            get { return MyKeyboard.keysState; }
+        }
+
         private static MyKey keyToggleConsole = new MyKey("Toggle console", Keys.OemTilde);
         public static MyKey KeyToggleConsole
         {
@@ -86,10 +92,10 @@ namespace RPG.Controls
 
         public static void Update()
         {
-            KeyboardState kstate = Keyboard.GetState();
+            keysState = Keyboard.GetState();
             for(int i = 0; i < allKeys.Count; i++)
             {
-                allKeys[i].Update(kstate);
+                allKeys[i].Update(keysState);
             }
         }
     }

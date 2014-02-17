@@ -61,7 +61,6 @@ namespace RPG.Rendering
             //X = 300;
             //Y = 300;
             Transform = Matrix.CreateTranslation(X, Y, 0) *
-                        //Matrix.CreateTranslation(graphicDevice.Viewport.Width / 2, graphicDevice.Viewport.Height / 2, 0) *
                         Matrix.CreateScale(scale, scale, 1.0f);
         }
 

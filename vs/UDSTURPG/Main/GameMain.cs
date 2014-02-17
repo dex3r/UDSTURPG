@@ -94,7 +94,7 @@ namespace RPG.Main
         {
             base.Initialize();
             currentWorld = new World();
-            currentPlayer = new EntityPlayer(0, 0);
+            currentPlayer = new EntityPlayer(2, 2);
             currentWorld.Entities.Add(currentPlayer);
             //Ustawienie pozycji okna
             Window.SetPosition(new Point(400, 100));

@@ -71,17 +71,6 @@ namespace RPG.Entities
                     currentVelocity = maxSpeed;
                 }
             }
-
-            foreach(Entity en in GameMain.CurrentWorld.Entities)
-                if (en is EntityBullet)
-                {
-                    if(Collision(en))
-                    {
-                        marketToDelete = true;
-                        en.MarketToDelete = true;
-                        GameMain.CurrentPlayer.Score++;
-                    }
-                }
         }
 
         public override bool PreDraw()
@@ -120,6 +109,11 @@ namespace RPG.Entities
         public override Rectangle GetCurrentSourceRectangle()
         {
             return currentTexture.GetCurrentSourceRectangle(animationFrame, (int)MovementTextureState);
+        }
+
+        public override bool IsMob()
+        {
+            return true;
         }
     }
 }

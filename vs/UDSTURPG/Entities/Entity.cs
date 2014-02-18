@@ -188,5 +188,10 @@ namespace RPG.Entities
             }
             return false;
         }
+
+        public virtual bool IsMob()
+        {
+            return false;
+        }
     }
 }

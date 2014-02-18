@@ -21,6 +21,18 @@ namespace RPG.Entities
         public override void Update()
         {
             base.Update();
+            foreach (Entity en in GameMain.CurrentWorld.Entities)
+            {
+                if (en.IsMob())
+                {
+                    if (Collision(en))
+                    {
+                        marketToDelete = true;
+                        en.MarketToDelete = true;
+                        GameMain.CurrentPlayer.Score++;
+                    }
+                }
+            }
         }
 
         public override Rectangle GetCurrentSourceRectangle()

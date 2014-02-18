@@ -80,7 +80,7 @@ namespace RPG.Entities
                 if (en is EntityMob)
                 {
                     temp = en.Distance(en);
-                    if (temp < 5)
+                    if (temp < 5 && lastDistance > temp)
                     {
                         lastDistance = temp;
                         target = en;

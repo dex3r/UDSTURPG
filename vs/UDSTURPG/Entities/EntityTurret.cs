@@ -89,7 +89,7 @@ namespace RPG.Entities
             }
             if(target != null)
             {
-                EntityBullet bullet = new EntityBullet(this.PosX + 0.25f, this.PosY + 0.25f);
+                EntityBullet bullet = new EntityBullet(this.PosX + 0.25f, this.PosY + 0.25f,10);
                 bullet.CurrentVelocity = 0.1f;
                 Vector2 interp = Vector2.Subtract(new Vector2(this.PosX + 0.45f, this.posY + 0.45f), new Vector2(target.PosX, target.PosY));
                 interp.Normalize();

@@ -47,6 +47,16 @@ namespace RPG.Entities
             set { rotation = value; }
         }
 
+        private float getHit;
+        /// <summary>
+        /// Odrzut po oberwaniu strzału
+        /// </summary>
+        public float GetHit
+        {
+            get { return getHit; }
+            set { getHit = value; }
+        }
+
         public EntityMovable(float posX, float posY)
             : base(posX, posY)
         {

@@ -106,7 +106,7 @@ namespace RPG.Entities
             if (MyKeyboard.KeyShoot.IsToggled)
             {
                 //TODO Komenty!!
-                EntityBullet bullet = new EntityBullet(GameMain.CurrentPlayer.PosX + 0.25f, GameMain.CurrentPlayer.PosY + 0.25f);
+                EntityBullet bullet = new EntityBullet(GameMain.CurrentPlayer.PosX + 0.25f, GameMain.CurrentPlayer.PosY + 0.25f,10);
                 bullet.CurrentVelocity = 0.1f;
                 Vector2 interp = Vector2.Subtract(new Vector2((GameMain.CurrentPlayer.PosX + 0.45f) * 64, (GameMain.CurrentPlayer.PosY + 0.45f) * 64), new Vector2(MyMouse.PositionRelativeX, MyMouse.PositionRelativeY));
                 interp.Normalize();

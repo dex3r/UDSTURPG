@@ -71,6 +71,16 @@ namespace RPG.Entities
                     currentVelocity = maxSpeed;
                 }
             }
+            if(GetHit > 0)
+            {
+                currentVelocity = -GetHit;
+                GetHit -= 0.1f;
+                if (GetHit < 0)
+                {
+                    GetHit = 0;
+                    currentVelocity = 0;
+                }
+            }
         }
 
         public override bool PreDraw()
@@ -109,11 +119,6 @@ namespace RPG.Entities
         public override Rectangle GetCurrentSourceRectangle()
         {
             return currentTexture.GetCurrentSourceRectangle(animationFrame, (int)MovementTextureState);
-        }
-
-        public override bool IsMob()
-        {
-            return true;
         }
     }
 }

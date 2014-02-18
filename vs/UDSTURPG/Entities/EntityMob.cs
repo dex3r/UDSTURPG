@@ -4,6 +4,8 @@ using System.Linq;
 using System.Text;
 using RPG.Textures2D;
 using RPG.Main;
+using RPG.Controls;
+using RPG.Rendering;
 using Microsoft.Xna.Framework;
 
 namespace RPG.Entities
@@ -56,6 +58,7 @@ namespace RPG.Entities
 
         public override void Update()
         {
+            BoundryCollision(true, false, true, false);
             base.Update();
             if (mobType.StepInterval != 0)
             {
@@ -75,10 +78,11 @@ namespace RPG.Entities
             {
                 currentVelocity = -GetHit;
                 GetHit -= 0.1f;
-                if (GetHit < 0)
+                if (GetHit <= 0)
                 {
                     GetHit = 0;
                     currentVelocity = 0;
+                    rotation = Math.PI;
                 }
             }
         }
@@ -86,32 +90,38 @@ namespace RPG.Entities
         public override bool PreDraw()
         {
             bool flag = base.PreDraw();
+            if (GetHit == 0) //Zablokowanie tekstury
+            {
+                double degreesRotation = 180.0d / Math.PI * -rotation;
+                if (rotation > 0)
+                {
+                    degreesRotation += 360;
+                }
 
-            double degreesRotation = 180.0d / Math.PI * -rotation;
-            if (rotation > 0)
-            {
-                degreesRotation += 360;
-            }
-
-            if (degreesRotation <= 45)
-            {
-                MovementTextureState = EnumSheetNormalMob.Right;
-            }
-            else if (degreesRotation <= 135)
-            {
-                MovementTextureState = EnumSheetNormalMob.Up;
-            }
-            else if (degreesRotation <= 215)
-            {
-                MovementTextureState = EnumSheetNormalMob.Left;
-            }
-            else if (degreesRotation <= 315)
-            {
-                MovementTextureState = EnumSheetNormalMob.Down;
-            }
-            else
-            {
-                MovementTextureState = EnumSheetNormalMob.Right;
+                if (degreesRotation <= 45)
+                {
+                    MovementTextureState = EnumSheetNormalMob.Right;
+                }
+                else if (degreesRotation <= 135)
+                {
+                    MovementTextureState = EnumSheetNormalMob.Up;
+                }
+                else if (degreesRotation <= 215)
+                {
+                    MovementTextureState = EnumSheetNormalMob.Left;
+                }
+                else if (degreesRotation <= 315)
+                {
+                    MovementTextureState = EnumSheetNormalMob.Down;
+                }
+                else
+                {
+                    MovementTextureState = EnumSheetNormalMob.Right;
+                }
+                if (MyKeyboard.KeyF10Pressed)
+                {
+                    GameMain.SpriteBatch.DrawText("" + (float)rotation, new Vector2((PosX + 0.5f) * 64, (PosY + 0.5f) * 64), Color.Red);
+                }
             }
             return flag;
         }

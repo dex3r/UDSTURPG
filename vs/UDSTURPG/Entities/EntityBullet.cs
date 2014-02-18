@@ -39,7 +39,7 @@ namespace RPG.Entities
                         mob.GetHit = 0.3f;
                         mob.CurrentHp -= Damage;
 
-                        Vector2 interp = Vector2.Subtract(new Vector2((PosX+0.25f) * 64, (PosY+0.25f) * 64), new Vector2((mob.PosX + mob.CollisionBoxWidth/2)*64, (mob.PosY + mob.CollisionBoxHeight/2)*64));
+                        Vector2 interp = Vector2.Subtract(new Vector2((PosX+0.25f) * 64, (PosY+0.25f) * 64), new Vector2((mob.PosX + 0.7f)*64, (mob.PosY + 0.7f)*64));
                         interp.Normalize();
                         interp = Vector2.Multiply(interp, (float)Math.PI);
                         mob.Rotation = Math.Atan2(interp.Y, interp.X);

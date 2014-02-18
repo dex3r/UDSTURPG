@@ -6,6 +6,7 @@ using RPG.Textures2D;
 using RPG.Main;
 using RPG.Controls;
 using RPG.Rendering;
+using RPG.Utils;
 using Microsoft.Xna.Framework;
 
 namespace RPG.Entities
@@ -120,7 +121,7 @@ namespace RPG.Entities
                 }
                 if (MyKeyboard.KeyF10Pressed)
                 {
-                    GameMain.SpriteBatch.DrawText("" + (float)rotation, new Vector2((PosX + 0.5f) * 64, (PosY + 0.5f) * 64), Color.Red);
+                    GameMain.SpriteBatch.DrawCircle(new Vector2((PosX + 0.7f)*64, (PosY + 0.7f)*64),3,10,Color.Red);
                 }
             }
             return flag;

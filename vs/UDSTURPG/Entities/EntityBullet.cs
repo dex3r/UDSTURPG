@@ -11,25 +11,39 @@ namespace RPG.Entities
 {
     public class EntityBullet : EntityMovable
     {
-        public EntityBullet(float posX, float posY)
+        private int damage;
+        public int Damage
+        {
+            get { return damage; }
+            set { damage = value; }
+        }
+
+        public EntityBullet(float posX, float posY, int damage)
             : base(posX, posY)
         {
             currentTexture = MyTexture.Bullet;
             SetCollisionBox(0, 0, 0.5f, 0.5f);
+            Damage = damage;
         }
 
         public override void Update()
         {
             base.Update();
-            foreach (Entity en in GameMain.CurrentWorld.Entities)
+            foreach(Entity en in GameMain.CurrentWorld.Entities)
             {
-                if (en.IsMob())
+                if (en is EntityMob)
                 {
                     if (Collision(en))
                     {
+                        EntityMob mob = (EntityMob)en;
+                        mob.GetHit = 0.3f;
+                        mob.CurrentHp -= Damage;
+                        if(mob.CurrentHp <= 0)
+                        {
+                            mob.MarketToDelete = true;
+                            GameMain.CurrentPlayer.Score++;
+                        }
                         marketToDelete = true;
-                        en.MarketToDelete = true;
-                        GameMain.CurrentPlayer.Score++;
                     }
                 }
             }

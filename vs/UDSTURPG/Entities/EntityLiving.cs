@@ -7,6 +7,12 @@ namespace RPG.Entities
 {
     public class EntityLiving : EntityMovable
     {
+        protected double shootingRotation;
+        public double ShootingRotation
+        {
+            get { return shootingRotation; }
+        }
+
         private int maxHp;
         public int MaxHp
         {

@@ -46,6 +46,7 @@
     <Compile Include="Entities\EntityMob.cs" />
     <Compile Include="Entities\EntityMovable.cs" />
     <Compile Include="Entities\EntityPlayer.cs" />
+    <Compile Include="Entities\EntityTurret.cs" />
     <Compile Include="Entities\EnumMobWalkingStyle.cs" />
     <Compile Include="Entities\MobsGenerator.cs" />
     <Compile Include="Entities\MobType.cs" />

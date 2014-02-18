@@ -13,9 +13,6 @@ namespace RPG.Entities
 {
     public class EntityPlayer : EntityLiving
     {
-        public double shootingRotation;
-
-
         private float acceleration;
 
         public float Acceleration
@@ -117,6 +114,11 @@ namespace RPG.Entities
                 bullet.Rotation = Math.Atan2(-interp.Y, -interp.X);
                 shootingRotation = bullet.Rotation;
                 GameMain.CurrentWorld.AddEntity(bullet);
+            }
+            if(MyKeyboard.KeyDebug1.IsToggled)
+            {
+                EntityTurret turret = new EntityTurret(PosX + 0.25f, PosY + 0.25f);
+                GameMain.CurrentWorld.AddEntity(turret);
             }
         }
 

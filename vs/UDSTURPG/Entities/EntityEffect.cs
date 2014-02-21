@@ -16,6 +16,7 @@ namespace RPG.Entities
             : base(posX, posY)
         {
             this.currentTexture = texture;
+            this.IsColidable = false;
         }
 
         public override void Draw()

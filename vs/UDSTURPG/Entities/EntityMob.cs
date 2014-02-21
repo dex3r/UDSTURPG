@@ -54,7 +54,6 @@ namespace RPG.Entities
             movementTextureState = EnumSheetNormalMob.Down;
             currentVelocity = maxSpeed;
             rotation = Math.PI;
-            this.IsColidable = true;
         }
 
         public override void Update()

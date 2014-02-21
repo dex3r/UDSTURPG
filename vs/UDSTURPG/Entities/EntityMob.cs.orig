@@ -70,22 +70,28 @@ namespace RPG.Entities
                 currentColor = new Color(currentColor.ToVector3() + new Vector3(0.08f, 0.08f, 0.08f));
             }
             base.Update();
-            if (mobType.StepInterval != 0)
+            if (this.mobType.WalkingStyle == EnumMobWalkingStyle.Stuttery)
             {
-                stepLength++;
-                if (currentVelocity > 0 && stepLength >= mobType.StepLength)
+                if (mobType.StepInterval != 0)
                 {
-                    stepLength = 0;
-                    currentVelocity = 0;
-                }
-                else if (currentVelocity == 0 && stepLength >= mobType.StepInterval)
-                {
-                    stepLength = 0;
-                    currentVelocity = maxSpeed;
+                    stepLength++;
+                    if (currentVelocity > 0 && stepLength >= mobType.StepLength)
+                    {
+                        stepLength = 0;
+                        currentVelocity = 0;
+                    }
+                    else if (currentVelocity == 0 && stepLength >= mobType.StepInterval)
+                    {
+                        stepLength = 0;
+                        currentVelocity = maxSpeed;
+                    }
                 }
             }
 <<<<<<< HEAD
-=======
+            else if(currentVelocity == 0)
+            {
+                currentVelocity = maxSpeed;
+            }
             if(HitRecoil > 0)
             {
                 currentVelocity = -HitRecoil;
@@ -97,11 +103,12 @@ namespace RPG.Entities
                     rotation = Math.PI;
                 }
             }
+=======
+>>>>>>> 4cb193cd4e2f4b62c6d45e2d0075f21a80adec47
             if(this.CurrentHp <= 0)
             {
                 GameMain.CurrentWorld.AddEntity(new EntityEffect(this.posX + ((this.CollisionBoxX + this.CollisionBoxWidth) / 2) - (MyTexture.EffectEnityDiePuff.SourceRectangle.Width / 64.0f), this.posY + ((this.CollisionBoxY + this.CollisionBoxHeight) / 2) - (MyTexture.EffectEnityDiePuff.SourceRectangle.Height / 64.0f), MyTexture.EffectEnityDiePuff));
             }
->>>>>>> 1358aba4273af52452dda232bc0941fbb2bb2837
         }
 
         public override bool PreDraw()

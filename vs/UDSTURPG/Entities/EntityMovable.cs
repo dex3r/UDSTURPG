@@ -72,6 +72,17 @@ namespace RPG.Entities
             float rotY = (float)Math.Sin(rotation);
             posX += rotX * currentVelocity;
             posY += rotY * currentVelocity;
+            if (HitRecoil > 0)
+            {
+                currentVelocity = -HitRecoil;
+                HitRecoil -= 0.1f;
+                if (HitRecoil <= 0)
+                {
+                    HitRecoil = 0;
+                    currentVelocity = 0;
+                    rotation = Math.PI;
+                }
+            }
         }
 
         public override bool PreDraw()

@@ -101,36 +101,23 @@ namespace RPG.Entities
                         if (Collision(en))
                         {
                             EntityMob mob = (EntityMob)en;
-                            mob.HitRecoil = 0.3f;
-                            HitRecoil = 0.3f;
+                            mob.CurrentVelocity = 0;
+                            HitRecoil = 0.5f;
 
                             Vector2 interp = Vector2.Subtract(new Vector2((PosX + 0.5f) * 64, (PosY + 0.5f) * 64), new Vector2((mob.PosX + 0.7f) * 64, (mob.PosY + 0.7f) * 64));
                             interp.Normalize();
                             interp = Vector2.Multiply(interp, (float)Math.PI);
                             mob.Rotation = Math.Atan2(interp.Y, interp.X);
 
-                            mob.CurrentHp -= 10;
-
                             Vector2 interpPlayer = Vector2.Subtract(new Vector2((mob.PosX + 0.7f) * 64, (mob.PosY + 0.7f) * 64), new Vector2((PosX + 0.5f) * 64, (PosY + 0.5f) * 64));
                             interpPlayer.Normalize();
-                            interpPlayer = Vector2.Multiply(interp, (float)Math.PI);
-                            Rotation = Math.Atan2(-interp.Y, -interp.X);
+                            interpPlayer = Vector2.Multiply(interpPlayer, (float)Math.PI);
+                            Rotation = Math.Atan2(interpPlayer.Y, interpPlayer.X);
 
 
-                            GameMain.CurrentPlayer.CurrentHp -= 10;
+                            GameMain.CurrentPlayer.CurrentHp -= 2;
                         }
                     }
-            }
-            if (HitRecoil > 0)
-            {
-                currentVelocity = -HitRecoil;
-                HitRecoil -= 0.1f;
-                if (HitRecoil <= 0)
-                {
-                    HitRecoil = 0;
-                    currentVelocity = 0;
-                    rotation = Math.PI;
-                }
             }
             base.Update();
             if (MyKeyboard.KeyShoot.IsToggled)
@@ -255,5 +242,6 @@ namespace RPG.Entities
             //TODO KOMENTY!!!
             return currentTexture.GetCurrentSourceRectangle(animationFrame, (int)MovementTextureState);
         }
+        
     }
 }

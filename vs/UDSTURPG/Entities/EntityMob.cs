@@ -84,17 +84,6 @@ namespace RPG.Entities
                     currentVelocity = maxSpeed;
                 }
             }
-            if(HitRecoil > 0)
-            {
-                currentVelocity = -HitRecoil;
-                HitRecoil -= 0.1f;
-                if (HitRecoil <= 0)
-                {
-                    HitRecoil = 0;
-                    currentVelocity = 0;
-                    rotation = Math.PI;
-                }
-            }
         }
 
         public override bool PreDraw()

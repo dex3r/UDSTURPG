@@ -44,11 +44,6 @@ namespace RPG.Entities
                         interp = Vector2.Multiply(interp, (float)Math.PI);
                         mob.Rotation = Math.Atan2(interp.Y, interp.X);
 
-                        if(mob.CurrentHp <= 0)
-                        {
-                            mob.MarkedToDelete = true;
-                            GameMain.CurrentPlayer.Score++;
-                        }
                         markedToDelete = true;
                     }
                 }

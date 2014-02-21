@@ -52,6 +52,7 @@ namespace RPG.Entities
             MaxHp = 100;
             CurrentHp = MaxHp;
             this.damage = 15;
+            this.IsColidable = false;
         }
 
         public override void Update()
@@ -113,7 +114,7 @@ namespace RPG.Entities
                                 EntityMob mob = (EntityMob)en;
                                 HitRecoil = 0.5f;
 
-                                Vector2 interpPlayer = Vector2.Subtract(new Vector2((mob.PosX + 0.7f) * 64, (mob.PosY + 0.7f) * 64), new Vector2((PosX + 0.5f) * 64, (PosY + 0.5f) * 64));
+                                Vector2 interpPlayer = Vector2.Subtract(new Vector2((mob.PosX + mob.CollisionBoxX + mob.CollisionBoxWidth / 2) * 64, (mob.PosY + mob.CollisionBoxY + mob.CollisionBoxHeight / 2) * 64), new Vector2((PosX + 0.5f) * 64, (PosY + 0.5f) * 64));
                                 interpPlayer.Normalize();
                                 interpPlayer = Vector2.Multiply(interpPlayer, (float)Math.PI);
                                 Rotation = Math.Atan2(interpPlayer.Y, interpPlayer.X);

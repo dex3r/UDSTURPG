@@ -21,6 +21,13 @@ namespace RPG.Entities
             set { acceleration = value; }
         }
 
+        private int invincibleTimer = 0;
+        private int invincibleTime = 5;
+        public int InvincibleTime
+        {
+            get { return invincibleTime; }
+        }
+
         private EnumSheetPlayer movementTextureState;
         public EnumSheetPlayer MovementTextureState
         {
@@ -96,29 +103,31 @@ namespace RPG.Entities
                 {
                     currentVelocity = 0;
                 }
-                foreach (Entity en in GameMain.CurrentWorld.Entities)
-                    if (en is EntityMob)
-                    {
-                        if (Collision(en))
+                if (invincibleTimer == 0)
+                {
+                    foreach (Entity en in GameMain.CurrentWorld.Entities)
+                        if (en is EntityMob)
                         {
-                            EntityMob mob = (EntityMob)en;
-                            mob.CurrentVelocity = 0;
-                            HitRecoil = 0.5f;
+                            if (Collision(en))
+                            {
+                                EntityMob mob = (EntityMob)en;
+                                HitRecoil = 0.5f;
 
-                            Vector2 interp = Vector2.Subtract(new Vector2((PosX + 0.5f) * 64, (PosY + 0.5f) * 64), new Vector2((mob.PosX + 0.7f) * 64, (mob.PosY + 0.7f) * 64));
-                            interp.Normalize();
-                            interp = Vector2.Multiply(interp, (float)Math.PI);
-                            mob.Rotation = Math.Atan2(interp.Y, interp.X);
-
-                            Vector2 interpPlayer = Vector2.Subtract(new Vector2((mob.PosX + 0.7f) * 64, (mob.PosY + 0.7f) * 64), new Vector2((PosX + 0.5f) * 64, (PosY + 0.5f) * 64));
-                            interpPlayer.Normalize();
-                            interpPlayer = Vector2.Multiply(interpPlayer, (float)Math.PI);
-                            Rotation = Math.Atan2(interpPlayer.Y, interpPlayer.X);
+                                Vector2 interpPlayer = Vector2.Subtract(new Vector2((mob.PosX + 0.7f) * 64, (mob.PosY + 0.7f) * 64), new Vector2((PosX + 0.5f) * 64, (PosY + 0.5f) * 64));
+                                interpPlayer.Normalize();
+                                interpPlayer = Vector2.Multiply(interpPlayer, (float)Math.PI);
+                                Rotation = Math.Atan2(interpPlayer.Y, interpPlayer.X);
 
 
-                            GameMain.CurrentPlayer.CurrentHp -= 2;
+                                GameMain.CurrentPlayer.CurrentHp -= 2;
+                                invincibleTimer += InvincibleTime;
+                            }
                         }
-                    }
+                }
+                else
+                {
+                    invincibleTimer--;
+                }
             }
             base.Update();
             if (MyKeyboard.KeyShoot.IsToggled)

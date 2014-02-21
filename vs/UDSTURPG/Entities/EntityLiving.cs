@@ -79,6 +79,11 @@ namespace RPG.Entities
                 bullet.Rotation = shootingRotation;
                 GameMain.CurrentWorld.AddEntity(bullet);
             }
+            if (CurrentHp <= 0)
+            {
+                MarkedToDelete = true;
+                GameMain.CurrentPlayer.Score++;
+            }
             base.Update();
         }
     }

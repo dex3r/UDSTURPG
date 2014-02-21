@@ -49,59 +49,89 @@ namespace RPG.Entities
         public override void Update()
         {
             BoundryCollision();
-            double y = 0;
-            double x = 0;
-            if (MyKeyboard.KeyMoveDown.IsPressed)
+            if (HitRecoil <= 0)
             {
-                y += Math.PI;
-            }
-            if (MyKeyboard.KeyMoveUp.IsPressed)
-            {
-                y -= Math.PI;
-            }
-            if (MyKeyboard.KeyMoveLeft.IsPressed)
-            {
-                x -= Math.PI;
-            }
-            if (MyKeyboard.KeyMoveRight.IsPressed)
-            {
-                x += Math.PI;
-            }
-            if (x != 0 || y != 0)
-            {
-                rotation = Math.Atan2(y, x);
-                currentVelocity += acceleration;
-                //Camera.X = posX * 64 - GameMain.graphicsDeviceManager.PreferredBackBufferWidth / 2+32;
-                //Camera.Y = posY * 64 - GameMain.graphicsDeviceManager.PreferredBackBufferHeight / 2+32;
-            }
-            else
-            {
-                if (currentVelocity > 0)
+                double y = 0;
+                double x = 0;
+                if (MyKeyboard.KeyMoveDown.IsPressed)
                 {
-                    currentVelocity -= acceleration;
-                    if (currentVelocity < 0)
+                    y += Math.PI;
+                }
+                if (MyKeyboard.KeyMoveUp.IsPressed)
+                {
+                    y -= Math.PI;
+                }
+                if (MyKeyboard.KeyMoveLeft.IsPressed)
+                {
+                    x -= Math.PI;
+                }
+                if (MyKeyboard.KeyMoveRight.IsPressed)
+                {
+                    x += Math.PI;
+                }
+                if (x != 0 || y != 0)
+                {
+                    rotation = Math.Atan2(y, x);
+                    currentVelocity += acceleration;
+                    //Camera.X = posX * 64 - GameMain.graphicsDeviceManager.PreferredBackBufferWidth / 2+32;
+                    //Camera.Y = posY * 64 - GameMain.graphicsDeviceManager.PreferredBackBufferHeight / 2+32;
+                }
+                else
+                {
+                    if (currentVelocity > 0)
                     {
-                        currentVelocity = 0;
+                        currentVelocity -= acceleration;
+                        if (currentVelocity < 0)
+                        {
+                            currentVelocity = 0;
+                        }
                     }
                 }
-            }
-            if (currentVelocity > maxSpeed)
-            {
-                currentVelocity = maxSpeed;
-            }
-            else if (currentVelocity < 0)
-            {
-                currentVelocity = 0;
-            }
-            foreach (Entity en in GameMain.CurrentWorld.Entities)
-                if (en is EntityMob)
+                if (currentVelocity > maxSpeed)
                 {
-                    if (Collision(en))
-                    {
-                        en.MarkedToDelete = true;
-                        GameMain.CurrentPlayer.CurrentHp -= 10;
-                    }
+                    currentVelocity = maxSpeed;
                 }
+                else if (currentVelocity < 0)
+                {
+                    currentVelocity = 0;
+                }
+                foreach (Entity en in GameMain.CurrentWorld.Entities)
+                    if (en is EntityMob)
+                    {
+                        if (Collision(en))
+                        {
+                            EntityMob mob = (EntityMob)en;
+                            mob.HitRecoil = 0.3f;
+                            HitRecoil = 0.3f;
+
+                            Vector2 interp = Vector2.Subtract(new Vector2((PosX + 0.5f) * 64, (PosY + 0.5f) * 64), new Vector2((mob.PosX + 0.7f) * 64, (mob.PosY + 0.7f) * 64));
+                            interp.Normalize();
+                            interp = Vector2.Multiply(interp, (float)Math.PI);
+                            mob.Rotation = Math.Atan2(interp.Y, interp.X);
+
+                            mob.CurrentHp -= 10;
+
+                            Vector2 interpPlayer = Vector2.Subtract(new Vector2((mob.PosX + 0.7f) * 64, (mob.PosY + 0.7f) * 64), new Vector2((PosX + 0.5f) * 64, (PosY + 0.5f) * 64));
+                            interpPlayer.Normalize();
+                            interpPlayer = Vector2.Multiply(interp, (float)Math.PI);
+                            Rotation = Math.Atan2(-interp.Y, -interp.X);
+
+
+                            GameMain.CurrentPlayer.CurrentHp -= 10;
+                        }
+                    }
+            }
+            if (HitRecoil > 0)
+            {
+                currentVelocity = -HitRecoil;
+                HitRecoil -= 0.1f;
+                if (HitRecoil <= 0)
+                {
+                    HitRecoil = 0;
+                    currentVelocity = 0;
+                    rotation = Math.PI;
+                }
+            }
             base.Update();
             if (MyKeyboard.KeyShoot.IsToggled)
             {

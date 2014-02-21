@@ -95,6 +95,10 @@ namespace RPG.Entities
                     rotation = Math.PI;
                 }
             }
+            if(this.CurrentHp <= 0)
+            {
+                GameMain.CurrentWorld.AddEntity(new EntityEffect(this.posX + ((this.CollisionBoxX + this.CollisionBoxWidth) / 2) - (MyTexture.EffectEnityDiePuff.SourceRectangle.Width / 64.0f), this.posY + ((this.CollisionBoxY + this.CollisionBoxHeight) / 2) - (MyTexture.EffectEnityDiePuff.SourceRectangle.Height / 64.0f), MyTexture.EffectEnityDiePuff));
+            }
         }
 
         public override bool PreDraw()

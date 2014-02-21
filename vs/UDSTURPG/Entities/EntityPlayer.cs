@@ -44,6 +44,7 @@ namespace RPG.Entities
             SetCollisionBox(0, 0, 1.0f, 1.0f);
             MaxHp = 100;
             CurrentHp = MaxHp;
+            this.damage = 15;
         }
 
         public override void Update()

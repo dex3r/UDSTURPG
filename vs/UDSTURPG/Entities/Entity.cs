@@ -52,6 +52,13 @@ namespace RPG.Entities
             set { markedToDelete = value; }
         }
 
+        protected bool markedToDeleteInNextTick;
+        public bool MarkedToDeleteInNextTick
+        {
+            get { return markedToDeleteInNextTick; }
+            set { markedToDeleteInNextTick = value; }
+        }
+
         private uint id;
         public uint Id
         {
@@ -189,14 +196,12 @@ namespace RPG.Entities
 
         public virtual bool Collision(Entity entity, double distance = 2)
         {
-            //if (Distance(entity) < distance)
-            //{
+            //TODO: zamienić "PosX + CollisionBoxX" na zmienne klasy, aktualizowane co tick
                 if (PosX + CollisionBoxX + CollisionBoxWidth < entity.PosX + entity.CollisionBoxX) return false;
                 if (entity.PosX + entity.CollisionBoxX + entity.CollisionBoxWidth < PosX + CollisionBoxX) return false;
                 if (PosY + CollisionBoxY + CollisionBoxHeight < entity.PosY + entity.CollisionBoxY) return false;
                 if (entity.PosY + entity.CollisionBoxY + entity.CollisionBoxHeight < PosY + CollisionBoxY) return false;
                 return true;
-            //}
             return false;
         }
     }

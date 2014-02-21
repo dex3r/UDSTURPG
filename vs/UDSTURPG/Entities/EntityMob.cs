@@ -70,19 +70,26 @@ namespace RPG.Entities
                 currentColor = new Color(currentColor.ToVector3() + new Vector3(0.08f, 0.08f, 0.08f));
             }
             base.Update();
-            if (mobType.StepInterval != 0)
+            if (this.mobType.WalkingStyle == EnumMobWalkingStyle.Stuttery)
             {
-                stepLength++;
-                if (currentVelocity > 0 && stepLength >= mobType.StepLength)
+                if (mobType.StepInterval != 0)
                 {
-                    stepLength = 0;
-                    currentVelocity = 0;
+                    stepLength++;
+                    if (currentVelocity > 0 && stepLength >= mobType.StepLength)
+                    {
+                        stepLength = 0;
+                        currentVelocity = 0;
+                    }
+                    else if (currentVelocity == 0 && stepLength >= mobType.StepInterval)
+                    {
+                        stepLength = 0;
+                        currentVelocity = maxSpeed;
+                    }
                 }
-                else if (currentVelocity == 0 && stepLength >= mobType.StepInterval)
-                {
-                    stepLength = 0;
-                    currentVelocity = maxSpeed;
-                }
+            }
+            else if(currentVelocity == 0)
+            {
+                currentVelocity = maxSpeed;
             }
             if(HitRecoil > 0)
             {

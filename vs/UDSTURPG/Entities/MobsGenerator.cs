@@ -20,33 +20,36 @@ namespace RPG.Entities
         public static void Update()
         {
             time++;
-            var temp = (GameMain.CurrentPlayer.Score / 10)+1;
-            if (time >= TIME/temp)
+            var temp = (GameMain.CurrentPlayer.Score / 10) + 1;
+            if (time >= TIME / temp)
             {
                 Random random = new Random();
                 float y = (float)random.NextDouble() * (Chunk.CHUNK_SIZE_Y) - 1;
-                addmob(Chunk.CHUNK_SIZE_X,y,random.Next(0,3));
+                addmob(Chunk.CHUNK_SIZE_X, y, random.Next(0, 4));
                 time = 0;
             }
         }
 
         private static void addmob(float x, float y, int type)
         {
+            EntityMob mob = null;
             if (type == 0)
             {
-                EntityMob mummy = new EntityMob(x, y, MobType.MobMummy);
-                GameMain.CurrentWorld.AddEntity(mummy);
+                mob = new EntityMob(x, y, MobType.MobMummy);
             }
-            else if(type == 1)
+            else if (type == 1)
             {
-                EntityMob snake = new EntityMob(x, y, MobType.MobSnake);
-                GameMain.CurrentWorld.AddEntity(snake);
+                mob = new EntityMob(x, y, MobType.MobSnake);
             }
             else if (type == 2)
             {
-                EntityMob scarab = new EntityMob(x, y, MobType.MobScarab);
-                GameMain.CurrentWorld.AddEntity(scarab);
+                mob = new EntityMob(x, y, MobType.MobScarab);
             }
+            else if (type == 3)
+            {
+                mob = new EntityMob(x, y, MobType.MobBat);
+            }
+            GameMain.CurrentWorld.AddEntity(mob);
         }
     }
 }

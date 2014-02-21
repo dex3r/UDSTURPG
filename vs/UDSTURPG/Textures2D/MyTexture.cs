@@ -17,14 +17,20 @@ namespace RPG.Textures2D
             get { return MyTexture.textures; }
         }
 
+        public static MyTexture PlayerLordLard = new MyTexture(@"art\player\lord_lard_sheet", new Rectangle(0, 0, 32, 32), 0.6f, 6);
+
         public static MyTexture Wall = new MyTexture(@"tiled\Tileset-Wall", new Rectangle(0, 0, 32, 55), 0.7f);
         public static MyTexture Floor = new MyTexture(@"tiled\Tileset-Floor", new Rectangle(0, 0, 32, 32));
-        public static MyTexture PlayerLordLard = new MyTexture(@"art\player\lord_lard_sheet", new Rectangle(0, 0, 32, 32), 0.6f, 6);
+
+
         public static MyTexture Bullet = new MyTexture(@"art\effects\bullet", new Rectangle(0, 0, 16, 16), 0.55f);
-        public static MyTexture MobMummy = new MyTexture(@"art\mob\enemy_mummy_anim_48", new Rectangle(0, 0, 48, 48), 0.60025f, 4, 5);
         public static MyTexture Turret = new MyTexture(@"art\building\turret", new Rectangle(0, 0, 32, 32), 0.6f);
-        public static MyTexture MobSnake = new MyTexture(@"art\mob\enemy_snake_anim_48", new Rectangle(0, 0, 48, 48), 0.6002f, 4, 5);
-        public static MyTexture MobScarab = new MyTexture(@"art\mob\enemy_scarab_anim_48", new Rectangle(0, 0, 48, 48), 0.60023f, 4, 5);
+
+        public static MyTexture MobBat = new MyTexture(@"art\mob\enemy_bat_32", new Rectangle(0, 0, 32, 32), 0.60028f, 4, 3);
+        public static MyTexture MobMummy = new MyTexture(@"art\mob\enemy_mummy_anim_48", new Rectangle(0, 0, 48, 48), 0.60025f, 4, 5);
+        public static MyTexture MobSnake = new MyTexture(@"art\mob\enemy_snake_anim_48", new Rectangle(0, 0, 48, 48), 0.60023f, 4, 5);
+        public static MyTexture MobScarab = new MyTexture(@"art\mob\enemy_scarab_anim_48", new Rectangle(0, 0, 48, 48), 0.60022f, 4, 5);
+
         public static MyTexture EffectEnityDiePuff = new MyTexture(@"art\effects\fx_enemydie_64", new Rectangle(0, 0, 64, 64), 0.56f, 17, 3);
 
         public static void LoadAll(ContentManager cm)

@@ -68,6 +68,7 @@ namespace RPG.Entities
             : base(posX, posY)
         {
             timeLeftBeforeNextShot = 0;
+            this.maxHp = this.currentHp = 1;
         }
 
         public override void Update()

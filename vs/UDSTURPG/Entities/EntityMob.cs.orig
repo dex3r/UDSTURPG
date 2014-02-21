@@ -84,10 +84,24 @@ namespace RPG.Entities
                     currentVelocity = maxSpeed;
                 }
             }
+<<<<<<< HEAD
+=======
+            if(HitRecoil > 0)
+            {
+                currentVelocity = -HitRecoil;
+                HitRecoil -= 0.1f;
+                if (HitRecoil <= 0)
+                {
+                    HitRecoil = 0;
+                    currentVelocity = 0;
+                    rotation = Math.PI;
+                }
+            }
             if(this.CurrentHp <= 0)
             {
                 GameMain.CurrentWorld.AddEntity(new EntityEffect(this.posX + ((this.CollisionBoxX + this.CollisionBoxWidth) / 2) - (MyTexture.EffectEnityDiePuff.SourceRectangle.Width / 64.0f), this.posY + ((this.CollisionBoxY + this.CollisionBoxHeight) / 2) - (MyTexture.EffectEnityDiePuff.SourceRectangle.Height / 64.0f), MyTexture.EffectEnityDiePuff));
             }
+>>>>>>> 1358aba4273af52452dda232bc0941fbb2bb2837
         }
 
         public override bool PreDraw()

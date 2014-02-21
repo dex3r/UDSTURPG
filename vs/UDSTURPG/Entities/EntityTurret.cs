@@ -18,6 +18,7 @@ namespace RPG.Entities
             currentTexture = MyTexture.Turret;
             SetCollisionBox(0, 0, 0.5f, 0.5f);
             this.ShootingSpeed = 35;
+            this.damage = 25;
         }
 
         public override Rectangle GetCurrentSourceRectangle()
@@ -82,7 +83,7 @@ namespace RPG.Entities
                     if (en is EntityMob)
                     {
                         distance = this.Distance(en);
-                        if (distance < 15 && lastDistance > distance)
+                        if (distance < 10 && lastDistance > distance)
                         {
                             lastDistance = distance;
                             target = en;

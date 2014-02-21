@@ -69,6 +69,10 @@ namespace RPG.Worlds
                 {
                     entitiesToDelete.Add(entity);
                 }
+                if(entity.MarkedToDeleteInNextTick)
+                {
+                    entity.MarkedToDelete = true;
+                }
             }
             foreach(Entity entity in entitiesToDelete)
             {

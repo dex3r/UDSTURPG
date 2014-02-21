@@ -57,6 +57,13 @@ namespace RPG.Entities
             get { return isShooting; }
         }
 
+        protected int damage;
+        public int Damage
+        {
+            get { return damage; }
+            set { damage = value; }
+        }
+
         public EntityLiving(float posX, float posY)
             : base(posX, posY)
         {
@@ -74,7 +81,8 @@ namespace RPG.Entities
             if(isShooting && timeLeftBeforeNextShot == 0)
             {
                 timeLeftBeforeNextShot = shootingSpeed;
-                EntityBullet bullet = new EntityBullet(this.PosX + 0.25f, this.PosY + 0.25f);
+                //EntityBullet bullet = new EntityBullet(this.PosX + 0.25f, this.PosY + 0.25f);
+                EntityBullet bullet = this.GetNewBullet();
                 bullet.CurrentVelocity = 0.1f;
                 bullet.Rotation = shootingRotation;
                 GameMain.CurrentWorld.AddEntity(bullet);
@@ -85,6 +93,11 @@ namespace RPG.Entities
                 GameMain.CurrentPlayer.Score++;
             }
             base.Update();
+        }
+
+        public virtual EntityBullet GetNewBullet()
+        {
+            return new EntityBullet(this.posX + this.CollisionBoxX + this.CollisionBoxWidth, this.posY + this.CollisionBoxY + this.CollisionBoxHeight, damage);
         }
     }
 }

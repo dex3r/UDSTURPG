@@ -9,8 +9,8 @@ namespace RPG.Entities
     public class MobType
     {
         public static readonly MobType MobMummy = new MobType(50, 10, 0.02f, MyTexture.MobMummy, EnumMobWalkingStyle.Stuttery, 0.15f, 0.2f, 1f, 1f, stepInterval: 25);
-        public static readonly MobType MobSnake = new MobType(30, 20, 0.03f, MyTexture.MobSnake, EnumMobWalkingStyle.Stuttery, 0.25f, 0.35f, 0.95f, 0.75f, stepInterval: 25);
-        public static readonly MobType MobScarab = new MobType(80, 15, 0.023f, MyTexture.MobScarab, EnumMobWalkingStyle.Stuttery, 0.25f, 0.35f, 0.95f, 0.75f, stepInterval: 25);
+        public static readonly MobType MobSnake = new MobType(30, 20, 0.05f, MyTexture.MobSnake, EnumMobWalkingStyle.Stuttery, 0.25f, 0.35f, 0.95f, 0.75f, stepInterval: 25, stepLength: 40);
+        public static readonly MobType MobScarab = new MobType(80, 15, 0.023f, MyTexture.MobScarab, EnumMobWalkingStyle.Stuttery, 0.25f, 0.35f, 0.95f, 0.75f, stepInterval: 25, stepLength: 40);
 
         private int hp;
         public int Hp

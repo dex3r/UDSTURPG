@@ -17,6 +17,7 @@ namespace RPG.Entities
         {
             currentTexture = MyTexture.Turret;
             SetCollisionBox(0, 0, 0.5f, 0.5f);
+            this.ShootingSpeed = 35;
         }
 
         public override Rectangle GetCurrentSourceRectangle()
@@ -71,33 +72,33 @@ namespace RPG.Entities
 
         public override void Update()
         {
-            base.Update();
-            Entity target = null;
-            double lastDistance = 0.0f;
-            double temp;
-            foreach (Entity en in GameMain.CurrentWorld.Entities)
+            if (timeLeftBeforeNextShot <= 1)
             {
-                if (en is EntityMob)
+                Entity target = null;
+                double lastDistance = double.MaxValue;
+                double distance;
+                foreach (Entity en in GameMain.CurrentWorld.Entities)
                 {
-                    temp = en.Distance(en);
-                    if (temp < 5 && lastDistance > temp)
+                    if (en is EntityMob)
                     {
-                        lastDistance = temp;
-                        target = en;
+                        distance = this.Distance(en);
+                        if (distance < 15 && lastDistance > distance)
+                        {
+                            lastDistance = distance;
+                            target = en;
+                        }
                     }
                 }
+                if (target != null)
+                {
+                    Vector2 interp = Vector2.Subtract(new Vector2(this.PosX + ((this.CollisionBoxX + this.CollisionBoxWidth) * 2.0f), this.posY + ((this.CollisionBoxY + this.CollisionBoxHeight) * 2.0f)), new Vector2(target.PosX + target.CollisionBoxX + target.CollisionBoxWidth, target.PosY + target.CollisionBoxY + target.CollisionBoxHeight));
+                    interp.Normalize();
+                    interp = Vector2.Multiply(interp, (float)Math.PI);
+                    rotation = shootingRotation = Math.Atan2(-interp.Y, -interp.X);
+                    isShooting = true;
+                }
             }
-            if(target != null)
-            {
-                EntityBullet bullet = new EntityBullet(this.PosX + 0.25f, this.PosY + 0.25f,10);
-                bullet.CurrentVelocity = 0.1f;
-                Vector2 interp = Vector2.Subtract(new Vector2(this.PosX + 0.45f, this.posY + 0.45f), new Vector2(target.PosX, target.PosY));
-                interp.Normalize();
-                interp = Vector2.Multiply(interp, (float)Math.PI);
-                bullet.Rotation = Math.Atan2(-interp.Y, -interp.X);
-                rotation = bullet.Rotation;
-                GameMain.CurrentWorld.AddEntity(bullet);
-            }
+            base.Update();
         }
     }
 }

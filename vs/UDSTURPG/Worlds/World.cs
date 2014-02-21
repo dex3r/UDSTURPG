@@ -65,7 +65,7 @@ namespace RPG.Worlds
             foreach (Entity entity in entities)
             {
                 entity.Update();
-                if(entity.MarketToDelete)
+                if(entity.MarkedToDelete)
                 {
                     entitiesToDelete.Add(entity);
                 }

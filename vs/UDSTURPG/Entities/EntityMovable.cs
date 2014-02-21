@@ -47,14 +47,14 @@ namespace RPG.Entities
             set { rotation = value; }
         }
 
-        private float getHit;
+        private float hitRecoil;
         /// <summary>
         /// Odrzut po oberwaniu strzału
         /// </summary>
-        public float GetHit
+        public float HitRecoil
         {
-            get { return getHit; }
-            set { getHit = value; }
+            get { return hitRecoil; }
+            set { hitRecoil = value; }
         }
 
         public EntityMovable(float posX, float posY)

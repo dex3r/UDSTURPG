@@ -60,6 +60,15 @@ namespace RPG.Entities
         public override void Update()
         {
             BoundryCollision(true, false, true, false);
+            if (currentHp < LastHp)
+            {
+                //TODO: podrasować kolor
+                currentColor = new Color(0.6f, 0.2f, 0.2f);
+            }
+            else if(currentColor.G != 255)
+            {
+                currentColor = new Color(currentColor.ToVector3() + new Vector3(0.08f, 0.08f, 0.08f));
+            }
             base.Update();
             if (mobType.StepInterval != 0)
             {
@@ -75,13 +84,13 @@ namespace RPG.Entities
                     currentVelocity = maxSpeed;
                 }
             }
-            if(GetHit > 0)
+            if(HitRecoil > 0)
             {
-                currentVelocity = -GetHit;
-                GetHit -= 0.1f;
-                if (GetHit <= 0)
+                currentVelocity = -HitRecoil;
+                HitRecoil -= 0.1f;
+                if (HitRecoil <= 0)
                 {
-                    GetHit = 0;
+                    HitRecoil = 0;
                     currentVelocity = 0;
                     rotation = Math.PI;
                 }
@@ -91,7 +100,7 @@ namespace RPG.Entities
         public override bool PreDraw()
         {
             bool flag = base.PreDraw();
-            if (GetHit == 0) //Zablokowanie tekstury
+            if (HitRecoil == 0) //Zablokowanie tekstury
             {
                 double degreesRotation = 180.0d / Math.PI * -rotation;
                 if (rotation > 0)

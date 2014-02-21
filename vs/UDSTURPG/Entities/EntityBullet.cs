@@ -18,7 +18,7 @@ namespace RPG.Entities
             set { damage = value; }
         }
 
-        public EntityBullet(float posX, float posY, int damage)
+        public EntityBullet(float posX, float posY, int damage = 15)
             : base(posX, posY)
         {
             currentTexture = MyTexture.Bullet;
@@ -28,15 +28,15 @@ namespace RPG.Entities
 
         public override void Update()
         {
-            base.Update();
+           
             foreach(Entity en in GameMain.CurrentWorld.Entities)
             {
                 if (en is EntityMob)
                 {
-                    if (Collision(en))
+                    if (!en.MarkedToDelete && Collision(en))
                     {
                         EntityMob mob = (EntityMob)en;
-                        mob.GetHit = 0.3f;
+                        mob.HitRecoil = 0.2f;
                         mob.CurrentHp -= Damage;
 
                         Vector2 interp = Vector2.Subtract(new Vector2((PosX+0.25f) * 64, (PosY+0.25f) * 64), new Vector2((mob.PosX + 0.7f)*64, (mob.PosY + 0.7f)*64));
@@ -46,13 +46,14 @@ namespace RPG.Entities
 
                         if(mob.CurrentHp <= 0)
                         {
-                            mob.MarketToDelete = true;
+                            mob.MarkedToDelete = true;
                             GameMain.CurrentPlayer.Score++;
                         }
-                        marketToDelete = true;
+                        markedToDelete = true;
                     }
                 }
             }
+            base.Update();
         }
 
         public override Rectangle GetCurrentSourceRectangle()

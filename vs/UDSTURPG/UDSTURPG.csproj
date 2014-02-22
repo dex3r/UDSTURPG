@@ -51,6 +51,7 @@
     <Compile Include="Entities\EnumMobWalkingStyle.cs" />
     <Compile Include="Entities\MobsGenerator.cs" />
     <Compile Include="Entities\MobType.cs" />
+    <Compile Include="Entities\MoneyType.cs" />
     <Compile Include="GUI\GUI.cs" />
     <Compile Include="GUI\GUIElement.cs" />
     <Compile Include="GUI\GUIElementText.cs" />

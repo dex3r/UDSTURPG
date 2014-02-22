@@ -58,6 +58,12 @@ namespace RPG.Controls
             get { return MyKeyboard.keyShoot; }
         }
 
+        private static MyKey keyBuyTurret = new MyKey("Buy turret", Keys.F).SetRepeatRate(10);
+        public static MyKey KeyBuyTurret
+        {
+            get { return MyKeyboard.keyBuyTurret; }
+        }
+
         private static MyKey keyDebug1 = new MyKey("Debug key 1", EnumMouseButtons.Right);
         public static MyKey KeyDebug1
         {

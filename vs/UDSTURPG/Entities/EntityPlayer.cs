@@ -42,6 +42,13 @@ namespace RPG.Entities
             set { score = value; }
         }
 
+        private int money;
+        public int Money
+        {
+            get { return money; }
+            set { money = value; }
+        }
+
         public EntityPlayer(float posX, float posY)
             : base(posX, posY)
         {
@@ -118,7 +125,6 @@ namespace RPG.Entities
                                 interpPlayer = Vector2.Multiply(interpPlayer, (float)Math.PI);
                                 Rotation = Math.Atan2(interpPlayer.Y, interpPlayer.X);
 
-
                                 GameMain.CurrentPlayer.CurrentHp -= 2;
                                 invincibleTimer += InvincibleTime;
                             }
@@ -146,6 +152,15 @@ namespace RPG.Entities
             {
                 EntityTurret turret = new EntityTurret(PosX + 0.25f, PosY + 0.25f);
                 GameMain.CurrentWorld.AddEntity(turret);
+            }
+            if(MyKeyboard.KeyBuyTurret.IsPressed)
+            {
+                if(this.Money >= 2000)
+                {
+                    EntityTurret turret = new EntityTurret(PosX + 0.25f, PosY + 0.25f);
+                    GameMain.CurrentWorld.AddEntity(turret);
+                    this.Money -= 2000;
+                }
             }
         }
 

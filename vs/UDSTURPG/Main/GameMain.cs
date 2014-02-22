@@ -174,7 +174,9 @@ namespace RPG.Main
             SpriteBatch.Begin(SpriteSortMode.FrontToBack, BlendState.AlphaBlend, SamplerState.PointWrap, null, null, null, Matrix.CreateScale(2.0f, 2.0f, 1.0f));
             currentDrawingState = EnumDrawingState.GUI;
 
-            Font.BigGold.DrawString("Siema ludzie: :) !", 150, 150);
+            Font.BigGold.DrawString("Score: " + currentPlayer.Score, (GraphicsDevice.Viewport.Width / 2) - 120, 5);
+            Font.BigGold.DrawString("Money: " + currentPlayer.Money, (GraphicsDevice.Viewport.Width / 2) - 120, 15);
+            Font.BigGold.DrawString("HP: " + currentPlayer.CurrentHp, (GraphicsDevice.Viewport.Width / 2) - 120, 25);
 
             SpriteBatch.End();
 
@@ -198,9 +200,6 @@ namespace RPG.Main
                     createDebugInfo();
                     SpriteBatch.DrawTextWithShaddow(Text.Log, new Vector2(0, 0));
                     Text.Log = "";
-                    createScoreInfo();
-                    SpriteBatch.DrawTextWithShaddow(Text.Score, new Vector2(graphicsDeviceManager.PreferredBackBufferWidth - 180,0));
-                    Text.Score = "";
                 }
             }
             SpriteBatch.End();
@@ -245,18 +244,6 @@ namespace RPG.Main
             sb.Append(time);
             sb.Append(Text.Log);
             Text.Log = sb.ToString();
-        }
-
-        private void createScoreInfo()
-        {
-            sc.Clear();
-            sc.Append("Score: ");
-            sc.Append(currentPlayer.Score);
-            sc.Append("\nHealth: ");
-            sc.Append(currentPlayer.CurrentHp);
-            sc.Append(" / ");
-            sc.Append(currentPlayer.MaxHp);
-            Text.Score = sc.ToString();
         }
     }
 

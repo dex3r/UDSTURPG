@@ -20,7 +20,7 @@ namespace RPG.Entities
         public static void Update()
         {
             time++;
-            var temp = (GameMain.CurrentPlayer.Score / 100) + 1;
+            var temp = (GameMain.CurrentPlayer.Score / 1000) + 1;
             if (time >= TIME / temp)
             {
                 Random random = new Random();

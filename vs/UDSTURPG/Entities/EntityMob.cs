@@ -33,6 +33,12 @@ namespace RPG.Entities
             get { return mobType; }
         }
 
+        private int worth;
+        public int Worth
+        {
+            get { return worth; }
+        }
+
         private int stepLength;
         /// <summary>
         /// Długość kroku (w tickach)
@@ -50,6 +56,7 @@ namespace RPG.Entities
             this.maxSpeed = mobType.Speed;
             this.damage = mobType.BaseDmg;
             this.currentTexture = mobType.Texture;
+            this.worth = mobType.Worth;
             SetCollisionBox(mobType.CollisionBoxX, mobType.CollisionBoxY, mobType.CollisionBoxWidth, mobType.CollisionBoxHeight);
             movementTextureState = EnumSheetNormalMob.Down;
             currentVelocity = maxSpeed;
@@ -80,6 +87,10 @@ namespace RPG.Entities
             else if (currentVelocity == 0)
             {
                 currentVelocity = maxSpeed;
+            }
+            if(currentHp <= 0)
+            {
+                GameMain.CurrentPlayer.Score += worth;
             }
         }
 

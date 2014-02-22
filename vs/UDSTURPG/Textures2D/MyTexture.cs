@@ -33,6 +33,10 @@ namespace RPG.Textures2D
 
         public static MyTexture EffectEnityDiePuff = new MyTexture(@"art\effects\fx_enemydie_64", new Rectangle(0, 0, 64, 64), 0.56f, 17, 3);
 
+        public static MyTexture HealthBar = new MyTexture(@"art\effects\bar_green", new Rectangle(0,0,32,4),0.999f,22,1);
+        public static MyTexture HealthBarOutline = new MyTexture(@"art\effects\bar_outline", new Rectangle(0, 0, 32, 4), 0.998f, 1, 1);
+        public static MyTexture HealthBarUnderlay = new MyTexture(@"art\effects\bar_green_underlay", new Rectangle(0, 0, 32, 4), 0.997f, 1, 1);
+
         public static void LoadAll(ContentManager cm)
         {
             foreach (MyTexture mt in textures)

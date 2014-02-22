@@ -12,7 +12,7 @@ namespace RPG.Worlds
         /// <summary>
         /// Rozmiar chunku, "const" dla wydajności
         /// </summary>
-        public const int CHUNK_SIZE_X = 21;
+        public const int CHUNK_SIZE_X = 22;
         public const int CHUNK_SIZE_Y = 12;
 
         /// <summary>

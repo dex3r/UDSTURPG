@@ -137,6 +137,7 @@ namespace RPG.Main
             Camera.Interaction();
             Camera.Update(GraphicsDevice);
 
+            GlobalRenderer.Update();
             if (currentWorld != null)
             {
                 currentWorld.Update();

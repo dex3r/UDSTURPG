@@ -130,7 +130,7 @@ namespace RPG.Entities
                     MovementTextureState = EnumSheetNormalMob.Right;
                 }
             }
-            if (MyKeyboard.KeyF10Pressed)
+            if (GlobalRenderer.ShouldRenderHitobxes)
             {
                 GameMain.SpriteBatch.DrawCircle(new Vector2((PosX + CollisionBoxX + CollisionBoxWidth / 2) * 64, (PosY + CollisionBoxY + CollisionBoxHeight / 2) * 64), 3, 10, Color.Red);
             }

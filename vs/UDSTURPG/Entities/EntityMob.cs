@@ -86,6 +86,10 @@ namespace RPG.Entities
         public override bool PreDraw()
         {
             bool flag = base.PreDraw();
+            if(MobType == MobType.MobBat)
+            {
+               GlobalRenderer.DrawEntity(MyTexture.MobBatShadow.Texture, PosX, PosY + 0.5f, MyTexture.MobBatShadow.SourceRectangle, MyTexture.MobBatShadow.DepthOfDrawing, new Color(Color.White,0.3f));
+            }
             if (HitRecoil == 0) //Zablokowanie tekstury
             {
                 double degreesRotation = 180.0d / Math.PI * -rotation;

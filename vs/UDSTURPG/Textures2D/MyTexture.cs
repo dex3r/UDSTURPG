@@ -27,6 +27,7 @@ namespace RPG.Textures2D
         public static MyTexture Turret = new MyTexture(@"art\building\turret", new Rectangle(0, 0, 32, 32), 0.6f);
 
         public static MyTexture MobBat = new MyTexture(@"art\mob\enemy_bat_32", new Rectangle(0, 0, 32, 32), 0.60028f, 4, 3);
+        public static MyTexture MobBatShadow = new MyTexture(@"art\shadows\shadow_bat", new Rectangle(0,0,32,32), 0.6f);
         public static MyTexture MobMummy = new MyTexture(@"art\mob\enemy_mummy_anim_48", new Rectangle(0, 0, 48, 48), 0.60025f, 4, 5);
         public static MyTexture MobSnake = new MyTexture(@"art\mob\enemy_snake_anim_48", new Rectangle(0, 0, 48, 48), 0.60023f, 4, 5);
         public static MyTexture MobScarab = new MyTexture(@"art\mob\enemy_scarab_anim_48", new Rectangle(0, 0, 48, 48), 0.60022f, 4, 5);

@@ -114,7 +114,6 @@ namespace RPG.Entities
             this.animationFrame = 0;
             this.id = GameMain.EntitiesId++;
             currentColor = new Color(1.0f, 1.0f, 1.0f);
-            this.isColidable = true;
         }
 
         public Entity SetCollisionBox(float x, float y, float width, float height)
@@ -173,7 +172,7 @@ namespace RPG.Entities
             //TODO Komenty!!
             //GameMain.SpriteBatch.Draw(currentTexture.Texture, new Vector2((int)(posX * 64), (int)(posY * 64)), GetCurrentSourceRectangle(), Color.White, 0, new Vector2(), 1.0f, SpriteEffects.None, currentTexture.DepthOfDrawing + PosY / 1000);
             GlobalRenderer.DrawEntity(currentTexture.Texture, posX, posY, GetCurrentSourceRectangle(), currentTexture.DepthOfDrawing + PosY / 1000, currentColor);
-            if (MyKeyboard.KeyF10Pressed && this.isColidable)
+            if (MyKeyboard.KeyF10Pressed)
             {
                 //GameMain.SpriteBatch.DrawRectangle(new Vector2((PosX + CollisionBoxX) * 64, (PosY + CollisionBoxY) * 64), new Vector2((CollisionBoxX + collisionBoxWidth) * 64.0f, (CollisionBoxY + CollisionBoxHeight) * 64.0f), Color.Red, 3.0f);
                 GameMain.SpriteBatch.DrawRectangle(new Vector2((PosX + CollisionBoxX) * 64, (PosY + CollisionBoxY) * 64), new Vector2((collisionBoxWidth) * 64.0f, (CollisionBoxHeight) * 64.0f), Color.Red, 3.0f);

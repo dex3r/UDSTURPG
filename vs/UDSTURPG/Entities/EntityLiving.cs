@@ -5,6 +5,8 @@ using System.Text;
 using RPG.Main;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
+using RPG.Rendering;
+using RPG.Textures2D;
 
 namespace RPG.Entities
 {
@@ -36,6 +38,12 @@ namespace RPG.Entities
             set { currentHp = value;  }
         }
 
+        private Color healthColor;
+        public Color HealthColor
+        {
+            get { return healthColor; }
+        }
+
         protected int shootingSpeed;
         /// <summary>
         /// Odstęp pomiędzy strzałami w tickach
@@ -64,6 +72,21 @@ namespace RPG.Entities
             set { damage = value; }
         }
 
+        protected MyTexture barTexture;
+        public MyTexture BarTexture
+        {
+            get { return barTexture; }
+            set { barTexture = value; }
+        }
+        protected int barFrame;
+        public int BarFrame
+        {
+            get { return barFrame; }
+            set { barFrame = value; }
+        }
+        private bool barDisplay = false;
+
+
         public EntityLiving(float posX, float posY)
             : base(posX, posY)
         {
@@ -74,6 +97,15 @@ namespace RPG.Entities
         public override void Update()
         {
             //else if(currentColor)
+            if (currentHp < LastHp)
+            {
+                //TODO: podrasować kolor
+                currentColor = new Color(0.6f, 0.2f, 0.2f);
+            }
+            else if (currentColor.G != 255)
+            {
+                currentColor = new Color(currentColor.ToVector3() + new Vector3(0.08f, 0.08f, 0.08f));
+            }
             LastHp = currentHp;
             if (timeLeftBeforeNextShot != 0)
             {
@@ -88,12 +120,41 @@ namespace RPG.Entities
                 bullet.Rotation = shootingRotation;
                 GameMain.CurrentWorld.AddEntity(bullet);
             }
-            if (CurrentHp <= 0)
+            if(CurrentHp != MaxHp)
             {
-                MarkedToDelete = true;
-                GameMain.CurrentPlayer.Score++;
+                barDisplay = true;
+                if (CurrentHp <= 0)
+                {
+                    GameMain.CurrentWorld.AddEntity(new EntityEffect(this.posX + ((this.CollisionBoxX + this.CollisionBoxWidth) / 2) - (MyTexture.EffectEnityDiePuff.SourceRectangle.Width / 64.0f), this.posY + ((this.CollisionBoxY + this.CollisionBoxHeight) / 2) - (MyTexture.EffectEnityDiePuff.SourceRectangle.Height / 64.0f), MyTexture.EffectEnityDiePuff));
+
+                    MarkedToDelete = true;
+                    GameMain.CurrentPlayer.Score++;
+                }
+                else
+                {
+                    BarFrame = (int)(((float)CurrentHp/(float)MaxHp)*21);
+                }
             }
-            base.Update();
+            base.Update();  
+        }
+
+        public override bool PreDraw()
+        {
+            if (barTexture == null)
+            {
+                //return false;
+            }
+            return base.PreDraw();
+
+        }
+
+        public override void ActualDraw()
+        {
+            base.ActualDraw();
+            if (barDisplay == true)
+            {
+                GlobalRenderer.DrawEntity(MyTexture.HealthBar.Texture, PosX, PosY, MyTexture.HealthBar.GetCurrentSourceRectangle(BarFrame), MyTexture.HealthBar.DepthOfDrawing, Color.Green);
+            }
         }
 
         public virtual EntityBullet GetNewBullet()

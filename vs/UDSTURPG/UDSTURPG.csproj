@@ -73,6 +73,7 @@
     <Compile Include="Textures2D\EnumSheetPlayer.cs" />
     <Compile Include="Rendering\Font.cs" />
     <Compile Include="Textures2D\MyTexture.cs" />
+    <Compile Include="Utils\ColorConversion.cs" />
     <Compile Include="Utils\Primitives2D.cs" />
     <Compile Include="Worlds\Chunk.cs" />
     <Compile Include="Worlds\Save.cs" />

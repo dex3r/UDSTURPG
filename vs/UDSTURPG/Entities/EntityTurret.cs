@@ -87,6 +87,16 @@ namespace RPG.Entities
                         {
                             lastDistance = distance;
                             target = en;
+                            if(Collision(en))
+                            {
+                                EntityMob mob = (EntityMob)en;
+                                HitRecoil = 0.5f;
+
+                                Vector2 interp = Vector2.Subtract(new Vector2((mob.PosX + mob.CollisionBoxX + mob.CollisionBoxWidth / 2) * 64, (mob.PosY + mob.CollisionBoxY + mob.CollisionBoxHeight / 2) * 64), new Vector2((PosX + 0.5f) * 64, (PosY + 0.5f) * 64));
+                                interp.Normalize();
+                                interp = Vector2.Multiply(interp, (float)Math.PI);
+                                Rotation = Math.Atan2(interp.Y, interp.X);
+                            }
                         }
                     }
                 }

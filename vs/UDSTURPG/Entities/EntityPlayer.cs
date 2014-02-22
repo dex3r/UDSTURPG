@@ -22,7 +22,7 @@ namespace RPG.Entities
         }
 
         private int invincibleTimer = 0;
-        private int invincibleTime = 5;
+        private int invincibleTime = 30;
         public int InvincibleTime
         {
             get { return invincibleTime; }

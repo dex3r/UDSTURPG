@@ -7,6 +7,7 @@ using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using RPG.Rendering;
 using RPG.Textures2D;
+using RPG.Utils;
 
 namespace RPG.Entities
 {
@@ -38,7 +39,7 @@ namespace RPG.Entities
             set { currentHp = value;  }
         }
 
-        private Color healthColor;
+        private Color healthColor = Color.Green;
         public Color HealthColor
         {
             get { return healthColor; }
@@ -72,12 +73,6 @@ namespace RPG.Entities
             set { damage = value; }
         }
 
-        protected MyTexture barTexture;
-        public MyTexture BarTexture
-        {
-            get { return barTexture; }
-            set { barTexture = value; }
-        }
         protected int barFrame;
         public int BarFrame
         {
@@ -133,19 +128,22 @@ namespace RPG.Entities
                 else
                 {
                     BarFrame = (int)(((float)CurrentHp/(float)MaxHp)*21);
+                    if (BarFrame < 6)
+                    {
+                        healthColor = Color.Red;
+                    }
+                    if (BarFrame >= 6 && BarFrame < 15)
+                    {
+                        healthColor = Color.Orange;
+                    }
+                    if (BarFrame >= 15)
+                    {
+                        healthColor = Color.Green;
+                    }
+                    //healthColor = ColorConversion.HSVtoRGB((BarFrame/21f*100)/240,1f,0.5f,1f);
                 }
             }
             base.Update();  
-        }
-
-        public override bool PreDraw()
-        {
-            if (barTexture == null)
-            {
-                //return false;
-            }
-            return base.PreDraw();
-
         }
 
         public override void ActualDraw()
@@ -153,7 +151,9 @@ namespace RPG.Entities
             base.ActualDraw();
             if (barDisplay == true)
             {
-                GlobalRenderer.DrawEntity(MyTexture.HealthBar.Texture, PosX, PosY, MyTexture.HealthBar.GetCurrentSourceRectangle(BarFrame), MyTexture.HealthBar.DepthOfDrawing, Color.Green);
+                GlobalRenderer.DrawEntity(MyTexture.HealthBar.Texture, PosX, PosY + CollisionBoxY + CollisionBoxHeight, MyTexture.HealthBar.GetCurrentSourceRectangle(BarFrame), MyTexture.HealthBar.DepthOfDrawing, healthColor);
+                GlobalRenderer.DrawEntity(MyTexture.HealthBarOutline.Texture, PosX, PosY + CollisionBoxY + CollisionBoxHeight, MyTexture.HealthBar.GetCurrentSourceRectangle(BarFrame), MyTexture.HealthBarOutline.DepthOfDrawing, Color.White);
+                GlobalRenderer.DrawEntity(MyTexture.HealthBarUnderlay.Texture, PosX, PosY + CollisionBoxY + CollisionBoxHeight, MyTexture.HealthBar.GetCurrentSourceRectangle(BarFrame), MyTexture.HealthBarUnderlay.DepthOfDrawing, Color.White);
             }
         }
 

@@ -10,110 +10,89 @@ namespace RPG.Controls
     public static class MyKeyboard
     {
         private static List<MyKey> allKeys = new List<MyKey>();
+        private static KeyboardState keysState;
+        private static MyKey keyToggleConsole = new MyKey("Toggle console", Keys.OemTilde);
+        private static MyKey keyMoveUp = new MyKey("Move player up", Keys.W);
+        private static MyKey keyMoveDown = new MyKey("Move player down", Keys.S);
+        private static MyKey keyMoveLeft = new MyKey("Move player left", Keys.A);
+        private static MyKey keyMoveRight = new MyKey("Move player right", Keys.D);
+        private static MyKey keyShoot = new MyKey("Shoot", EnumMouseButtons.Left).RegisterKey(Keys.Space).SetRepeatRate(10);
+        private static MyKey keyBuyTurret = new MyKey("Buy turret", Keys.F).SetRepeatRate(10);
+        private static MyKey keyDebug1 = new MyKey("Debug key 1", EnumMouseButtons.Right);
+        private static MyKey keyFullscreen = new MyKey("Fullscreen", Keys.F4);
+        private static MyKey keyResUp = new MyKey("Resolution up", Keys.F5);
+        private static MyKey keyResDown = new MyKey("Resolution down", Keys.F6);
+        private static MyKey keyCollisionBoxDrawToggle = new MyKey("Collision box", Keys.F10);
+
+        //!? Properties region
+        #region PROPERTIES
         public static List<MyKey> AllKeys
         {
             get { return MyKeyboard.allKeys; }
             set { MyKeyboard.allKeys = value; }
         }
-
-        private static KeyboardState keysState;
         public static KeyboardState KeysState
         {
             get { return MyKeyboard.keysState; }
         }
-
-        private static MyKey keyToggleConsole = new MyKey("Toggle console", Keys.OemTilde);
         public static MyKey KeyToggleConsole
         {
             get { return MyKeyboard.keyToggleConsole; }
         }
-
-        private static MyKey keyMoveUp = new MyKey("Move player up", Keys.W);
         public static MyKey KeyMoveUp
         {
             get { return MyKeyboard.keyMoveUp; }
         }
-
-        private static MyKey keyMoveDown = new MyKey("Move player down", Keys.S);
         public static MyKey KeyMoveDown
         {
             get { return MyKeyboard.keyMoveDown; }
         }
-
-        private static MyKey keyMoveLeft = new MyKey("Move player left", Keys.A);
         public static MyKey KeyMoveLeft
         {
             get { return MyKeyboard.keyMoveLeft; }
         }
-
-        private static MyKey keyMoveRight = new MyKey("Move player right", Keys.D);
         public static MyKey KeyMoveRight
         {
             get { return MyKeyboard.keyMoveRight; }
         }
-
-        private static MyKey keyShoot = new MyKey("Shoot", EnumMouseButtons.Left).RegisterKey(Keys.Space).SetRepeatRate(10);
         public static MyKey KeyShoot
         {
             get { return MyKeyboard.keyShoot; }
         }
-
-        private static MyKey keyBuyTurret = new MyKey("Buy turret", Keys.F).SetRepeatRate(10);
         public static MyKey KeyBuyTurret
         {
             get { return MyKeyboard.keyBuyTurret; }
         }
-
-        private static MyKey keyDebug1 = new MyKey("Debug key 1", EnumMouseButtons.Right);
         public static MyKey KeyDebug1
         {
             get { return MyKeyboard.keyDebug1; }
         }
-
-        private static MyKey keyF4 = new MyKey("Fullscreen", Keys.F4);
-        public static MyKey KeyF4
+        public static MyKey KeyFullscreen
         {
-            get { return MyKeyboard.keyF4; }
+            get { return MyKeyboard.keyFullscreen; }
         }
-
-        private static MyKey keyF5 = new MyKey("Resolution up", Keys.F5);
-        public static MyKey KeyF5
+        public static MyKey KeyResUp
         {
-            get { return MyKeyboard.keyF5; }
+            get { return MyKeyboard.keyResUp; }
         }
-
-        private static MyKey keyF6 = new MyKey("Resolution down", Keys.F6);
-        public static MyKey KeyF6
+        public static MyKey KeyResDown
         {
-            get { return MyKeyboard.keyF6; }
+            get { return MyKeyboard.keyResDown; }
         }
-
-
-        private static MyKey keyF10 = new MyKey("Collision box", Keys.F10);
-        public static MyKey KeyF10
+        public static MyKey KeyCollisionBoxDrawToggle
         {
-            get { return MyKeyboard.keyF10; }
+            get { return MyKeyboard.keyCollisionBoxDrawToggle; }
         }
-        private static bool keyF10Pressed;
-        public static bool KeyF10Pressed
-        {
-            get { return MyKeyboard.keyF10Pressed; }
-            set { MyKeyboard.keyF10Pressed = value; }
-        }
+        #endregion
+        //!? END of properties region
 
         public static void Update()
         {
             keysState = Keyboard.GetState();
-            for(int i = 0; i < allKeys.Count; i++)
+            for (int i = 0; i < allKeys.Count; i++)
             {
                 allKeys[i].Update(keysState);
             }
-
-            if (KeyF10.IsToggled)
-                if (KeyF10Pressed)
-                    KeyF10Pressed = false;
-                else
-                    KeyF10Pressed = true;
         }
     }
 }

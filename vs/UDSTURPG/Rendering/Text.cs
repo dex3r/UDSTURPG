@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Content;
@@ -18,8 +17,21 @@ namespace RPG.Rendering
     {
         private static ContentManager contentManager;
         private static SpriteFont loadedFont;
-        /// <summary>Zmiana string do loga. Możliwość implementacji w każdej metodzie i klasie </summary>
-        public static string Log;
+        /// <summary>
+        /// Zmiana string do loga. Możliwość implementacji w każdej metodzie i klasie
+        /// </summary>
+        private static string log;
+
+        //!? Properties region
+        #region PROPERTIES
+        public static string Log
+        {
+            get { return Text.log; }
+            set { Text.log = value; }
+        }
+        #endregion
+        //!? END of properties region
+
         public static void Load(ContentManager cm)
         {
             contentManager = cm;
@@ -43,7 +55,7 @@ namespace RPG.Rendering
         /// </summary>
         public static void DrawText(this SpriteBatch spriteBatch, string textString, Vector2 position)
         {
-            spriteBatch.DrawString(loadedFont, textString, position, Color.Black, 0, new Vector2(0,0), 1.0f, SpriteEffects.None, 1);
+            spriteBatch.DrawString(loadedFont, textString, position, Color.Black, 0, new Vector2(0, 0), 1.0f, SpriteEffects.None, 1);
         }
         public static void DrawText(this SpriteBatch spriteBatch, string textString, Vector2 position, Color textColor)
         {

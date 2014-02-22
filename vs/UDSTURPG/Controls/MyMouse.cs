@@ -1,11 +1,11 @@
-﻿using Microsoft.Xna.Framework;
-using Microsoft.Xna.Framework.Graphics;
-using Microsoft.Xna.Framework.Input;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Microsoft.Xna.Framework;
+using Microsoft.Xna.Framework.Graphics;
+using Microsoft.Xna.Framework.Input;
 using RPG.Rendering;
 using RPG.Entities;
 using RPG.Main;
@@ -14,33 +14,51 @@ namespace RPG.Controls
 {
     public static class MyMouse
     {
-        public static int MouseHoldPositionX { get; private set; }
-        public static int MouseHoldPositionY { get; private set; }
-        public static int OverallScrollWheelValue { get; private set; }
+        private static int mouseHoldPositionX;
+        private static int mouseHoldPositionY;
+        private static int overallScrollWheelValue;
+        private static int scrollWheelDelta;
+        private static MouseState currentMouseState;
+        private static float positionRelativeX;
+        private static float positionRelativeY;
+
+        //!? Properties region
+        #region PROPERTIES
+        public static int MouseHoldPositionX
+        {
+            get { return MyMouse.mouseHoldPositionX; }
+        }
+        public static int MouseHoldPositionY
+        {
+            get { return MyMouse.mouseHoldPositionY; }
+        }
+        public static int OverallScrollWheelValue
+        {
+            get { return MyMouse.overallScrollWheelValue; }
+        }
         /// <summary>
         /// Różnica obrotów kółkiem od ostatniego Update 
         /// Uwaga! Jeden obrót to 120
         /// </summary>
-        public static int ScrollWheelDelta { get; private set; }
-
-        private static MouseState currentMouseState;
+        public static int ScrollWheelDelta
+        {
+            get { return MyMouse.scrollWheelDelta; }
+            set { MyMouse.scrollWheelDelta = value; }
+        }
         public static MouseState CurrentMouseState
         {
             get { return currentMouseState; }
         }
-
-        private static float positionRelativeX;
         public static float PositionRelativeX
         {
             get { return positionRelativeX; }
         }
-
-        private static float positionRelativeY;
         public static float PositionRelativeY
         {
             get { return positionRelativeY; }
         }
-
+        #endregion
+        //!? END of properties region
 
         /// <summary>
         /// Update relatywnej pozycji myszy i kółka //!TEMP Tworzy śnieg po wciśnięciu LPM
@@ -48,8 +66,8 @@ namespace RPG.Controls
         public static void Update()
         {
             currentMouseState = Mouse.GetState();
-            ScrollWheelDelta = OverallScrollWheelValue - Mouse.GetState().ScrollWheelValue;
-            OverallScrollWheelValue = Mouse.GetState().ScrollWheelValue;
+            scrollWheelDelta = OverallScrollWheelValue - Mouse.GetState().ScrollWheelValue;
+            overallScrollWheelValue = Mouse.GetState().ScrollWheelValue;
             positionRelativeX = (Rendering.Camera.Transform.Translation.X * -1 + Mouse.GetState().X) * (float)Math.Pow(Camera.Scale, -1);
             positionRelativeY = (Rendering.Camera.Transform.Translation.Y * -1 + Mouse.GetState().Y) * (float)Math.Pow(Camera.Scale, -1);
         }

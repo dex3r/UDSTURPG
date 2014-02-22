@@ -18,7 +18,7 @@ namespace RPG.Rendering
     {
         public static void DrawWorld(World world)
         {
-            if(GameMain.CurrentDrawingState != EnumDrawingState.World)
+            if (GameMain.CurrentDrawingState != EnumDrawingState.World)
             {
                 throw new Exception("Wrong rendering state");
             }
@@ -31,7 +31,7 @@ namespace RPG.Rendering
             }
             Stopwatch sw = new Stopwatch();
             sw.Start();
-            foreach(Entity entity in world.Entities)
+            foreach (Entity entity in world.Entities)
             {
                 entity.Draw();
             }
@@ -60,7 +60,7 @@ namespace RPG.Rendering
         /// <param name="color"></param>
         public static void DrawGuiElement(Texture2D texture, float posX, float posY, Rectangle sourceRectangle, float depth, Color color)
         {
-            if(GameMain.CurrentDrawingState != EnumDrawingState.GUI)
+            if (GameMain.CurrentDrawingState != EnumDrawingState.GUI)
             {
                 throw new Exception("Wrong rendering state");
             }

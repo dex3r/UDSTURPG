@@ -13,7 +13,8 @@ namespace RPG.GUI
         private int height;
         private bool isVisible;
 
-        #region properties
+        //!? Properties region
+        #region PROPERTIES
         /// <summary>
         /// Pozycja X GUI na ekranie w zakresie 0.0 do 1.0
         /// </summary>
@@ -52,6 +53,7 @@ namespace RPG.GUI
             set { isVisible = value; }
         }
         #endregion
+        //!? END of properties region
 
         public GUI(int width, int height, float posX = 0.0f, float posY = 0.0f)
         {

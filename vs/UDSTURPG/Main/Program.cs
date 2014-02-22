@@ -1,6 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
 
 namespace RPG.Main
 {
@@ -10,7 +8,9 @@ namespace RPG.Main
         static void Main()
         {
             using (var game = new GameMain())
+            {
                 game.Run();
+            }
         }
     }
 }

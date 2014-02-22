@@ -2,10 +2,10 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
-using Microsoft.Xna.Framework.Storage;
-using Microsoft.Xna.Framework;
 using System.IO;
 using System.Xml.Serialization;
+using Microsoft.Xna.Framework.Storage;
+using Microsoft.Xna.Framework;
 
 namespace RPG.Worlds
 {
@@ -21,18 +21,21 @@ namespace RPG.Worlds
         /// Otwarta lista plików zapisu
         /// </summary>
         private static StorageContainer container;
+        private static List<SaveWorldData> dataContainer = new List<SaveWorldData>();
+
+        //!? Properties region
+        #region PROPERTIES
         public static StorageContainer Container
         {
             get { return container; }
         }
-
-        private static List<SaveWorldData> dataContainer = new List<SaveWorldData>();
         public static List<SaveWorldData> DataContainer
         {
             get { return dataContainer; }
             set { dataContainer = value; }
         }
-
+        #endregion
+        //!? END of properties region
 
         /// <summary>
         /// sync container
@@ -82,7 +85,7 @@ namespace RPG.Worlds
         {
             Stream stream;
             sync(device);
-            
+
             string filename = save + ".sav";
             if (check(filename))
             {
@@ -90,7 +93,7 @@ namespace RPG.Worlds
             }
             else
             {
-               stream = container.CreateFile(filename);
+                stream = container.CreateFile(filename);
             }
             stream.Close();
             deSync();

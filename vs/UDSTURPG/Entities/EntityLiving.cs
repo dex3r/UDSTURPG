@@ -36,7 +36,7 @@ namespace RPG.Entities
         public int CurrentHp
         {
             get { return currentHp; }
-            set { currentHp = value;  }
+            set { currentHp = value; }
         }
 
         private Color healthColor = Color.Green;
@@ -106,7 +106,7 @@ namespace RPG.Entities
             {
                 timeLeftBeforeNextShot--;
             }
-            if(isShooting && timeLeftBeforeNextShot == 0)
+            if (isShooting && timeLeftBeforeNextShot == 0)
             {
                 timeLeftBeforeNextShot = shootingSpeed;
                 //EntityBullet bullet = new EntityBullet(this.PosX + 0.25f, this.PosY + 0.25f);
@@ -115,7 +115,7 @@ namespace RPG.Entities
                 bullet.Rotation = shootingRotation;
                 GameMain.CurrentWorld.AddEntity(bullet);
             }
-            if(CurrentHp != MaxHp)
+            if (CurrentHp != MaxHp)
             {
                 barDisplay = true;
                 if (CurrentHp <= 0)
@@ -127,12 +127,12 @@ namespace RPG.Entities
                 }
                 else
                 {
-                    BarFrame = (int)(((float)CurrentHp/(float)MaxHp)*21);
-                    if (BarFrame < 6)
+                    BarFrame = (int)(((float)CurrentHp / (float)MaxHp) * 21);
+                    if (BarFrame < 8)
                     {
                         healthColor = Color.Red;
                     }
-                    if (BarFrame >= 6 && BarFrame < 15)
+                    if (BarFrame >= 8 && BarFrame < 15)
                     {
                         healthColor = Color.Orange;
                     }
@@ -140,10 +140,10 @@ namespace RPG.Entities
                     {
                         healthColor = Color.Green;
                     }
-                    //healthColor = ColorConversion.HSVtoRGB((BarFrame/21f*100)/240,1f,0.5f,1f);
+                    //healthColor = ColorConversion.HSVtoRGB((BarFrame/21f*80)/240,1f,0.5f,1f);
                 }
             }
-            base.Update();  
+            base.Update();
         }
 
         public override void ActualDraw()
@@ -151,9 +151,9 @@ namespace RPG.Entities
             base.ActualDraw();
             if (barDisplay == true)
             {
-                GlobalRenderer.DrawEntity(MyTexture.HealthBar.Texture, PosX, PosY + CollisionBoxY + CollisionBoxHeight, MyTexture.HealthBar.GetCurrentSourceRectangle(BarFrame), MyTexture.HealthBar.DepthOfDrawing, healthColor);
-                GlobalRenderer.DrawEntity(MyTexture.HealthBarOutline.Texture, PosX, PosY + CollisionBoxY + CollisionBoxHeight, MyTexture.HealthBar.GetCurrentSourceRectangle(BarFrame), MyTexture.HealthBarOutline.DepthOfDrawing, Color.White);
-                GlobalRenderer.DrawEntity(MyTexture.HealthBarUnderlay.Texture, PosX, PosY + CollisionBoxY + CollisionBoxHeight, MyTexture.HealthBar.GetCurrentSourceRectangle(BarFrame), MyTexture.HealthBarUnderlay.DepthOfDrawing, Color.White);
+                GlobalRenderer.DrawEntity(MyTexture.HealthBar.Texture, PosX + ((CollisionBoxX + CollisionBoxWidth) / 2) - 0.5f, PosY + CollisionBoxY + CollisionBoxHeight, MyTexture.HealthBar.GetCurrentSourceRectangle(BarFrame), MyTexture.HealthBar.DepthOfDrawing, healthColor);
+                GlobalRenderer.DrawEntity(MyTexture.HealthBarOutline.Texture, PosX + ((CollisionBoxX + CollisionBoxWidth) / 2) - 0.5f, PosY + CollisionBoxY + CollisionBoxHeight, MyTexture.HealthBar.GetCurrentSourceRectangle(BarFrame), MyTexture.HealthBarOutline.DepthOfDrawing, Color.White);
+                GlobalRenderer.DrawEntity(MyTexture.HealthBarUnderlay.Texture, PosX + ((CollisionBoxX + CollisionBoxWidth) / 2) - 0.5f, PosY + CollisionBoxY + CollisionBoxHeight, MyTexture.HealthBar.GetCurrentSourceRectangle(BarFrame), MyTexture.HealthBarUnderlay.DepthOfDrawing, Color.White);
             }
         }
 

@@ -42,6 +42,7 @@
     <Compile Include="Controls\MyMouse.cs" />
     <Compile Include="Entities\EntityBullet.cs" />
     <Compile Include="Entities\Entity.cs" />
+    <Compile Include="Entities\EntityCoin.cs" />
     <Compile Include="Entities\EntityLiving.cs" />
     <Compile Include="Entities\EntityMob.cs" />
     <Compile Include="Entities\EntityMovable.cs" />

@@ -45,6 +45,16 @@ namespace RPG.Textures2D
         public static MyTexture FontSmallWhite = new MyTexture(@"art\fonts\font_small_white", new Rectangle(0, 0, 8, 8));
         public static MyTexture FontSmallGold = new MyTexture(@"art\fonts\font_small_gold", new Rectangle(0, 0, 8, 8));
 
+        public static MyTexture CoinBronze = new MyTexture(@"art\pickup\pickup_coin_bronze_16", new Rectangle(0, 0, 16, 16), 6);
+        public static MyTexture CoinBronzeSmall = new MyTexture(@"art\pickup\pickup_coin_bronze_small_8", new Rectangle(0, 0, 8, 8), 6);
+        public static MyTexture CoinGold = new MyTexture(@"art\pickup\pickup_coin_gold_16", new Rectangle(0, 0, 16, 16), 6);
+        public static MyTexture CoinGoldSmall = new MyTexture(@"art\pickup\pickup_coin_gold_small_8", new Rectangle(0, 0, 8, 8), 6);
+        public static MyTexture CoinSilver = new MyTexture(@"art\pickup\pickup_coin_silver_16", new Rectangle(0, 0, 16, 16), 6);
+        public static MyTexture CoinSilverSmall = new MyTexture(@"art\pickup\pickup_coin_silver_small_8", new Rectangle(0, 0, 8, 8), 6);
+        public static MyTexture GemEmerald = new MyTexture(@"art\pickup\pickup_gem_emerald_12", new Rectangle(0, 0, 12, 12), 7);
+        public static MyTexture GemRuby = new MyTexture(@"art\pickup\pickup_gem_ruby_12", new Rectangle(0, 0, 12, 12), 7);
+        public static MyTexture GemDiamond = new MyTexture(@"art\pickup\pickup_gem_diamond_24", new Rectangle(0, 0, 24, 24), 14);
+
         public static void LoadAll(ContentManager cm)
         {
             foreach (MyTexture mt in textures)

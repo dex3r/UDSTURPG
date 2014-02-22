@@ -174,9 +174,9 @@ namespace RPG.Main
             SpriteBatch.Begin(SpriteSortMode.FrontToBack, BlendState.AlphaBlend, SamplerState.PointWrap, null, null, null, Matrix.CreateScale(2.0f, 2.0f, 1.0f));
             currentDrawingState = EnumDrawingState.GUI;
 
-            Font.BigGold.DrawString("Score: " + currentPlayer.Score, (GraphicsDevice.Viewport.Width / 2) - 120, 5);
-            Font.BigGold.DrawString("Money: " + currentPlayer.Money, (GraphicsDevice.Viewport.Width / 2) - 120, 15);
-            Font.BigGold.DrawString("HP: " + currentPlayer.CurrentHp, (GraphicsDevice.Viewport.Width / 2) - 120, 25);
+            Font.BigGold.DrawString("Score: " + currentPlayer.Score, 5, (GraphicsDevice.Viewport.Height / 2) - 30);
+            Font.BigGold.DrawString("Money: " + currentPlayer.Money, 5, (GraphicsDevice.Viewport.Height / 2) - 20);
+            Font.BigGold.DrawString("HP: " + currentPlayer.CurrentHp, 5, (GraphicsDevice.Viewport.Height / 2) - 10);
 
             SpriteBatch.End();
 

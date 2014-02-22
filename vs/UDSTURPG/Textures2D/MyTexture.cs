@@ -22,7 +22,6 @@ namespace RPG.Textures2D
         public static MyTexture Wall = new MyTexture(@"tiled\Tileset-Wall", new Rectangle(0, 0, 32, 55), 0.7f);
         public static MyTexture Floor = new MyTexture(@"tiled\Tileset-Floor", new Rectangle(0, 0, 32, 32));
 
-
         public static MyTexture Bullet = new MyTexture(@"art\effects\bullet", new Rectangle(0, 0, 16, 16), 0.55f);
         public static MyTexture Turret = new MyTexture(@"art\building\turret", new Rectangle(0, 0, 32, 32), 0.6f);
 
@@ -36,6 +35,14 @@ namespace RPG.Textures2D
         public static MyTexture HealthBar = new MyTexture(@"art\effects\bar_green", new Rectangle(0,0,32,4),0.999f,22,1);
         public static MyTexture HealthBarOutline = new MyTexture(@"art\effects\bar_outline", new Rectangle(0, 0, 32, 4), 0.998f, 1, 1);
         public static MyTexture HealthBarUnderlay = new MyTexture(@"art\effects\bar_green_underlay", new Rectangle(0, 0, 32, 4), 0.997f, 1, 1);
+
+        public static MyTexture FontBigBlue = new MyTexture(@"art\fonts\font_blue", new Rectangle(0, 0, 8, 8));
+        public static MyTexture FontBigGold = new MyTexture(@"art\fonts\font_gold", new Rectangle(0, 0, 8, 8));
+        public static MyTexture FontBigGray = new MyTexture(@"art\fonts\font_gray", new Rectangle(0, 0, 8, 8));
+        public static MyTexture FontBigRed = new MyTexture(@"art\fonts\font_red", new Rectangle(0, 0, 8, 8));
+        public static MyTexture FontSmallBlack = new MyTexture(@"art\fonts\font_small_black", new Rectangle(0, 0, 8, 8));
+        public static MyTexture FontSmallWhite = new MyTexture(@"art\fonts\font_small_white", new Rectangle(0, 0, 8, 8));
+        public static MyTexture FontSmallGold = new MyTexture(@"art\fonts\font_small_gold", new Rectangle(0, 0, 8, 8));
 
         public static void LoadAll(ContentManager cm)
         {
@@ -126,7 +133,7 @@ namespace RPG.Textures2D
         /// </summary>
         /// <param name="frame"></param>
         /// <param name="textureId">Dla wielu tekstur tego samego obiektu w jednym pliku, np. wiele animacji gracza.</param>
-        /// <param name="animationSpeed"></param>
+        /// <param name="animationSpeed"></param>  
         /// <returns></returns>
         public virtual Rectangle GetCurrentSourceRectangle(int frame, int textureId = 0, int animationSpeed = -1)
         {

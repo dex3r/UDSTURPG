@@ -50,7 +50,13 @@
     <Compile Include="Entities\EnumMobWalkingStyle.cs" />
     <Compile Include="Entities\MobsGenerator.cs" />
     <Compile Include="Entities\MobType.cs" />
+    <Compile Include="GUI\GUI.cs" />
+    <Compile Include="GUI\GUIElement.cs" />
+    <Compile Include="GUI\GUIElementText.cs" />
+    <Compile Include="GUI\GUIScreen.cs" />
+    <Compile Include="GUI\GUIScreenIngame.cs" />
     <Compile Include="Main\Console.cs" />
+    <Compile Include="Main\EnumDrawingState.cs" />
     <Compile Include="Main\GameMain.cs" />
     <Compile Include="Main\GameWindowControl.cs" />
     <Compile Include="Main\Options.cs" />
@@ -59,10 +65,13 @@
     <Compile Include="Rendering\Camera.cs" />
     <Compile Include="Rendering\ChunkRenderer.cs" />
     <Compile Include="Entities\EntityEffect.cs" />
+    <Compile Include="Rendering\FontBig.cs" />
+    <Compile Include="Rendering\FontSmall.cs" />
     <Compile Include="Rendering\GlobalRenderer.cs" />
     <Compile Include="Rendering\Text.cs" />
     <Compile Include="Textures2D\EnumSheetNormalMob.cs" />
     <Compile Include="Textures2D\EnumSheetPlayer.cs" />
+    <Compile Include="Rendering\Font.cs" />
     <Compile Include="Textures2D\MyTexture.cs" />
     <Compile Include="Utils\Primitives2D.cs" />
     <Compile Include="Worlds\Chunk.cs" />
@@ -183,6 +192,30 @@
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="Content\gfx\art\effects\sprint_bar.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\gfx\art\fonts\font_blue.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\gfx\art\fonts\font_default.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\gfx\art\fonts\font_gold.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\gfx\art\fonts\font_gray.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\gfx\art\fonts\font_red.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\gfx\art\fonts\font_small_black.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\gfx\art\fonts\font_small_gold.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\gfx\art\fonts\font_small_white.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="Content\gfx\art\map\dark.png">

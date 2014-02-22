@@ -55,6 +55,12 @@ namespace RPG.Main
 
         public static SpriteBatch SpriteBatch { get; private set; }
 
+        private static EnumDrawingState currentDrawingState;
+        public static EnumDrawingState CurrentDrawingState
+        {
+            get { return GameMain.currentDrawingState; }
+        }
+
         /// <summary>
         /// Wróć do pozycji kamery
         /// </summary>
@@ -69,9 +75,6 @@ namespace RPG.Main
         /// <param name="transformation"></param>
         public static void BeginDrawingAndApplyTransformation(Matrix transformation)
         {
-            SamplerState.PointWrap.MaxAnisotropy = 0;
-            SamplerState.PointWrap.MaxMipLevel = 0;
-            SamplerState.PointWrap.MipMapLevelOfDetailBias = 0;
             SpriteBatch.Begin(SpriteSortMode.FrontToBack, BlendState.AlphaBlend, SamplerState.PointWrap, null, null, null, transformation * Camera.Transform);
         }
         #endregion
@@ -94,6 +97,7 @@ namespace RPG.Main
         protected override void Initialize()
         {
             base.Initialize();
+            currentDrawingState = EnumDrawingState.Unknown;
             currentWorld = new World();
             currentPlayer = new EntityPlayer(2, 2);
             currentWorld.Entities.Add(currentPlayer);
@@ -102,6 +106,9 @@ namespace RPG.Main
             //Początkowa pozycja kamery na środku rysowanego pola 
             Camera.X = 0;
             Camera.Y = 0;
+            SamplerState.PointWrap.MaxAnisotropy = 0;
+            SamplerState.PointWrap.MaxMipLevel = 0;
+            SamplerState.PointWrap.MipMapLevelOfDetailBias = 0;
         }
 
         protected override void LoadContent()
@@ -144,6 +151,7 @@ namespace RPG.Main
 
         protected override void Draw(GameTime gameTime)
         {
+            currentDrawingState = EnumDrawingState.Unknown;
             GraphicsDevice.Clear(Color.Firebrick);
             if (lastSec != (long)gameTime.TotalGameTime.TotalSeconds)
             {
@@ -155,16 +163,24 @@ namespace RPG.Main
 
             //Wyświetlanie po transformacji
             BeginNormalDrawing();
+            currentDrawingState = EnumDrawingState.World;
             // Rysowanie świata i obiektów
             if (currentWorld != null)
             {
                 GlobalRenderer.DrawWorld(currentWorld);
             }
+            SpriteBatch.End();
+
+            SpriteBatch.Begin(SpriteSortMode.FrontToBack, BlendState.AlphaBlend, SamplerState.PointWrap, null, null, null, Matrix.CreateScale(2.0f, 2.0f, 1.0f));
+            currentDrawingState = EnumDrawingState.GUI;
+
+            Font.BigGold.DrawString("Siema ludzie: :) !", 150, 150);
 
             SpriteBatch.End();
 
             //Wyświetlanie bez transformacji
             SpriteBatch.Begin();
+            currentDrawingState = EnumDrawingState.Normal;
 
             if (Console.isVisible)
             {

@@ -8,10 +8,10 @@ namespace RPG.Entities
 {
     public class MobType
     {
-        public static readonly MobType MobMummy = new MobType(50, 10, 0.02f, MyTexture.MobMummy, EnumMobWalkingStyle.Stuttery, 0.15f, 0.2f, 1f, 1f, stepInterval: 25);
-        public static readonly MobType MobSnake = new MobType(30, 20, 0.05f, MyTexture.MobSnake, EnumMobWalkingStyle.Stuttery, 0.25f, 0.35f, 0.95f, 0.75f, stepInterval: 25, stepLength: 40);
-        public static readonly MobType MobScarab = new MobType(45, 15, 0.023f, MyTexture.MobScarab, EnumMobWalkingStyle.Stuttery, 0.25f, 0.35f, 0.95f, 0.75f, stepInterval: 25, stepLength: 40);
-        public static readonly MobType MobBat = new MobType(20, 5, 0.04f, MyTexture.MobBat, EnumMobWalkingStyle.Flying, 0.1f, 0.2f, 0.85f, 0.7f);
+        public static readonly MobType MobMummy = new MobType(50, 10, 0.02f, MyTexture.MobMummy, EnumMobWalkingStyle.Stuttery, 0.15f, 0.2f, 1f, 1f, stepInterval: 25, worth: 10);
+        public static readonly MobType MobSnake = new MobType(30, 20, 0.05f, MyTexture.MobSnake, EnumMobWalkingStyle.Stuttery, 0.25f, 0.35f, 0.95f, 0.75f, stepInterval: 25, stepLength: 40, worth: 6);
+        public static readonly MobType MobScarab = new MobType(45, 15, 0.023f, MyTexture.MobScarab, EnumMobWalkingStyle.Stuttery, 0.25f, 0.35f, 0.95f, 0.75f, stepInterval: 25, stepLength: 40, worth: 8);
+        public static readonly MobType MobBat = new MobType(20, 5, 0.04f, MyTexture.MobBat, EnumMobWalkingStyle.Flying, 0.1f, 0.2f, 0.85f, 0.7f, worth: 5);
 
         private int hp;
         public int Hp
@@ -84,7 +84,13 @@ namespace RPG.Entities
             get { return collisionBoxY; }
         }
 
-        private MobType(int hp, int baseDmg, float speed, MyTexture texture, EnumMobWalkingStyle walkingStyle, float collisionBoxX, float collisionBoxY, float collisionBoxWidth, float collisionBoxHeight, int stepInterval = 0, int stepLength = 20)
+        private int worth;
+        public int Worth
+        {
+            get { return worth; }
+        }
+
+        private MobType(int hp, int baseDmg, float speed, MyTexture texture, EnumMobWalkingStyle walkingStyle, float collisionBoxX, float collisionBoxY, float collisionBoxWidth, float collisionBoxHeight, int worth, int stepInterval = 0, int stepLength = 20)
         {
             this.hp = hp;
             this.baseDmg = baseDmg;
@@ -97,6 +103,7 @@ namespace RPG.Entities
             this.collisionBoxWidth = collisionBoxWidth;
             this.collisionBoxX = collisionBoxX;
             this.collisionBoxY = collisionBoxY;
+            this.worth = worth;
         }
     }
 }

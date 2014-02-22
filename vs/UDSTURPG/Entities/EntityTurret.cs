@@ -17,7 +17,7 @@ namespace RPG.Entities
         {
             currentTexture = MyTexture.Turret;
             SetCollisionBox(0, 0, 0.5f, 0.5f);
-            this.ShootingSpeed = 35;
+            this.ShootingSpeed = 32;
             this.damage = 25;
         }
 

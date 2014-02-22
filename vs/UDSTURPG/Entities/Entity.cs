@@ -130,9 +130,6 @@ namespace RPG.Entities
             if (posX > BORDER || posY > BORDER || posY < MBORDER || PosX < MBORDER)
             {
                 markedToDelete = true;
-            }
-            if (markedToDelete)
-            {
                 return;
             }
         }

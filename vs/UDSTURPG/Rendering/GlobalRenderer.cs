@@ -59,7 +59,7 @@ namespace RPG.Rendering
             sw.Stop();
             GameMain.time = sw.ElapsedTicks;
         }
-
+        
         public static void DrawEntity(Texture2D texture, float posX, float posY, Rectangle sourceRectangle, float depth, Color color)
         {
             GameMain.SpriteBatch.Draw(texture, new Vector2(posX * 64.0f, posY * 64.0f), sourceRectangle, color, 0, Vector2.Zero, 2.0f, SpriteEffects.None, depth);

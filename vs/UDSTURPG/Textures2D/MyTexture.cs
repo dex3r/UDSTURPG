@@ -10,6 +10,8 @@ namespace RPG.Textures2D
 {
     public class MyTexture
     {
+        public const int COINS_ANIMATION_SPEED = 4;
+
         #region static
         private static List<MyTexture> textures = new List<MyTexture>(30);
         public static List<MyTexture> Textures
@@ -45,15 +47,15 @@ namespace RPG.Textures2D
         public static MyTexture FontSmallWhite = new MyTexture(@"art\fonts\font_small_white", new Rectangle(0, 0, 8, 8));
         public static MyTexture FontSmallGold = new MyTexture(@"art\fonts\font_small_gold", new Rectangle(0, 0, 8, 8));
 
-        public static MyTexture CoinBronzeSmall = new MyTexture(@"art\pickup\pickup_coin_bronze_small_8", new Rectangle(0, 0, 8, 8), 0.6f, 6);
-        public static MyTexture CoinSilverSmall = new MyTexture(@"art\pickup\pickup_coin_silver_small_8", new Rectangle(0, 0, 8, 8), 0.6f, 6);
-        public static MyTexture CoinGoldSmall = new MyTexture(@"art\pickup\pickup_coin_gold_small_8", new Rectangle(0, 0, 8, 8), 0.6f, 6);
-        public static MyTexture CoinBronze = new MyTexture(@"art\pickup\pickup_coin_bronze_16", new Rectangle(0, 0, 16, 16), 0.6f, 6);
-        public static MyTexture CoinSilver = new MyTexture(@"art\pickup\pickup_coin_silver_16", new Rectangle(0, 0, 16, 16), 0.6f, 6);
-        public static MyTexture CoinGold = new MyTexture(@"art\pickup\pickup_coin_gold_16", new Rectangle(0, 0, 16, 16), 0.6f, 6);
-        public static MyTexture GemEmerald = new MyTexture(@"art\pickup\pickup_gem_emerald_12", new Rectangle(0, 0, 12, 12), 0.6f, 7);
-        public static MyTexture GemRuby = new MyTexture(@"art\pickup\pickup_gem_ruby_12", new Rectangle(0, 0, 12, 12), 0.6f, 7);
-        public static MyTexture GemDiamond = new MyTexture(@"art\pickup\pickup_gem_diamond_24", new Rectangle(0, 0, 24, 24), 0.6f, 14);
+        public static MyTexture CoinBronzeSmall = new MyTexture(@"art\pickup\pickup_coin_bronze_small_8", new Rectangle(0, 0, 8, 8), 0.6f, 6, animationSpeed: COINS_ANIMATION_SPEED);
+        public static MyTexture CoinSilverSmall = new MyTexture(@"art\pickup\pickup_coin_silver_small_8", new Rectangle(0, 0, 8, 8), 0.6f, 6, animationSpeed: COINS_ANIMATION_SPEED);
+        public static MyTexture CoinGoldSmall = new MyTexture(@"art\pickup\pickup_coin_gold_small_8", new Rectangle(0, 0, 8, 8), 0.6f, 6, animationSpeed: COINS_ANIMATION_SPEED);
+        public static MyTexture CoinBronze = new MyTexture(@"art\pickup\pickup_coin_bronze_16", new Rectangle(0, 0, 16, 16), 0.6f, 6, animationSpeed: COINS_ANIMATION_SPEED);
+        public static MyTexture CoinSilver = new MyTexture(@"art\pickup\pickup_coin_silver_16", new Rectangle(0, 0, 16, 16), 0.6f, 6, animationSpeed: COINS_ANIMATION_SPEED);
+        public static MyTexture CoinGold = new MyTexture(@"art\pickup\pickup_coin_gold_16", new Rectangle(0, 0, 16, 16), 0.6f, 6, animationSpeed: COINS_ANIMATION_SPEED);
+        public static MyTexture GemEmerald = new MyTexture(@"art\pickup\pickup_gem_emerald_12", new Rectangle(0, 0, 12, 12), 0.6f, 7, animationSpeed: COINS_ANIMATION_SPEED);
+        public static MyTexture GemRuby = new MyTexture(@"art\pickup\pickup_gem_ruby_12", new Rectangle(0, 0, 12, 12), 0.6f, 7, animationSpeed: COINS_ANIMATION_SPEED);
+        public static MyTexture GemDiamond = new MyTexture(@"art\pickup\pickup_gem_diamond_24", new Rectangle(0, 0, 24, 24), 0.6f, 14, animationSpeed: COINS_ANIMATION_SPEED);
 
         public static void LoadAll(ContentManager cm)
         {

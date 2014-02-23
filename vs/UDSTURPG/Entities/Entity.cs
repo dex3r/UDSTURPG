@@ -15,7 +15,7 @@ namespace RPG.Entities
     public class Entity
     {
 
-        protected readonly Random random = new Random();
+        protected static readonly Random random = new Random();
 
         // Granica, za którą obiekt znika
         public const int BORDER = 100;

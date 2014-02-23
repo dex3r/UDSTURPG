@@ -55,7 +55,7 @@ namespace RPG.Entities
             CurrentTexture = MyTexture.PlayerLordLard;
             maxSpeed = 0.05f;
             acceleration = 0.03f;
-            SetCollisionBox(0, 0, 1.0f, 1.0f);
+            SetCollisionBox(0.2f, 0, 0.6f, 1.0f);
             MaxHp = 100;
             CurrentHp = MaxHp;
             this.damage = 15;
@@ -133,7 +133,7 @@ namespace RPG.Entities
                         if(en is EntityCoin)
                         {
                             EntityCoin coin = (EntityCoin)en;
-                            if(Distance(coin) < 5)
+                            if(Distance(coin) < 4.5)
                             {
                                 coin.PullMoney = true;
                             }
@@ -168,11 +168,13 @@ namespace RPG.Entities
                 shootingRotation = bullet.Rotation;
                 GameMain.CurrentWorld.AddEntity(bullet);
             }
+#if DEBUG
             if(MyKeyboard.KeyDebug1.IsToggled)
             {
                 EntityTurret turret = new EntityTurret(PosX + 0.25f, PosY + 0.25f);
                 GameMain.CurrentWorld.AddEntity(turret);
             }
+#endif
             if(MyKeyboard.KeyBuyTurret.IsPressed)
             {
                 if(this.Money >= 2000)

@@ -59,7 +59,7 @@ namespace RPG.Main
             resolutionStatus = 0;
             updateResolution(graphicsDeviceManager, resolution[resolutionStatus, 0], resolution[resolutionStatus, 1]);
             //! Ustawianie FullScreena na początku
-            toogleFullScreeen(graphicsDeviceManager);
+            //toogleFullScreeen(graphicsDeviceManager);
 #endif
         }
 

@@ -110,7 +110,8 @@ namespace RPG.Entities
             this.coinValue = coinValue;
             this.coinIndex = coinIndex;
             currentTexture = CoinsTextures[coinIndex];
-            SetCollisionBox(0, 0, coinsSize[coinIndex], coinsSize[coinIndex]);
+            //SetCollisionBox(0, 0, coinsSize[coinIndex], coinsSize[coinIndex]);
+            SetCollisionBox(coinsSize[coinIndex] / 2, coinsSize[coinIndex] / 2, 0.1f, 0.1f);
             Rotation = (float)(random.NextDouble()*Math.PI*2-Math.PI);
             HitRecoil = (float)(random.Next(20,40)/100f);
             timeoutTimer = 15 * 60;

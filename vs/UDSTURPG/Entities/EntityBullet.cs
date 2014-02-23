@@ -36,7 +36,7 @@ namespace RPG.Entities
                     if (!en.MarkedToDelete && Collision(en))
                     {
                         EntityMob mob = (EntityMob)en;
-                        mob.HitRecoil = 0.2f;
+                        mob.HitRecoil = 0.1f;
                         mob.CurrentHp -= Damage;
 
                         Vector2 interp = Vector2.Subtract(new Vector2((PosX + 0.25f) * 64, (PosY + 0.25f) * 64), new Vector2((mob.PosX + mob.CollisionBoxX + mob.CollisionBoxWidth / 2) * 64, (mob.PosY + mob.CollisionBoxY + mob.CollisionBoxHeight / 2) * 64));

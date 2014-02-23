@@ -29,6 +29,13 @@ namespace RPG.Entities
             set { currentVelocity = value; }
         }
 
+        private float acceleration = 0.004f;
+        public float Acceleration
+        {
+            get { return acceleration; }
+            set { acceleration = value; }
+        }
+
         protected float maxSpeed;
 
         public float MaxSpeed
@@ -82,9 +89,12 @@ namespace RPG.Entities
             if (HitRecoil > 0)
             {
                 currentVelocity = -HitRecoil;
-                HitRecoil -= 0.1f;
+                HitRecoil -= 0.05f+acceleration;
+                if(acceleration <= 0.03f)
+                acceleration *= 2;
                 if (HitRecoil <= 0)
                 {
+                    acceleration = 0.004f;
                     HitRecoil = 0;
                     currentVelocity = 0;
                     rotation = Math.PI;

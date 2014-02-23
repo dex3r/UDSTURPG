@@ -62,8 +62,8 @@ namespace RPG.Entities
             currentTexture = CoinsTextures[coinValue];
             SetCollisionBox(0, 0, coinsSize[coinValue], coinsSize[coinValue]);
             coinValue = CoinsValues[coinValue];
-            Rotation = (float)(random.NextDouble());
-            HitRecoil = (float)(random.Next(30,50)/100f);
+            Rotation = (float)(random.NextDouble()*Math.PI*2-Math.PI);
+            HitRecoil = (float)(random.Next(20,40)/100f);
             timeoutTimer = 15 * 60;
             IsAnimatedOnlyOnMove = false;
         }
@@ -85,7 +85,8 @@ namespace RPG.Entities
             }
             else
             {
-                //HitRecoil = currentVelocity;
+                if(HitRecoil <= 0 && currentVelocity > 0)
+                HitRecoil = currentVelocity;
             }
             base.Update();
         }

@@ -1,23 +1,20 @@
 ﻿using System;
 using System.Text;
+using Microsoft.Xna.Framework;
+using Microsoft.Xna.Framework.Graphics;
+using Microsoft.Xna.Framework.Input;
 using RPG.Controls;
 using RPG.Rendering;
 using RPG.Worlds;
 using RPG.Textures2D;
 using RPG.Main;
-using Microsoft.Xna.Framework;
-using Microsoft.Xna.Framework.Graphics;
-using Microsoft.Xna.Framework.Input;
 using RPG.Entities;
 
 namespace RPG.Main
 {
     public class GameMain : Game
     {
-        #region static
-        //!? Private:
-        public static GraphicsDeviceManager graphicsDeviceManager;
-
+        private static GraphicsDeviceManager graphicsDeviceManager;
         // Zmienne do prostego pomiaru FPS
         private static int currentFps;
         private static int lastFps;
@@ -26,9 +23,24 @@ namespace RPG.Main
         //! Wyodrębnienie poza DrawWorld dla wydajności
         private static StringBuilder sb = new StringBuilder();
         private static StringBuilder sc = new StringBuilder();
-
-        //!? Public:
         private static World currentWorld;
+        private static EntityPlayer currentPlayer;
+        private static uint entitiesId = 0;
+        private static SpriteBatch spriteBatch;
+        private static EnumDrawingState currentDrawingState;
+
+        //!? Properties region
+        #region PROPERTIES
+        public static SpriteBatch SpriteBatch
+        {
+            get { return GameMain.spriteBatch; }
+            set { GameMain.spriteBatch = value; }
+        }
+        public static GraphicsDeviceManager GraphicsDeviceManager
+        {
+            get { return GameMain.graphicsDeviceManager; }
+            set { GameMain.graphicsDeviceManager = value; }
+        }
         /// <summary>
         /// Świat który jest aktualnie wyświetlany (null jeżeli w menu etc)
         /// </summary>
@@ -37,30 +49,20 @@ namespace RPG.Main
             get { return currentWorld; }
             set { currentWorld = value; }
         }
-
-        private static EntityPlayer currentPlayer;
         public static EntityPlayer CurrentPlayer
         {
             get { return GameMain.currentPlayer; }
             set { GameMain.currentPlayer = value; }
         }
-
-        private static uint entitiesId = 0;
-
         public static uint EntitiesId
         {
             get { return GameMain.entitiesId; }
             set { GameMain.entitiesId = value; }
         }
-
-        public static SpriteBatch SpriteBatch { get; private set; }
-
-        private static EnumDrawingState currentDrawingState;
         public static EnumDrawingState CurrentDrawingState
         {
             get { return GameMain.currentDrawingState; }
         }
-
         /// <summary>
         /// Wróć do pozycji kamery
         /// </summary>
@@ -68,7 +70,6 @@ namespace RPG.Main
         {
             BeginDrawingAndApplyTransformation(Matrix.Identity);
         }
-
         /// <summary>
         /// Zastosuj transofrmację (trans * Camera)
         /// </summary>
@@ -78,14 +79,13 @@ namespace RPG.Main
             SpriteBatch.Begin(SpriteSortMode.FrontToBack, BlendState.AlphaBlend, SamplerState.PointWrap, null, null, null, transformation * Camera.Transform);
         }
         #endregion
+        //!? END of properties region
 
         public GameMain()
             : base()
         {
             graphicsDeviceManager = new GraphicsDeviceManager(this);
             Content.RootDirectory = "Content";
-            // Ustawianie fullscreena początkowego i rozdziałki jest teraz w obiekcjie options
-            // Nie przenosić do Initialize!
             Options.Init(graphicsDeviceManager);
             // Vsync i fixedTimeStep:
             this.IsFixedTimeStep = true;
@@ -101,9 +101,7 @@ namespace RPG.Main
             currentWorld = new World();
             currentPlayer = new EntityPlayer(2, 2);
             currentWorld.Entities.Add(currentPlayer);
-            //Ustawienie pozycji okna
             Window.SetPosition(new Point(400, 100));
-            //Początkowa pozycja kamery na środku rysowanego pola 
             Camera.X = 0;
             Camera.Y = 0;
             SamplerState.PointWrap.MaxAnisotropy = 0;
@@ -114,7 +112,6 @@ namespace RPG.Main
         protected override void LoadContent()
         {
             SpriteBatch = new SpriteBatch(GraphicsDevice);
-
             Textures2D.MyTexture.LoadAll(this.Content);
             Text.Load(this.Content);
             Text.LoadDefaultFont();
@@ -139,8 +136,9 @@ namespace RPG.Main
 
             Camera.Interaction();
             Camera.Update(GraphicsDevice);
-            
-            if(currentWorld != null)
+
+            GlobalRenderer.Update();
+            if (currentWorld != null)
             {
                 currentWorld.Update();
                 MobsGenerator.Update();

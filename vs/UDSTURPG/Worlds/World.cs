@@ -11,29 +11,40 @@ namespace RPG.Worlds
     {
         //TODO: pobieranie bloku cx metadanych
         private int size;
+        private int chunkNumbers;
+        private int chunksInRow;
+        private Chunk[] chunks;
+        private List<Entity> entities;
+        private List<Entity> entitiesToAdd;
+
+        //!? Properties region
+        #region PROPERTIES
         public int Size
         {
             get { return size; }
         }
-
-        /// <summary>
-        /// Ilość wszystkich chunków dla obecnej wielkości świata
-        /// </summary>
-        public int ChunkNumbers { get; private set; }
-        /// <summary>
-        /// Ilość chunków w jednym rzędzie (pierwiastek z ChunkNumbers)
-        /// </summary>
-        public int ChunksInRow { get; private set; }
-
-        private Chunk[] chunks;
-
-        private List<Entity> entities;
         public List<Entity> Entities
         {
             get { return entities; }
         }
-
-        private List<Entity> entitiesToAdd;
+        /// <summary>
+        /// Ilość wszystkich chunków dla obecnej wielkości świata
+        /// </summary>
+        public int ChunkNumbers
+        {
+            get { return chunkNumbers; }
+            set { chunkNumbers = value; }
+        }
+        /// <summary>
+        /// Ilość chunków w jednym rzędzie (pierwiastek z ChunkNumbers)
+        /// </summary>
+        public int ChunksInRow
+        {
+            get { return chunksInRow; }
+            set { chunksInRow = value; }
+        }
+        #endregion
+        //!? END of properties region
 
         public World()
         {
@@ -65,16 +76,16 @@ namespace RPG.Worlds
             foreach (Entity entity in entities)
             {
                 entity.Update();
-                if(entity.MarkedToDelete)
+                if (entity.MarkedToDelete)
                 {
                     entitiesToDelete.Add(entity);
                 }
-                if(entity.MarkedToDeleteInNextTick)
+                if (entity.MarkedToDeleteInNextTick)
                 {
                     entity.MarkedToDelete = true;
                 }
             }
-            foreach(Entity entity in entitiesToDelete)
+            foreach (Entity entity in entitiesToDelete)
             {
                 entities.Remove(entity);
             }
@@ -88,12 +99,9 @@ namespace RPG.Worlds
         }
 
         public void LoadWorld()
-        { 
-        
+        {
+
         }
-
-
-
 
         public static byte[,] world = {  //0,1,2,3,4,5,6,7,8,9,0,1,2,3,4,5
                                           {1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1},//1

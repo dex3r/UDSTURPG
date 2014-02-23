@@ -9,13 +9,15 @@ namespace RPG.GUI
     {
         private string text;
         
-        #region properties
+        //!? Properties region
+        #region PROPERTIES
         public string Text
         {
             get { return text; }
             set { text = value; }
         }
         #endregion
+        //!? END of properties region
 
         public GUIElementText(int posX, int posY, int width, int height) : base(posX, posY, width, height)
         {

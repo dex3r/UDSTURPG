@@ -15,7 +15,8 @@ namespace RPG.GUI
         private float drawingDepth;
         private bool clickableThrough;
 
-        #region properties
+        //!? Properties region
+        #region PROPERTIES
         public int PosX
         {
             get { return posX; }
@@ -55,6 +56,7 @@ namespace RPG.GUI
             set { clickableThrough = value; }
         }
         #endregion
+        //!? END of properties region
 
         public GUIElement(int posX, int posY, int width, int height)
         {

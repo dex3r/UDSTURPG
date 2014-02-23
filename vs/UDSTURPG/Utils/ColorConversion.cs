@@ -6,7 +6,7 @@ using Microsoft.Xna.Framework;
 
 namespace RPG.Utils
 {
-    class ColorConversion
+    public class ColorConversion
     {
         public static Color HSVtoRGB(float hue, float saturation, float value, float alpha)
         {

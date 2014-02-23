@@ -11,14 +11,35 @@ using RPG.Main;
 using RPG.Blocks;
 using RPG.Entities;
 using RPG.Textures2D;
+using RPG.Controls;
 
 namespace RPG.Rendering
 {
     public static class GlobalRenderer
     {
+        private static bool shouldRenderHitobxes = false;
+
+        //!? Properties region
+        #region PROPERTIES
+        public static bool ShouldRenderHitobxes
+        {
+            get { return GlobalRenderer.shouldRenderHitobxes; }
+            set { GlobalRenderer.shouldRenderHitobxes = value; }
+        }
+        #endregion
+
+        //!? END of properties region
+        public static void Update()
+        {
+            if(MyKeyboard.KeyCollisionBoxDrawToggle.IsToggled)
+            {
+                shouldRenderHitobxes = !shouldRenderHitobxes;
+            }
+        }
+
         public static void DrawWorld(World world)
         {
-            if(GameMain.CurrentDrawingState != EnumDrawingState.World)
+            if (GameMain.CurrentDrawingState != EnumDrawingState.World)
             {
                 throw new Exception("Wrong rendering state");
             }
@@ -31,7 +52,7 @@ namespace RPG.Rendering
             }
             Stopwatch sw = new Stopwatch();
             sw.Start();
-            foreach(Entity entity in world.Entities)
+            foreach (Entity entity in world.Entities)
             {
                 entity.Draw();
             }
@@ -60,7 +81,7 @@ namespace RPG.Rendering
         /// <param name="color"></param>
         public static void DrawGuiElement(Texture2D texture, float posX, float posY, Rectangle sourceRectangle, float depth, Color color)
         {
-            if(GameMain.CurrentDrawingState != EnumDrawingState.GUI)
+            if (GameMain.CurrentDrawingState != EnumDrawingState.GUI)
             {
                 throw new Exception("Wrong rendering state");
             }

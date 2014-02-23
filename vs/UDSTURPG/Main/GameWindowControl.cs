@@ -10,10 +10,6 @@ namespace RPG.Main
 {
     public static class GameWindowControl
     {
-
-        /// <summary>
-        ///  http://projectdrake.net/blog/2013/03/31/tutorial-setting-window-position-in-xnamonogame/
-        /// </summary>
         public static void SetPosition(this GameWindow window, Point position)
         {
             OpenTK.GameWindow OTKWindow = GetForm(window);
@@ -32,7 +28,6 @@ namespace RPG.Main
                 return field.GetValue(gameWindow) as OpenTK.GameWindow;
             return null;
         }
-        //MÓJ KOD
         public static Vector2 GetPosition(this GameWindow window)
         {
             OpenTK.GameWindow OTKWindow = GetForm(window);

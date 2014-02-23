@@ -9,28 +9,34 @@ namespace RPG.Controls
 {
     public class MyKey
     {
-        public string Name { get; private set; }
+        private string name;
         private bool isPressed = false;
+        private bool wasPressed;
+        private bool isToggled;
+        private int toggleRepeatRate;
+        private int currentToggleTicks;
+        private List<Keys> registeredKeys;
+        private List<EnumMouseButtons> registeredMouseButtons;
+
+        //!? Properties region
+        #region PROPERTIES
+        public string Name
+        {
+            get { return name; }
+            set { name = value; }
+        }
         public bool IsPressed
         {
-            get
-            {
-                return isPressed;
-            }
+            get { return isPressed; }
         }
-        private bool wasPressed;
         public bool WasPressed
         {
             get { return wasPressed; }
         }
-
-        private bool isToggled;
         public bool IsToggled
         {
             get { return isToggled; }
         }
-
-        private int toggleRepeatRate;
         /// <summary>
         /// Z jaką częstotliwością (ticks) ma zmieniaś się stan IsToggled dla danego przycisku
         /// -1 (domyślne) dla przełączenia jednorazowego
@@ -39,11 +45,18 @@ namespace RPG.Controls
         {
             get { return toggleRepeatRate; }
         }
-
-        private int currentToggleTicks;
-
-        public List<Keys> registeredKeys { get; private set; }
-        public List<EnumMouseButtons> registeredMouseButtons { get; private set; }
+        public List<Keys> RegisteredKeys
+        {
+            get { return registeredKeys; }
+            set { registeredKeys = value; }
+        }
+        public List<EnumMouseButtons> RegisteredMouseButtons
+        {
+            get { return registeredMouseButtons; }
+            set { registeredMouseButtons = value; }
+        }
+        #endregion
+        //!? END of properties region
 
         public MyKey(string keyName)
         {

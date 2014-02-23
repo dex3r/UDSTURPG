@@ -26,14 +26,14 @@ namespace RPG.Textures2D
         public static MyTexture Turret = new MyTexture(@"art\building\turret", new Rectangle(0, 0, 32, 32), 0.6f);
 
         public static MyTexture MobBat = new MyTexture(@"art\mob\enemy_bat_32", new Rectangle(0, 0, 32, 32), 0.60028f, 4, 3);
-        public static MyTexture MobBatShadow = new MyTexture(@"art\shadows\shadow_bat", new Rectangle(0,0,32,32), 0.6f);
+        public static MyTexture MobBatShadow = new MyTexture(@"art\shadows\shadow_bat", new Rectangle(0, 0, 32, 32), 0.6f);
         public static MyTexture MobMummy = new MyTexture(@"art\mob\enemy_mummy_anim_48", new Rectangle(0, 0, 48, 48), 0.60025f, 4, 5);
         public static MyTexture MobSnake = new MyTexture(@"art\mob\enemy_snake_anim_48", new Rectangle(0, 0, 48, 48), 0.60023f, 4, 5);
         public static MyTexture MobScarab = new MyTexture(@"art\mob\enemy_scarab_anim_48", new Rectangle(0, 0, 48, 48), 0.60022f, 4, 5);
 
         public static MyTexture EffectEnityDiePuff = new MyTexture(@"art\effects\fx_enemydie_64", new Rectangle(0, 0, 64, 64), 0.56f, 17, 3);
 
-        public static MyTexture HealthBar = new MyTexture(@"art\effects\bar_green", new Rectangle(0,0,32,4),0.999f,22,1);
+        public static MyTexture HealthBar = new MyTexture(@"art\effects\bar_green", new Rectangle(0, 0, 32, 4), 0.999f, 22, 1);
         public static MyTexture HealthBarOutline = new MyTexture(@"art\effects\bar_outline", new Rectangle(0, 0, 32, 4), 0.998f, 1, 1);
         public static MyTexture HealthBarUnderlay = new MyTexture(@"art\effects\bar_green_underlay", new Rectangle(0, 0, 32, 4), 0.997f, 1, 1);
 
@@ -65,32 +65,35 @@ namespace RPG.Textures2D
         #endregion
 
         private string texturePath;
-
         private Texture2D texture;
+        Rectangle sourceRectangle;
+        private float depthOfDrawing;
+        private int framesCount;
+        private int animationSpeed;
+
+        private MyTexture()
+        {
+            Textures.Add(this);
+        }
+
+        //!? Properties region
+        #region PROPERTIES
         public Texture2D Texture
         {
             get { return texture; }
         }
-
-        Rectangle sourceRectangle;
         public Rectangle SourceRectangle
         {
             get { return sourceRectangle; }
         }
-
-        private float depthOfDrawing;
         public float DepthOfDrawing
         {
             get { return depthOfDrawing; }
         }
-
-        private int framesCount;
         public int FramesCount
         {
             get { return framesCount; }
         }
-
-        private int animationSpeed;
         /// <summary>
         /// Liczba ticków na klatkę
         /// </summary>
@@ -98,13 +101,11 @@ namespace RPG.Textures2D
         {
             get { return animationSpeed; }
         }
+        #endregion
+        //!? END of properties region
 
-        private MyTexture()
-        {
-            Textures.Add(this);
-        }
-
-        private MyTexture(Rectangle sourceRectangle, float depthOfDrawing, int framesCount, int animationSpeed) : this()
+        private MyTexture(Rectangle sourceRectangle, float depthOfDrawing, int framesCount, int animationSpeed)
+            : this()
         {
             this.sourceRectangle = sourceRectangle;
             this.depthOfDrawing = depthOfDrawing;
@@ -112,7 +113,8 @@ namespace RPG.Textures2D
             this.animationSpeed = animationSpeed;
         }
 
-        public MyTexture(string path, Rectangle sourceRectangle, float depthOfDrawing = 0, int framesCount = 1, int animationSpeed = 8) : this(sourceRectangle, depthOfDrawing, framesCount, animationSpeed)
+        public MyTexture(string path, Rectangle sourceRectangle, float depthOfDrawing = 0, int framesCount = 1, int animationSpeed = 8)
+            : this(sourceRectangle, depthOfDrawing, framesCount, animationSpeed)
         {
             this.texturePath = path;
             this.sourceRectangle = sourceRectangle;
@@ -121,7 +123,8 @@ namespace RPG.Textures2D
             this.animationSpeed = animationSpeed;
         }
 
-        public MyTexture(MyTexture sourceTexture, Rectangle sourceRectangle, float depthOfDrawing = 0, int framesCount = 1, int animationSpeed = 8) : this(sourceRectangle, depthOfDrawing, framesCount, animationSpeed)
+        public MyTexture(MyTexture sourceTexture, Rectangle sourceRectangle, float depthOfDrawing = 0, int framesCount = 1, int animationSpeed = 8)
+            : this(sourceRectangle, depthOfDrawing, framesCount, animationSpeed)
         {
             this.texturePath = sourceTexture.texturePath;
             this.texture = sourceTexture.texture;
@@ -148,7 +151,7 @@ namespace RPG.Textures2D
         /// <returns></returns>
         public virtual Rectangle GetCurrentSourceRectangle(int frame, int textureId = 0, int animationSpeed = -1)
         {
-            if(animationSpeed == -1)
+            if (animationSpeed == -1)
             {
                 animationSpeed = this.animationSpeed;
             }

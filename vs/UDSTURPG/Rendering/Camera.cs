@@ -10,40 +10,9 @@ namespace RPG.Rendering
     public static class Camera
     {
         static private Matrix transform = Matrix.Identity;
-        /// <summary>
-        /// Matrix do wykonywania obliczeń
-        /// </summary>
-        public static Matrix Transform
-        {
-            get { return Camera.transform; }
-            set { Camera.transform = value; }
-        }
         static private float x;
-        /// <summary>
-        /// Pozycja X kamrry
-        /// </summary>
-        public static float X
-        {
-            get { return Camera.x; }
-            set { Camera.x = value; }
-        }
         static private float y;
-        /// <summary>
-        /// Pozycja Y kamery
-        /// </summary>
-        public static float Y
-        {
-            get { return Camera.y; }
-            set { Camera.y = value; }
-        }
-
         private static float scale;
-        public static float Scale
-        {
-            get { return Camera.scale; }
-            set { Camera.scale = value; }
-        }
-
         /// <summary>
         /// Szybkość przesuwania kamery
         /// </summary>
@@ -52,6 +21,40 @@ namespace RPG.Rendering
         /// Wielkość krawędzi do przesuwania ekranu
         /// </summary>
         private const int BORDERSIZE = 15;
+
+        //!? Properties region
+        #region PROPERTIES
+        /// <summary>
+        /// Matrix do wykonywania obliczeń
+        /// </summary>
+        public static Matrix Transform
+        {
+            get { return Camera.transform; }
+            set { Camera.transform = value; }
+        }
+        /// <summary>
+        /// Pozycja X kamrry
+        /// </summary>
+        public static float X
+        {
+            get { return Camera.x; }
+            set { Camera.x = value; }
+        }
+        /// <summary>
+        /// Pozycja Y kamery
+        /// </summary>
+        public static float Y
+        {
+            get { return Camera.y; }
+            set { Camera.y = value; }
+        }
+        public static float Scale
+        {
+            get { return Camera.scale; }
+            set { Camera.scale = value; }
+        }
+        #endregion
+        //!? END of properties region
 
         /// <summary>
         /// Aktualizacja kamery
@@ -88,11 +91,11 @@ namespace RPG.Rendering
                 Camera.X -= STEP;
             }
             if (MyKeyboard.KeysState.IsKeyDown(Keys.Up))
-            { 
+            {
                 Camera.Y += STEP;
             }
             if (MyKeyboard.KeysState.IsKeyDown(Keys.Down))
-            { 
+            {
                 Camera.Y -= STEP;
             }
             //}

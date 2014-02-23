@@ -4,35 +4,14 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Microsoft.Xna.Framework;
+using Microsoft.Xna.Framework.Graphics;
 using RPG.Controls;
 using RPG.Rendering;
-using Microsoft.Xna.Framework.Graphics;
 
 namespace RPG.Main
 {
     public static class Options
     {
-
-        private static byte resolutionChange = 0;
-        /// <summary>
-        /// Zmienna pomocnicza do poprawnej zmiany rozdzielczości na pełnym ekranie
-        /// </summary>
-        public static byte ResolutionChange
-        {
-            get { return Options.resolutionChange; }
-            set { Options.resolutionChange = value; }
-        }
-
-        /// <summary>
-        /// Status która rozdzielczość jest wybrana ( 0 = największa )
-        /// </summary>
-        private static int resolutionStatus;
-
-        public static int ResolutionStatus
-        {
-            get { return Options.resolutionStatus; }
-            set { Options.resolutionStatus = value; }
-        }
         /// <summary>
         /// Tablica dostępnych rozdzielczości
         /// </summary>
@@ -43,6 +22,29 @@ namespace RPG.Main
             {1920,1080}
 
         };
+        private static byte resolutionChange = 0;
+        /// <summary>
+        /// Status która rozdzielczość jest wybrana ( 0 = największa )
+        /// </summary>
+        private static int resolutionStatus;
+
+        //!? Properties region
+        #region PROPERTIES
+        /// <summary>
+        /// Zmienna pomocnicza do poprawnej zmiany rozdzielczości na pełnym ekranie
+        /// </summary>
+        public static byte ResolutionChange
+        {
+            get { return Options.resolutionChange; }
+            set { Options.resolutionChange = value; }
+        }
+        public static int ResolutionStatus
+        {
+            get { return Options.resolutionStatus; }
+            set { Options.resolutionStatus = value; }
+        }
+        #endregion
+        //!? END of properties region
 
         /// <summary>
         /// Initializowanie opcji gry (narazie jest tylko rozdzielczość)
@@ -67,11 +69,11 @@ namespace RPG.Main
         /// </summary>
         public static void KeyPressed(GraphicsDeviceManager graphicsDeviceManager)
         {
-            if (MyKeyboard.KeyF4.IsToggled)
+            if (MyKeyboard.KeyFullscreen.IsToggled)
             {
                 toogleFullScreeen(graphicsDeviceManager);
             }
-            if (MyKeyboard.KeyF5.IsToggled)
+            if (MyKeyboard.KeyResUp.IsToggled)
             {
                 if (resolutionStatus < 2)
                 {
@@ -80,7 +82,7 @@ namespace RPG.Main
                     ResolutionChange = 1;
                 }
             }
-            if (MyKeyboard.KeyF6.IsToggled)
+            if (MyKeyboard.KeyResDown.IsToggled)
             {
                 if (resolutionStatus > 0)
                 {
@@ -93,7 +95,7 @@ namespace RPG.Main
             //Zmiana rozdzielczości w przypadku uruchomionego fullscreena
             updateResolutionOnFullScreenFix(graphicsDeviceManager);
         }
-        
+
         /// <summary>
         /// Toogle full screen z aplikowaniem zmian
         /// </summary>

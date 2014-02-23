@@ -12,15 +12,25 @@ namespace RPG.Worlds
         /// <summary>
         /// Rozmiar chunku, "const" dla wydajności
         /// </summary>
-        public const int CHUNK_SIZE_X = 21;
+        public const int CHUNK_SIZE_X = 22;
         public const int CHUNK_SIZE_Y = 12;
 
         /// <summary>
         ///  ID obiektów, tablice jednowymiarowe dla wydajności
         /// </summary>
         private byte[][] chunkGround;
-
         private UInt16[][] chunkGroundMeta;
+        private int x;
+        private int y;
+        private World worldObj;
+        /// <summary>
+        /// Nie robić żadnych innych referencji do tego pola
+        /// </summary>
+        private RenderTarget2D renderTarget;
+        private bool needsRedrawing;
+
+        //!? Properties region
+        #region PROPERTIES
         /// <summary>
         ///  Metadane obiektów
         /// </summary>
@@ -28,30 +38,34 @@ namespace RPG.Worlds
         {
             get { return chunkGroundMeta; }
         }
-
-        public int X { get; private set; }
-        public int Y { get; private set; }
-        public World WorldObj { get; private set; }
-        /// <summary>
-        /// Nie robić żadnych innych referencji do tego pola
-        /// </summary>
-        public RenderTarget2D RenderTarget { get; set; }
-
-        private bool needsRedrawing;
         /// <summary>
         /// Zawsze zwraca true gdy RenderTarget jest pusty
         /// </summary>
         public bool NeedsRedrawing
         {
-            get
-            {
-                return needsRedrawing;
-            }
-            set
-            {
-                needsRedrawing = value;
-            }
+            get { return needsRedrawing; }
+            set { needsRedrawing = value; }
         }
+        public int X
+        {
+            get { return x; }
+        }
+        public int Y
+        {
+            get { return y; }
+        }
+        public World WorldObj
+        {
+            get { return worldObj; }
+            set { worldObj = value; }
+        }
+        public RenderTarget2D RenderTarget
+        {
+            get { return renderTarget; }
+            set { renderTarget = value; }
+        }
+        #endregion
+        //!? END of properties region
 
         public byte this[ushort x, ushort y]
         {
@@ -75,12 +89,12 @@ namespace RPG.Worlds
         public Chunk(World world, int x, int y)
         {
             this.WorldObj = world;
-            this.X = x;
-            this.Y = y;
+            this.x = x;
+            this.y = y;
 
             chunkGround = new byte[CHUNK_SIZE_X][];
             chunkGroundMeta = new UInt16[CHUNK_SIZE_X][];
-            for(int i = 0; i < CHUNK_SIZE_X; i++)
+            for (int i = 0; i < CHUNK_SIZE_X; i++)
             {
                 chunkGround[i] = new byte[CHUNK_SIZE_Y];
                 chunkGroundMeta[i] = new UInt16[CHUNK_SIZE_Y];

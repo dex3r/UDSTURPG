@@ -3,9 +3,10 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using Microsoft.Xna.Framework.Graphics;
+using Microsoft.Xna.Framework;
 using RPG.Main;
 using RPG.Worlds;
-using Microsoft.Xna.Framework;
+
 using RPG.Textures2D;
 
 namespace RPG.Blocks
@@ -13,7 +14,9 @@ namespace RPG.Blocks
     public class Block
     {
         #region Static
-
+        /// <summary>
+        /// Wszystkie bloki w grze
+        /// </summary>
         private static Block[] blocks = new Block[256];
         public static Block[] Blocks
         {
@@ -24,21 +27,22 @@ namespace RPG.Blocks
         public static Block Floor = new Block(2, "Floor", MyTexture.Floor);
 
         #endregion
-        #region Non-static
 
         private byte id;
+        private String name;
+        private MyTexture texture;
+
+        //!? Properties region
+        #region PROPERTIES
         public byte Id
         {
             get { return id; }
         }
-
-        private String name;
         public String Name
         {
             get { return name; }
         }
-
-        private MyTexture texture;
+        #endregion
 
         public Block(byte id, String name)
         {
@@ -47,7 +51,8 @@ namespace RPG.Blocks
             Block.blocks[id] = this;
         }
 
-        public Block(byte id, String name, MyTexture texture) : this(id, name)
+        public Block(byte id, String name, MyTexture texture)
+            : this(id, name)
         {
             this.texture = texture;
         }
@@ -62,6 +67,5 @@ namespace RPG.Blocks
         {
             //GameMain.CurrentWorld.SetMeta(value, x, y);
         }
-        #endregion
     }
 }

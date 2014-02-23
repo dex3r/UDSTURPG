@@ -2,10 +2,10 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
-using RPG.Textures2D;
-using RPG.Main;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
+using RPG.Textures2D;
+using RPG.Main;
 
 namespace RPG.Rendering
 {
@@ -26,7 +26,8 @@ namespace RPG.Rendering
         private int charWidth;
         private int charHeight;
 
-        #region properties
+        //!? Properties region
+        #region PROPERTIES
         public string[] Chars
         {
             get { return chars; }
@@ -48,6 +49,7 @@ namespace RPG.Rendering
             set { charHeight = value; }
         }
         #endregion
+        //!? END of properties region
 
         public Font(MyTexture texture)
         {
@@ -65,24 +67,24 @@ namespace RPG.Rendering
         {
             char c;
             int pos = -1;
-            int charLine = 0; 
-            for(int i = 0; i < stringToDraw.Length; i++)
+            int charLine = 0;
+            for (int i = 0; i < stringToDraw.Length; i++)
             {
                 c = stringToDraw[i];
-                if(c == ' ')
+                if (c == ' ')
                 {
                     continue;
                 }
-                for(int j = 0; j < chars.Length; j++)
+                for (int j = 0; j < chars.Length; j++)
                 {
                     pos = chars[j].IndexOf(c);
-                    if(pos != -1)
+                    if (pos != -1)
                     {
                         charLine = j;
                         break;
                     }
                 }
-                if(pos == -1)
+                if (pos == -1)
                 {
                     continue;
                 }

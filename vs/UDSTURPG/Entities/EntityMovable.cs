@@ -57,10 +57,17 @@ namespace RPG.Entities
             set { hitRecoil = value; }
         }
 
+        private bool isAnimatedOnlyOnMove;
+        public bool IsAnimatedOnlyOnMove
+        {
+            get { return isAnimatedOnlyOnMove; }
+            set { isAnimatedOnlyOnMove = value; }
+        }
+
         public EntityMovable(float posX, float posY)
             : base(posX, posY)
         {
-
+            isAnimatedOnlyOnMove = true;
         }
 
         public override void Update()
@@ -88,7 +95,7 @@ namespace RPG.Entities
         public override bool PreDraw()
         {
             bool flag = base.PreDraw();
-            if (currentVelocity == 0)
+            if (isAnimatedOnlyOnMove && currentVelocity == 0)
             {
                 animationFrame = 0;
             }

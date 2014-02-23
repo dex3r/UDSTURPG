@@ -66,6 +66,22 @@ namespace RPG.Entities
         public override void Update()
         {
             BoundryCollision(true, false, true, false);
+            if (currentHp <= 0)
+            {
+                GameMain.CurrentPlayer.Score += worth;
+                while (worth > 0)
+                {
+                    int value = 0;
+                    while (value < 9 && EntityCoin.CoinsValues[value] < worth)
+                    {
+                        value++;
+                    }
+                    EntityCoin coin = null;
+                    coin = new EntityCoin(posX + (CollisionBoxX + CollisionBoxWidth) / 2, posY + (CollisionBoxY + CollisionBoxHeight) / 2, value);
+                    GameMain.CurrentWorld.AddEntity(coin);
+                    worth -= EntityCoin.CoinsValues[value];
+                }
+            }
             base.Update();
             if (this.mobType.WalkingStyle == EnumMobWalkingStyle.Stuttery)
             {
@@ -88,18 +104,14 @@ namespace RPG.Entities
             {
                 currentVelocity = maxSpeed;
             }
-            if(currentHp <= 0)
-            {
-                GameMain.CurrentPlayer.Score += worth;
-            }
         }
 
         public override bool PreDraw()
         {
             bool flag = base.PreDraw();
-            if(MobType == MobType.MobBat)
+            if (MobType == MobType.MobBat)
             {
-               GlobalRenderer.DrawEntity(MyTexture.MobBatShadow.Texture, PosX, PosY + 0.5f, MyTexture.MobBatShadow.SourceRectangle, MyTexture.MobBatShadow.DepthOfDrawing, new Color(Color.White,0.3f));
+                GlobalRenderer.DrawEntity(MyTexture.MobBatShadow.Texture, PosX, PosY + 0.5f, MyTexture.MobBatShadow.SourceRectangle, MyTexture.MobBatShadow.DepthOfDrawing, new Color(Color.White, 0.3f));
             }
             if (HitRecoil == 0) //Zablokowanie tekstury
             {

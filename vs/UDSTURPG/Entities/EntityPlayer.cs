@@ -113,6 +113,7 @@ namespace RPG.Entities
                 if (invincibleTimer == 0)
                 {
                     foreach (Entity en in GameMain.CurrentWorld.Entities)
+                    {
                         if (en is EntityMob)
                         {
                             if (Collision(en))
@@ -129,6 +130,25 @@ namespace RPG.Entities
                                 invincibleTimer += InvincibleTime;
                             }
                         }
+                        if(en is EntityCoin)
+                        {
+                            EntityCoin coin = (EntityCoin)en;
+                            if(Distance(coin) < 5)
+                            {
+                                coin.PullMoney = true;
+                            }
+                            else
+                            {
+                                coin.PullMoney = false;
+                            }
+                            if(Collision(coin))
+                            {
+                                Money += coin.CoinValue;
+                                coin.MarkedToDelete = true;
+                            }
+                        }
+                    }
+                    
                 }
                 else
                 {

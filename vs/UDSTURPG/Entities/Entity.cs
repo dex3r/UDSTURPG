@@ -2,19 +2,18 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using Microsoft.Xna.Framework.Graphics;
+using Microsoft.Xna.Framework;
 using RPG.Textures2D;
 using RPG.Main;
 using RPG.Utils;
 using RPG.Controls;
 using RPG.Rendering;
-using Microsoft.Xna.Framework.Graphics;
-using Microsoft.Xna.Framework;
 
 namespace RPG.Entities
 {
     public class Entity
     {
-
         protected static readonly Random random = new Random();
 
         // Granica, za którą obiekt znika
@@ -22,93 +21,87 @@ namespace RPG.Entities
         public const int MBORDER = -BORDER;
 
         protected float posX;
+        protected float posY;
+        protected MyTexture currentTexture;
+        protected int animationFrame;
+        protected bool markedToDelete;
+        protected bool markedToDeleteInNextTick;
+        private uint id;
+        private bool isColidable;
+        private float collisionBoxX;
+        private float collisionBoxY;
+        private float collisionBoxWidth;
+        private float collisionBoxHeight;
+        protected Color currentColor;
+
+
+        //!? Properties region
+        #region PROPERTIES
         public float PosX
         {
             get { return posX; }
             set { posX = value; }
         }
-        protected float posY;
         public float PosY
         {
             get { return posY; }
             set { posY = value; }
         }
-
-        protected MyTexture currentTexture;
         public MyTexture CurrentTexture
         {
             get { return currentTexture; }
             set { currentTexture = value; }
         }
-
-        protected int animationFrame;
         public int AnimationFrame
         {
             get { return animationFrame; }
             set { animationFrame = value; }
         }
-
-        protected bool markedToDelete;
         public bool MarkedToDelete
         {
             get { return markedToDelete; }
             set { markedToDelete = value; }
         }
-
-        protected bool markedToDeleteInNextTick;
         public bool MarkedToDeleteInNextTick
         {
             get { return markedToDeleteInNextTick; }
             set { markedToDeleteInNextTick = value; }
         }
-
-        private uint id;
         public uint Id
         {
             get { return id; }
         }
-
-        private bool isColidable;
         public bool IsColidable
         {
             get { return isColidable; }
             set { isColidable = value; }
         }
-
-        private float collisionBoxX;
-
         public float CollisionBoxX
         {
             get { return collisionBoxX; }
-            set { collisionBoxX = value;  }
+            set { collisionBoxX = value; }
         }
-        private float collisionBoxY;
-
         public float CollisionBoxY
         {
             get { return collisionBoxY; }
-            set { collisionBoxY = value;  }
+            set { collisionBoxY = value; }
         }
-        private float collisionBoxWidth;
-
         public float CollisionBoxWidth
         {
             get { return collisionBoxWidth; }
             set { collisionBoxWidth = value; }
         }
-        private float collisionBoxHeight;
-
         public float CollisionBoxHeight
         {
             get { return collisionBoxHeight; }
             set { collisionBoxHeight = value; }
         }
-
-        protected Color currentColor;
         public Color CurrentColor
         {
             get { return currentColor; }
         }
+        #endregion
+        //!? END of properties region
 
         public Entity(float posX, float posY)
         {
@@ -202,7 +195,6 @@ namespace RPG.Entities
                 if (entity.PosX + entity.CollisionBoxX + entity.CollisionBoxWidth < PosX + CollisionBoxX) return false;
                 if (entity.PosY + entity.CollisionBoxY + entity.CollisionBoxHeight < PosY + CollisionBoxY) return false;
                 return true;
-            return false;
         }
     }
 }

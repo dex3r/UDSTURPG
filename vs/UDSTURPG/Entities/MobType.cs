@@ -14,21 +14,32 @@ namespace RPG.Entities
         public static readonly MobType MobBat = new MobType(20, 5, 0.04f, MyTexture.MobBat, EnumMobWalkingStyle.Flying, 0.1f, 0.2f, 0.85f, 0.7f, worth: 5);
 
         private int hp;
+        private int baseDmg;
+        private float speed;
+        private int stepInterval;
+        private int stepLength;
+        private MyTexture texture;
+        private EnumMobWalkingStyle walkingStyle;
+        private float collisionBoxWidth;
+        private float collisionBoxHeight;
+        private float collisionBoxX;
+        private float collisionBoxY;
+        private int worth;
+
+        //!? Properties region
+        #region PROPERTIES
         public int Hp
         {
             get { return hp; }
         }
-        private int baseDmg;
         public int BaseDmg
         {
             get { return baseDmg; }
         }
-        private float speed;
         public float Speed
         {
             get { return speed; }
         }
-        private int stepInterval;
         /// <summary>
         /// Przerwa pomiędzy krokami (dla stylu Stuttery)
         /// </summary>
@@ -37,8 +48,6 @@ namespace RPG.Entities
             get { return stepInterval; }
             set { stepInterval = value; }
         }
-
-        private int stepLength;
         /// <summary>
         /// Długość jednego kroku
         /// </summary>
@@ -47,48 +56,36 @@ namespace RPG.Entities
             get { return stepLength; }
             set { stepLength = value; }
         }
-
-        private MyTexture texture;
         public MyTexture Texture
         {
             get { return texture; }
         }
-
-        private EnumMobWalkingStyle walkingStyle;
         public EnumMobWalkingStyle WalkingStyle
         {
             get { return walkingStyle; }
         }
-
-        private float collisionBoxWidth;
-
         public float CollisionBoxWidth
         {
             get { return collisionBoxWidth; }
         }
-        private float collisionBoxHeight;
-
         public float CollisionBoxHeight
         {
             get { return collisionBoxHeight; }
         }
-
-        private float collisionBoxX;
         public float CollisionBoxX
         {
             get { return collisionBoxX; }
         }
-        private float collisionBoxY;
         public float CollisionBoxY
         {
             get { return collisionBoxY; }
         }
-
-        private int worth;
         public int Worth
         {
             get { return worth; }
         }
+        #endregion
+        //!? END of properties region
 
         private MobType(int hp, int baseDmg, float speed, MyTexture texture, EnumMobWalkingStyle walkingStyle, float collisionBoxX, float collisionBoxY, float collisionBoxWidth, float collisionBoxHeight, int worth, int stepInterval = 0, int stepLength = 20)
         {

@@ -19,7 +19,7 @@ namespace RPG.Main
         private static int currentFps;
         private static int lastFps;
         private static long lastSec;
-        private static int updateTime;
+        //private static int updateTime;
         //! Wyodrębnienie poza DrawWorld dla wydajności
         private static StringBuilder sb = new StringBuilder();
         private static StringBuilder sc = new StringBuilder();
@@ -84,6 +84,7 @@ namespace RPG.Main
         public GameMain()
             : base()
         {
+            this.Window.Title = "UDSTURPG InDev 0.14";
             graphicsDeviceManager = new GraphicsDeviceManager(this);
             Content.RootDirectory = "Content";
             Options.Init(graphicsDeviceManager);

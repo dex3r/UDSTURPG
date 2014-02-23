@@ -3,58 +3,53 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using Microsoft.Xna.Framework.Graphics;
+using Microsoft.Xna.Framework;
 using RPG.Controls;
 using RPG.Textures2D;
 using RPG.Main;
-using Microsoft.Xna.Framework;
 using RPG.Rendering;
 
 namespace RPG.Entities
 {
     public class EntityPlayer : EntityLiving
     {
-        private float acceleration;
-
-        public float Acceleration
-        {
-            get { return acceleration; }
-            set { acceleration = value; }
-        }
-
+        private float playerAcceleration;
         private int invincibleTimer = 0;
         private int invincibleTime = 30;
+        private EnumSheetPlayer movementTextureState;
+        private int score;
+        private int money;
+
+        //!? Properties region
+        #region PROPERTIES
         public int InvincibleTime
         {
             get { return invincibleTime; }
         }
-
-        private EnumSheetPlayer movementTextureState;
         public EnumSheetPlayer MovementTextureState
         {
             get { return movementTextureState; }
             set { movementTextureState = value; }
         }
-
-        private int score;
         public int Score
         {
             get { return score; }
             set { score = value; }
         }
-
-        private int money;
         public int Money
         {
             get { return money; }
             set { money = value; }
         }
+        #endregion
+        //!? END of properties region
 
         public EntityPlayer(float posX, float posY)
             : base(posX, posY)
         {
             CurrentTexture = MyTexture.PlayerLordLard;
             maxSpeed = 0.05f;
-            acceleration = 0.03f;
+            playerAcceleration = 0.03f;
             SetCollisionBox(0.2f, 0, 0.6f, 1.0f);
             MaxHp = 100;
             CurrentHp = MaxHp;
@@ -87,7 +82,7 @@ namespace RPG.Entities
                 if (x != 0 || y != 0)
                 {
                     rotation = Math.Atan2(y, x);
-                    currentVelocity += acceleration;
+                    currentVelocity += playerAcceleration;
                     //Camera.X = posX * 64 - GameMain.graphicsDeviceManager.PreferredBackBufferWidth / 2+32;
                     //Camera.Y = posY * 64 - GameMain.graphicsDeviceManager.PreferredBackBufferHeight / 2+32;
                 }
@@ -95,7 +90,7 @@ namespace RPG.Entities
                 {
                     if (currentVelocity > 0)
                     {
-                        currentVelocity -= acceleration;
+                        currentVelocity -= playerAcceleration;
                         if (currentVelocity < 0)
                         {
                             currentVelocity = 0;

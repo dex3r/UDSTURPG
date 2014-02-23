@@ -2,21 +2,26 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
-using RPG.Textures2D;
-using RPG.Main;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
+using RPG.Textures2D;
+using RPG.Main;
 
 namespace RPG.Entities
 {
     public class EntityBullet : EntityMovable
     {
         private int damage;
+
+        //!? Properties region
+        #region PROPERTIES
         public int Damage
         {
             get { return damage; }
             set { damage = value; }
         }
+        #endregion
+        //!? END of properties region
 
         public EntityBullet(float posX, float posY, int damage = 15)
             : base(posX, posY)

@@ -8,9 +8,11 @@ namespace RPG.Entities
 {
     public class EntityEffect : Entity
     {
-        #region properites
-
+        //!? Properties region
+        #region PROPERTIES
+        
         #endregion
+        //!? END of properties region
 
         public EntityEffect(float posX, float posY, MyTexture texture)
             : base(posX, posY)

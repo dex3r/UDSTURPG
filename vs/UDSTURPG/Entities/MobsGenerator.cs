@@ -12,11 +12,17 @@ namespace RPG.Entities
     {
         public const int TIME = 60;
         private static int time;
+
+        //!? Properties region
+        #region PROPERTIES
         public static int Time
         {
             get { return time; }
             set { time = value; }
         }
+        #endregion
+        //!? END of properties region
+
         public static void Update()
         {
             time++;

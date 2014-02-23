@@ -10,41 +10,41 @@ namespace RPG.Entities
     public class EntityMovable : Entity
     {
         private float prevX;
+        private float prevY;
+        protected float currentVelocity;
+        private float acceleration = 0.004f;
+        protected float maxSpeed;
+        protected double rotation;
+        private float hitRecoil;
+        private bool isAnimatedOnlyOnMove;
+
+        //!? Properties region
+        #region PROPERTIES
         public float PrevX
         {
             get { return prevX; }
             set { prevX = value; }
         }
-        private float prevY;
         public float PrevY
         {
             get { return prevY; }
             set { prevY = value; }
         }
-
-        protected float currentVelocity;
         public float CurrentVelocity
         {
             get { return currentVelocity; }
             set { currentVelocity = value; }
         }
-
-        private float acceleration = 0.004f;
         public float Acceleration
         {
             get { return acceleration; }
             set { acceleration = value; }
         }
-
-        protected float maxSpeed;
-
         public float MaxSpeed
         {
             get { return maxSpeed; }
             set { maxSpeed = value; }
         }
-
-        protected double rotation;
         /// <summary>
         /// Rotation in radians
         /// </summary>
@@ -53,8 +53,6 @@ namespace RPG.Entities
             get { return rotation; }
             set { rotation = value; }
         }
-
-        private float hitRecoil;
         /// <summary>
         /// Odrzut po oberwaniu strzału
         /// </summary>
@@ -63,13 +61,13 @@ namespace RPG.Entities
             get { return hitRecoil; }
             set { hitRecoil = value; }
         }
-
-        private bool isAnimatedOnlyOnMove;
         public bool IsAnimatedOnlyOnMove
         {
             get { return isAnimatedOnlyOnMove; }
             set { isAnimatedOnlyOnMove = value; }
         }
+        #endregion
+        //!? END of properties region
 
         public EntityMovable(float posX, float posY)
             : base(posX, posY)

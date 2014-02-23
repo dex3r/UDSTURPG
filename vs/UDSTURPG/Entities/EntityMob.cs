@@ -2,44 +2,37 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using Microsoft.Xna.Framework;
 using RPG.Textures2D;
 using RPG.Main;
 using RPG.Controls;
 using RPG.Rendering;
 using RPG.Utils;
-using Microsoft.Xna.Framework;
 
 namespace RPG.Entities
 {
     public class EntityMob : EntityLiving
     {
-        private int damage;
-        public int Damage
-        {
-            get { return damage; }
-            set { damage = value; }
-        }
-
         private EnumSheetNormalMob movementTextureState;
+        private MobType mobType;
+        private int worth;
+        private int stepLength;
+
+        //!? Properties region
+        #region PROPERTIES
         public EnumSheetNormalMob MovementTextureState
         {
             get { return movementTextureState; }
             set { movementTextureState = value; }
         }
-
-        private MobType mobType;
         public MobType MobType
         {
             get { return mobType; }
         }
-
-        private int worth;
         public int Worth
         {
             get { return worth; }
         }
-
-        private int stepLength;
         /// <summary>
         /// Długość kroku (w tickach)
         /// </summary>
@@ -47,6 +40,8 @@ namespace RPG.Entities
         {
             get { return stepLength; }
         }
+        #endregion
+        //!? END of properties region
 
         public EntityMob(float posX, float posY, MobType mobType)
             : base(posX, posY)

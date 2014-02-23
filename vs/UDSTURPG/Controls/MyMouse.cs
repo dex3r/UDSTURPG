@@ -14,8 +14,6 @@ namespace RPG.Controls
 {
     public static class MyMouse
     {
-        private static int mouseHoldPositionX;
-        private static int mouseHoldPositionY;
         private static int overallScrollWheelValue;
         private static int scrollWheelDelta;
         private static MouseState currentMouseState;
@@ -24,14 +22,6 @@ namespace RPG.Controls
 
         //!? Properties region
         #region PROPERTIES
-        public static int MouseHoldPositionX
-        {
-            get { return MyMouse.mouseHoldPositionX; }
-        }
-        public static int MouseHoldPositionY
-        {
-            get { return MyMouse.mouseHoldPositionY; }
-        }
         public static int OverallScrollWheelValue
         {
             get { return MyMouse.overallScrollWheelValue; }

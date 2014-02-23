@@ -2,10 +2,10 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
-using RPG.Textures2D;
-using RPG.Main;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
+using RPG.Textures2D;
+using RPG.Main;
 
 
 namespace RPG.Entities

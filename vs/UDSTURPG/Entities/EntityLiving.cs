@@ -2,50 +2,56 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
-using RPG.Main;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using RPG.Rendering;
 using RPG.Textures2D;
 using RPG.Utils;
+using RPG.Main;
 
 namespace RPG.Entities
 {
     public class EntityLiving : EntityMovable
     {
         protected double shootingRotation;
+        private int maxHp;
+        protected int lastHp;
+        protected int currentHp;
+        private Color healthColor = Color.Green;
+        protected int shootingSpeed;
+        /// <summary>
+        /// Pozaostały czas przed możliwością ponownego strzelenia
+        /// </summary>
+        protected int timeLeftBeforeNextShot;
+        protected bool isShooting;
+        protected int damage;
+        protected int barFrame;
+        private bool barDisplay;
+
+        //!? Properties region
+        #region PROPERTIES
         public double ShootingRotation
         {
             get { return shootingRotation; }
         }
-
-        private int maxHp;
         public int MaxHp
         {
             get { return maxHp; }
             set { maxHp = value; }
         }
-
-        protected int LastHp;
-        public int LastHp1
+        public int LastHp
         {
-            get { return LastHp; }
+            get { return lastHp; }
         }
-
-        protected int currentHp;
         public int CurrentHp
         {
             get { return currentHp; }
             set { currentHp = value; }
         }
-
-        private Color healthColor = Color.Green;
         public Color HealthColor
         {
             get { return healthColor; }
         }
-
-        protected int shootingSpeed;
         /// <summary>
         /// Odstęp pomiędzy strzałami w tickach
         /// </summary>
@@ -54,37 +60,27 @@ namespace RPG.Entities
             get { return shootingSpeed; }
             set { shootingSpeed = value; }
         }
-
-        /// <summary>
-        /// Pozaostały czas przed możliwością ponownego strzelenia
-        /// </summary>
-        protected int timeLeftBeforeNextShot;
-
-        protected bool isShooting;
         public bool IsShooting
         {
             get { return isShooting; }
         }
-
-        protected int damage;
         public int Damage
         {
             get { return damage; }
             set { damage = value; }
         }
-
-        protected int barFrame;
         public int BarFrame
         {
             get { return barFrame; }
             set { barFrame = value; }
         }
-        private bool barDisplay = false;
-
+        #endregion
+        //!? END of properties region
 
         public EntityLiving(float posX, float posY)
             : base(posX, posY)
         {
+            this.barDisplay = false;
             timeLeftBeforeNextShot = 0;
             this.maxHp = this.currentHp = 1;
         }
@@ -92,7 +88,7 @@ namespace RPG.Entities
         public override void Update()
         {
             //else if(currentColor)
-            if (currentHp < LastHp)
+            if (currentHp < lastHp)
             {
                 //TODO: podrasować kolor
                 currentColor = new Color(0.6f, 0.2f, 0.2f);
@@ -101,7 +97,7 @@ namespace RPG.Entities
             {
                 currentColor = new Color(currentColor.ToVector3() + new Vector3(0.08f, 0.08f, 0.08f));
             }
-            LastHp = currentHp;
+            lastHp = currentHp;
             if (timeLeftBeforeNextShot != 0)
             {
                 timeLeftBeforeNextShot--;

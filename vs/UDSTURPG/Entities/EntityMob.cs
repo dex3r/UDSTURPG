@@ -69,18 +69,7 @@ namespace RPG.Entities
             if (currentHp <= 0)
             {
                 GameMain.CurrentPlayer.Score += worth;
-                while (worth > 0)
-                {
-                    int value = 0;
-                    while (value < 9 && EntityCoin.CoinsValues[value] < worth)
-                    {
-                        value++;
-                    }
-                    EntityCoin coin = null;
-                    coin = new EntityCoin(posX + (CollisionBoxX + CollisionBoxWidth) / 2, posY + (CollisionBoxY + CollisionBoxHeight) / 2, value);
-                    GameMain.CurrentWorld.AddEntity(coin);
-                    worth -= EntityCoin.CoinsValues[value];
-                }
+                EntityCoin.Loot(posX + (CollisionBoxX + CollisionBoxWidth) / 2, posY + (CollisionBoxY + CollisionBoxHeight) / 2, this.worth * 10);
             }
             base.Update();
             if (this.mobType.WalkingStyle == EnumMobWalkingStyle.Stuttery)
